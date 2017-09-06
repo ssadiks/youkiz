@@ -1,0 +1,14 @@
+# Dependency directory
+node_modules
+
+# Ignore build files
+public
+public.tar.gz
+public.zip
+.tmp
+
+#IDEs
+.idea
+
+# Mac DS Store
+.DS_Store

@@ -4,14 +4,14 @@ Web app like [Youtube](youtube.com)
 
 ### Getting Started
 
-There are two methods for getting started with this repo.
+Install [MongoDb](https://docs.mongodb.com/manual/administration/install-community/)
 
 #### Familiar with Git?
 Checkout this repo, install dependencies, then start the gulp process with the following:
 
 ```
 > git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd ReduxSimpleStarter
+> cd Youkiz
 > npm install
 > npm start
 ```
