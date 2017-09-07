@@ -1,7 +1,7 @@
 import Video  from '../models/video.model';
 
 // middleware to use for all requests
-const middleware = (req, res, next) => {
+export const middleware = (req, res, next) => {
 	console.log('Something is happening.');
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -15,8 +15,8 @@ const middleware = (req, res, next) => {
 	next();
 }
 
-// test route to make sure everything is working (accessed at GET http://localhost:8080/api)
-const rootApi = (req, res) => {
+// test route to make sure everything is working (accessed at GET http://localhost:3030/api)
+export const rootApi = (req, res) => {
 	res.json({ message: 'Welcome to Youkiz api !' });
 }
 
@@ -26,17 +26,18 @@ const rootApi = (req, res) => {
 * @param res
 * @returns void
 */
-const createVideo = function (req, res) {
-	
-	let video = new Video();		// create a new instance of the Video model
-	video.videoId = req.body.videoId;  // set the videos name (comes from the request)
-	video.type = req.body.type;
-	video.song = req.body.song;
+export const createVideo = (req, res) => {
+	const paramVideo = {
+	    videoId: req.body.videoId,
+        type: req.body.type,
+        song: req.body.song,
+    }
+	let video = new Video(paramVideo);		// create a new instance of the Video model
 
-	video.save(function(err, video) {
-	  if (err)
-      res.status(500).send(err);
-	
+	video.save((err, video) => {
+	  if (err) {
+	      return res.status(500).send(err);
+      }
 	  res.json(video);
 	});
 }
@@ -47,27 +48,26 @@ const createVideo = function (req, res) {
 * @param res
 * @returns void
 */
-const getVideos = function(req, res) {
+export const getVideos = (req, res) => {
   // Search term in videoId with insensitive case
-  var videoId = req.query['videoId'];
+  const videoId = req.query['videoId'];
   if(videoId !== undefined) {
     Video.aggregate([
       { $match: { videoId: {$regex: videoId, $options : 'i'} } }
-    ], function(err, videos) {
-      if (err)
-        res.send(err);
-  
+    ], (err, videos) => {
+      if (err) {
+          return res.send(err);
+      }
       res.json(videos);
     });    
   } else {
-    Video.find(function(err, videos) {
-      if (err)
-        res.send(err);
-  
+    Video.find((err, videos) => {
+      if (err) {
+          return res.send(err);
+      }
       res.json(videos);
     });
   }
-	
 }
 
 /**
@@ -76,12 +76,12 @@ const getVideos = function(req, res) {
 * @param res
 * @returns video
 */
-const getVideo = (req, res) => {
+export const getVideo = (req, res) => {
 	// const { video_id } = req.params;
 	// console.log('video_id', video_id);
 	Video.findById(req.params.video_id, (err, video) => {
 		if (err) {
-            res.send({
+            return res.send({
                 code: "YK_ERR_01",
                 message: "this video doesn't exists"
             });
@@ -96,7 +96,7 @@ const getVideo = (req, res) => {
 * @param res
 * @returns void
 */
-const updateVideo = (req, res) => {
+export const updateVideo = (req, res) => {
     const { video_id } = req.params;
     Video.findById(video_id, (err, video) => {
 
@@ -113,7 +113,7 @@ const updateVideo = (req, res) => {
         video.song = song;
         video.save((err) => {
             if (err) {
-                res.send({
+                return res.send({
                     code: "YK_ERR_02",
                     message: "Error: update has failed"
                 });
@@ -132,27 +132,16 @@ const updateVideo = (req, res) => {
 * @param res
 * @returns void
 */
-const deleteVideo = (req, res) => {
+export const deleteVideo = (req, res) => {
 	Video.remove({
 		_id: req.params.video_id
 	}, (err) => {
 		if (err) {
-            res.send({
+            return res.send({
                 code: "YK_ERR_02",
                 message: "Error: Delete has failed"
             });
 		}
-
-		res.json({ message: 'Successfully deleted' });
+        res.json({ message: 'Successfully deleted' });
 	});
 }
-
-module.exports = {
-	rootApi,
-	middleware,
-	getVideos,
-	getVideo,
-	createVideo,
-	updateVideo,
-	deleteVideo
-};

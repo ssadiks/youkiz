@@ -1,5 +1,5 @@
 import express from 'express';
-import VideoController from './../controllers/video.controller';
+import * as VideoController from './../controllers/video.controller';
 
 const router = express.Router();
 

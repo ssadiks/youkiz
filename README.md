@@ -6,23 +6,28 @@ Web app like [Youtube](youtube.com)
 
 Install [MongoDb](https://docs.mongodb.com/manual/administration/install-community/)
 
-#### Familiar with Git?
-Checkout this repo, install dependencies, then start the gulp process with the following:
+#### Lunch MongoDb
 
 ```
-> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd Youkiz
-> npm install
-> npm start
-```
-
-#### Not Familiar with Git?
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
-
-```
-> npm install
-> npm start
-> yarn start-server
 > mongod
 ```
-# youkiz
+
+#### Get project files
+
+```
+> git clone https://github.com/ssadiks/youkiz.git
+> cd youkiz
+> npm install
+```
+
+#### Lunch the api
+
+```
+> npm run start-server
+```
+
+#### Lunch the web app front
+
+```
+> npm run start
+```

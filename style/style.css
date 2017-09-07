@@ -1,0 +1,8 @@
+.videosList {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.videosList__item {
+    width: 50%;
+}

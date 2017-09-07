@@ -24,18 +24,18 @@ class VideosList extends Component {
         <h1>List of videos</h1>
         {
           videosList &&
-          <div>
+          <div className="videosList">
             {
               videosList.map(video => {
                 const imageUrl = `https://i.ytimg.com/vi/${video.videoId}/mqdefault.jpg`;
 
                 return (
-                <div key={video.videoId}>
-                  <Link to={`videos/${video._id}`}>
+                <div className="videosList__item" key={video.videoId}>
+                  <a href={`//www.youtube.com/watch?v=${video.videoId}`} target="_blank">
                     <img className="media-object" src={imageUrl} alt="" />
                     <span>{video.song}</span>
                     <span>{video.type}</span>
-                  </Link>
+                  </a>
                 </div>
                 )
               })
