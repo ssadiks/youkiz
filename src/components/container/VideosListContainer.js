@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import VideosList from '../presentational/VideosList';
+import VideosList from '../presentational/VideosList/VideosList';
 import { fetchVideosAction } from '../../redux/actions';
 
 const mapStateToProps = state => ({

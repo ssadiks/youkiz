@@ -11,7 +11,7 @@ const postcss = (loader) => [
 
 const config = {
     entry:  {
-        bundle: resolve('./src/index.jsx'),
+        bundle: [resolve('./src/index.jsx'), resolve('./src/style/style.scss')],
         vendors: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-dom', 'redux', 'redux-thunk', 'material-ui'],
     },
     output: {

@@ -1,0 +1,50 @@
+.videosList {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  width: 100%;
+  margin: auto;
+
+  @include breakpoint (tablet) {
+    width: (64 + $double-extra-small-value * 2);
+    justify-content: flex-start;
+  }
+
+  @include breakpoint (desktop) {
+    width: (96 + $double-extra-small-value * 2);
+    justify-content: flex-start;
+  }
+
+  &__item {
+    position: relative;
+    flex: 0 0 auto;
+    width: 32rem;
+    margin-bottom: $double-extra-small-value;
+
+    @include breakpoint (tablet) {
+      margin-left: $double-extra-small-value;
+
+      &:nth-child(2n+1) {
+        margin-left: 0;
+      }
+    }
+
+    @include breakpoint (desktop) {
+      margin-left: $double-extra-small-value;
+
+      &:nth-child(3n+1) {
+        margin-left: 0;
+      }
+    }
+
+    &__description {
+      background-color: $red;
+      color: $white;
+      padding: $small-value;
+    }
+
+    img {
+      display: block;
+    }
+  }
+}

@@ -3,29 +3,26 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch
+} from 'react-router-dom'
 
 import App from './components/container/App';
 import HeaderContainer from './components/container/HeaderContainer';
 import VideosListContainer from './components/container/VideosListContainer';
-import VideoDetailsContainer from './components/container/VideoDetailsContainer';
-import NotFound from './components/presentational/NotFound';
+import NotFound from './components/presentational/NotFound/NotFound';
 import reducers from './redux/reducers';
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch
-} from 'react-router-dom'
 
 const Root = () => (
   <Router>
     <div>
-      <HeaderContainer/>
+      <HeaderContainer />
       <hr/>
       <Switch>
         <Route exact path="/" component={App} />
-        <Route exact path="/videos" component={VideosListContainer} />
-        <Route path="/videos/:videoId" component={VideoDetailsContainer}/>
+        <Route path="/videos" component={VideosListContainer} />
         <Route component={NotFound} />
       </Switch>
     </div>
@@ -39,4 +36,4 @@ ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <Root />
   </Provider>
-  , document.querySelector('.container'));
+  , document.querySelector('#root'));

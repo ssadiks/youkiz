@@ -20,7 +20,7 @@ class VideosList extends Component {
     const { videosList } = this.props;
 
     return (
-      <div>
+      <div className="o-container">
         <h1>List of videos</h1>
         {
           videosList &&
@@ -33,9 +33,11 @@ class VideosList extends Component {
                 <div className="videosList__item" key={video.videoId}>
                   <a href={`//www.youtube.com/watch?v=${video.videoId}`} target="_blank">
                     <img className="media-object" src={imageUrl} alt="" />
+                  </a>
+                  <div className="videosList__item__description">
                     <span>{video.song}</span>
                     <span>{video.type}</span>
-                  </a>
+                  </div>
                 </div>
                 )
               })

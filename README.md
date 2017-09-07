@@ -31,3 +31,13 @@ Install [MongoDb](https://docs.mongodb.com/manual/administration/install-communi
 ```
 > npm run start
 ```
+
+#### Dto
+
+```
+{
+	"videoId": "kT4JuLKFyZA",
+	"type": "typeOfVideo",
+	"song": "Title of the song"
+}
+```

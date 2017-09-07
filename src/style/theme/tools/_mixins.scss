@@ -1,0 +1,17 @@
+// mixin container
+@mixin container() {
+  .o-container {
+    max-width: $container-layout + $margin-layout * 2;
+    margin-right: auto;
+    margin-left: auto;
+    @if $margin-layout != 0 {
+      padding-right: $margin-layout;
+      padding-left: $margin-layout;
+    }
+  }
+  .o-container--fluid {
+    max-width: none;
+  }
+}
+
+@include container();
