@@ -9,6 +9,16 @@ const postcss = (loader) => [
     autoprefixer({ browsers: ['last 4 versions'] })
 ];
 
+const BUILD_DIR = resolve('./public');
+
+const devServer = process.env.NODE_ENV === 'development' ? {
+    publicPath: "http://localhost:8080/",
+    contentBase: "./",
+    historyApiFallback: true,
+    compress: true,
+    port: '8080',
+} : null;
+
 const config = {
     entry:  {
         bundle: [resolve('./src/index.jsx'), resolve('./src/style/style.scss')],
@@ -16,7 +26,8 @@ const config = {
     },
     output: {
         filename: '[name].js',
-        path: resolve('./public')
+        path: resolve('./public'),
+        publicPath: 'http://localhost:8080/'
     },
     resolve: {
         extensions: ['.js', '.jsx']
@@ -62,7 +73,8 @@ const config = {
             names: ['vendors'],
             minChunks: Infinity
         })
-    ]
+    ],
+    devServer
 };
 
 module.exports = config;
