@@ -12,14 +12,16 @@ const VideoSchema = new Schema({
     type: {
       type: String,
       trim: true,
-      lowercase: true,
       required: 'Type is required'
     },
     song: {
       type: String,
       trim: true,
-      lowercase: true,
-    }
+    },
+    dancers: [{
+        dancer: String,
+        sex: String
+    }]
 });
 
 export default mongoose.model('Video', VideoSchema);

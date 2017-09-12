@@ -8,6 +8,8 @@ import {
     Route,
     Switch
 } from 'react-router-dom'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 import App from './components/container/App';
 import HeaderContainer from './components/container/HeaderContainer';
@@ -34,6 +36,8 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
-    <Root />
+    <MuiThemeProvider>
+        <Root />
+    </MuiThemeProvider>
   </Provider>
   , document.querySelector('#root'));

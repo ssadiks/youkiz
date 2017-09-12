@@ -1,5 +1,6 @@
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
 import autoprefixer from 'autoprefixer';
 
@@ -10,13 +11,16 @@ const postcss = (loader) => [
 ];
 
 const BUILD_DIR = resolve('./public');
+const APP_DIR = resolve('./src');
+const PORT = '8080';
+
 
 const devServer = process.env.NODE_ENV === 'development' ? {
-    publicPath: "http://localhost:8080/",
+    publicPath: `http://localhost:${PORT}/`,
     contentBase: "./",
     historyApiFallback: true,
     compress: true,
-    port: '8080',
+    port: PORT,
 } : null;
 
 const config = {
@@ -27,7 +31,7 @@ const config = {
     output: {
         filename: '[name].js',
         path: resolve('./public'),
-        publicPath: 'http://localhost:8080/'
+        publicPath: `http://localhost:${PORT}/`
     },
     resolve: {
         extensions: ['.js', '.jsx']
@@ -72,7 +76,11 @@ const config = {
         new CommonsChunkPlugin({
             names: ['vendors'],
             minChunks: Infinity
-        })
+        }),
+        /*new HtmlWebpackPlugin({
+            template: `${APP_DIR}/index.tpl.ejs`,
+            chunks: ['app', 'vendors']
+        })*/
     ],
     devServer
 };

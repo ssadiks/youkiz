@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import {
-  Link
-} from 'react-router-dom'
+import FilterVideos from './FilterVideos';
 
 class VideosList extends Component {
 
   componentWillMount() {
-    this.props.fetchVideosAction();
+    // this.props.fetchVideosAction();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -21,6 +19,9 @@ class VideosList extends Component {
 
     return (
       <div className="o-container">
+        {
+          <FilterVideos onSubmit={(params) => this.props.fetchVideosAction(params)}/>
+        }
         <h1>List of videos</h1>
         {
           videosList &&
@@ -31,7 +32,11 @@ class VideosList extends Component {
 
                 return (
                 <div className="videosList__item" key={video.videoId}>
-                  <a href={`//www.youtube.com/watch?v=${video.videoId}`} target="_blank">
+                  <a
+                      className="videosList__item__link"
+                      href={`//www.youtube.com/watch?v=${video.videoId}`}
+                      target="_blank"
+                  >
                     <img className="media-object" src={imageUrl} alt="" />
                   </a>
                   <div className="videosList__item__description">

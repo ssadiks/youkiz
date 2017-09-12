@@ -10,6 +10,7 @@ router.use(VideoController.middleware);
 // Get message on Root Api
 router.route('/').get(VideoController.rootApi);
 
+router.route('/videoss').post(VideoController.getVideoss);
 router.route('/videos').get(VideoController.getVideos);
 router.route('/videos').post(VideoController.createVideo);
 router.route('/videos/:video_id').get(VideoController.getVideo);

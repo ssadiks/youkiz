@@ -37,6 +37,13 @@
       }
     }
 
+    &__link {
+      display: block;
+      height: calc(100% - 3.5rem);
+      width: 100%;
+      background: grey;
+    }
+
     &__description {
       background-color: $red;
       color: $white;

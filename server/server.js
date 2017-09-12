@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 3030; // set our port
 
-mongoose.connect('mongodb://localhost/videos'); // connect to our database
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/videos', { useMongoClient: true });
 
 // REGISTER OUR ROUTES
 app.use('/api', routerVideo);

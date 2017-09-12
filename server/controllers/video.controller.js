@@ -31,12 +31,15 @@ export const createVideo = (req, res) => {
 	    videoId: req.body.videoId,
         type: req.body.type,
         song: req.body.song,
+        dancers: req.body.dancers,
     }
 	let video = new Video(paramVideo);		// create a new instance of the Video model
-
 	video.save((err, video) => {
-	  if (err) {
-	      return res.status(500).send(err);
+	  if (err && err.code === 11000) {
+          return res.send({
+              code: "YK_ERR_03",
+              message: "This video already exists"
+          });
       }
 	  res.json(video);
 	});
@@ -69,6 +72,66 @@ export const getVideos = (req, res) => {
     });
   }
 }
+
+export const getVideoss = (req, res) => {
+    console.log('req.body', req.body);
+    /*if (!req.body.filters) {
+        console.log('null');
+    }*/
+
+    const filters = {
+        type: req.body.filters.type,
+        "dancers.dancer": req.body.filters.dancers
+    }
+
+    const limit = req.body.limit;
+
+    if (req.body.filters.dancers && req.body.filters.dancers.length === 0) {
+        delete filters['dancers.dancer'];
+    }
+
+    if (req.body.filters.type === "") {
+        delete filters.type;
+    }
+
+    Video.find(filters, (err, videos) => {
+        if (err) {
+            return res.send(err);
+        }
+
+        if (videos.length === 0) {
+            return res.send([]);
+        }
+        res.json(videos);
+    }).limit(limit);
+}
+
+/* export function getAssignment(params = {}) {
+    const { limit = 10, page, status = STATUS_TABS.BOOKING_REQUEST[0], sort, order } = params;
+    return request('get', API_GARAGE('/garage/v1/assignments'), {
+        params: {
+            limit,
+            page,
+            status,
+            sort,
+            order
+        }
+    })
+        .then((res) => {
+            const assignments = res.assignments.map(assignment => ({
+                ...assignment,
+                appointmentDate: formatDate(assignment.appointmentDate),
+                createdDate: formatDate(assignment.createdDate),
+                estimatedEndDate: formatDate(assignment.estimatedEndDate),
+                lastModifiedDate: formatDate(assignment.lastModifiedDate),
+                workDoneDate: formatDate(assignment.workDoneDate)
+            }));
+            return {
+                ...res,
+                assignments
+            };
+        });
+}*/
 
 /**
 * Get a video
