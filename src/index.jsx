@@ -4,13 +4,11 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch
-} from 'react-router-dom'
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-
 import App from './components/container/App';
 import HeaderContainer from './components/container/HeaderContainer';
 import VideosListContainer from './components/container/VideosListContainer';
@@ -21,7 +19,7 @@ const Root = () => (
   <Router>
     <div>
       <HeaderContainer />
-      <hr/>
+      <hr />
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/videos" component={VideosListContainer} />
@@ -29,15 +27,18 @@ const Root = () => (
       </Switch>
     </div>
   </Router>
-)
+);
 
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
+  <Provider
+    store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__())}
+  >
     <MuiThemeProvider>
-        <Root />
+      <Root />
     </MuiThemeProvider>
   </Provider>
   , document.querySelector('#root'));

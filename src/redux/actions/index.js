@@ -13,12 +13,12 @@ export const fetchVideosAction = params => (dispatch) => {
   dispatch(fetchVideosRequest());
   return fetchVideos(params)
     .then(res => dispatch(fetchVideosSuccess(res)))
-    .catch(error => dispatch(fetchVideosFailure(error)))
-}
+    .catch(error => dispatch(fetchVideosFailure(error)));
+};
 
 export const fetchVideoAction = id => (dispatch) => {
   dispatch(fetchVideoRequest());
   return fetchVideo(id)
     .then(res => dispatch(fetchVideoSuccess(res)))
-    .catch(error => dispatch(fetchVideoFailure(error)))
-}
+    .catch(error => dispatch(fetchVideoFailure(error)));
+};
