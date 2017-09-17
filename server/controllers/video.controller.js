@@ -55,56 +55,36 @@ export const createVideo = (req, res) => {
  * @returns void
  */
 export const getVideos = (req, res) => {
-  // Search term in videoId with insensitive case
-  const videoId = req.query['videoId'];
-  if (videoId !== undefined) {
-    Video.aggregate([
-      { $match: { videoId: { $regex: videoId, $options: 'i' } } }
-    ], (err, videos) => {
-      if (err) {
-        return res.send(err);
-      }
-      res.json(videos);
-    });
-  } else {
-    Video.find((err, videos) => {
-      if (err) {
-        return res.send(err);
-      }
-      res.json(videos);
-    });
-  }
-};
-
-export const getVideoss = (req, res) => {
   console.log('req.body', req.body);
-  /* if (!req.body.filters) {
-      console.log('null');
-  } */
+  let filters = {};
+  let limit = '';
 
-  const filters = {
-    type: req.body.filters.type,
-    'dancers.dancer': req.body.filters.dancers
-  };
+  if (req.body.filters) {
+    filters = {
+      $and: [
+        { type: req.body.filters.type },
+        ...req.body.filters.dancers.map(dancer => ({ 'dancers.dancer': dancer }))
+      ]
+    };
 
-  const limit = req.body.limit;
+    if (req.body.filters.dancers && req.body.filters.dancers.length === 0) {
+      delete filters['dancers.dancer'];
+    }
 
-  if (req.body.filters.dancers && req.body.filters.dancers.length === 0) {
-    delete filters['dancers.dancer'];
+    if (req.body.filters.type === '') {
+      filters.$and = filters.$and.filter(item => item.type === undefined);
+    }
+
+    console.log('filters', filters);
   }
 
-  if (req.body.filters.type === '') {
-    delete filters.type;
-  }
+  limit = req.body.limit ? req.body.limit : '';
 
   Video.find(filters, (err, videos) => {
     if (err) {
       return res.send(err);
     }
 
-    if (videos.length === 0) {
-      return res.send([]);
-    }
     res.json(videos);
   }).limit(limit);
 };

@@ -66,7 +66,9 @@ const config = {
               plugins: postcss
             }
           },
-          {loader: 'sass-loader'}
+          {
+            loader: 'sass-loader'
+          }
         ]
       })
     }, {

@@ -14,3 +14,26 @@ export const getArrayOfValue = (arr = [], property = '') => arr.map(a => a[prope
  * @param value (String)
  */
 export const filterArrayBy = (arr = [], property = '', value = '') => arr.filter(item => item[property] === value);
+
+/**
+ *
+ * @param array
+ * @param properties
+ * @param values
+ * @returns {array}
+ *
+ * Rename properties of object in array
+ */
+export const changePropretiesOfObjectInArray = (array, properties, values) => {
+  array.forEach((o) => {
+    Object.keys(o).forEach((key) => {
+      const titi = properties.indexOf(key);
+      if (titi > -1) {
+        const pos = values[titi];
+        o[pos] = o[key];
+        delete o[key];
+      }
+    });
+  });
+  return array;
+};

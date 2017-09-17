@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import AutoComplete from 'material-ui/AutoComplete';
-import { DANCE_STYLE, DANCERS } from '../../../constants';
-import { getArrayOfValue, filterArrayBy } from '../../../helpers';
+import Select from 'react-select';
+import { DANCES_STYLE, DANCERS } from '../../../constants';
+import { changePropretiesOfObjectInArray } from '../../../helpers';
 
 class FilterVideos extends Component {
   constructor(props) {
@@ -26,63 +24,49 @@ class FilterVideos extends Component {
     };
 
     if (this.state.typeDance) {
-      params.filters.type = DANCE_STYLE[this.state.value];
+      params.filters.type = DANCES_STYLE[this.state.typeDance];
     }
 
-    if (this.state.dancerMale) {
-      params.filters.dancers.push(this.state.dancerMale);
-    }
-
-    if (this.state.dancerFemale) {
-      params.filters.dancers.push(this.state.dancerFemale);
+    if (this.state.dancers) {
+      params.filters.dancers = this.state.dancers;
     }
 
     this.props.onSubmit(params);
   }
 
-  handleChange = (event, index, typeDance) => this.setState({ typeDance });
-
-  handleChangeDancersMale = dancerMale => this.setState({ dancerMale });
-  handleChangeDancersFemale = dancerFemale => this.setState({ dancerFemale });
+  handleChangeTypeDance = typeDance => this.setState({ typeDance });
+  handleChangeDancers = dancers => this.setState({ dancers });
 
   render() {
-    const dancersFemale = getArrayOfValue(filterArrayBy(DANCERS, 'sex', 'FEMALE'), 'dancer');
-    const dancersMale = getArrayOfValue(filterArrayBy(DANCERS, 'sex', 'MALE'), 'dancer');
+    const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
+    const DANCERS_SELECT = changePropretiesOfObjectInArray(DANCERS, ['id', 'dancer'], ['value', 'label']);
 
     return (
       <div className="filterVideos">
-        <h1>Filter</h1>
+        <h2>Filter</h2>
         <form className="filterVideos__form" onSubmit={this.onSubmitSearch}>
-          <SelectField
-            floatingLabelText="Dance Style"
+          <Select
+            name="form-field-name"
+            options={DANCES_STYLE_SELECT}
+            onChange={this.handleChangeTypeDance}
+            clearable={false}
             value={this.state.typeDance}
-            onChange={this.handleChange}
-          >
-            {
-              DANCE_STYLE.map((DanceStyle, index) => (
-                <MenuItem key={index} value={index} primaryText={DanceStyle} />
-              ))
-            }
-          </SelectField>
-          <AutoComplete
-            floatingLabelText="Male Dancers"
-            filter={AutoComplete.fuzzyFilter}
-            dataSource={dancersMale}
-            maxSearchResults={5}
-            onNewRequest={this.handleChangeDancersMale}
-            openOnFocus
+            simpleValue
+            placeholder="Select a dance style"
+            className="filterVideos__select filterVideos__select--typeDance"
           />
-          <AutoComplete
-            floatingLabelText="Female Dancers"
-            filter={AutoComplete.fuzzyFilter}
-            dataSource={dancersFemale}
-            maxSearchResults={5}
-            onNewRequest={this.handleChangeDancersFemale}
-            openOnFocus
+          <Select
+            name="form-field-name"
+            options={DANCERS_SELECT}
+            onChange={this.handleChangeDancers}
+            value={this.state.dancers}
+            multi
+            autosize
+            placeholder="Select dancers"
+            className="filterVideos__select filterVideos__select--dancers"
           />
           <button type="submit">Filter</button>
         </form>
-
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const HeaderContainer = () => (
+const HeaderContainer = () => (
   <div>
     <ul>
       <li><Link to="/">Home</Link></li>
@@ -10,3 +10,5 @@ export const HeaderContainer = () => (
     </ul>
   </div>
 );
+
+export default HeaderContainer;

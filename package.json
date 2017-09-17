@@ -33,6 +33,7 @@
     "lodash": "^4.17.2",
     "mongoose": "^4.11.11",
     "react-addons-test-utils": "^0.14.7",
+    "react-select": "^1.0.0-rc.10",
     "webpack": "^3.5.6",
     "webpack-dev-server": "^2.7.1"
   },
@@ -51,7 +52,7 @@
     "postcss-loader": "^2.0.6",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
-    "react-dom": "^0.14.3",
+    "react-dom": "^15.6.1",
     "react-redux": "4.3.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",

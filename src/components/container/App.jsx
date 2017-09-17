@@ -1,7 +1,9 @@
 import React from 'react';
 
-export const App = () => (
+const App = () => (
   <div>
     <span>HOME</span>
   </div>
 );
+
+export default App;

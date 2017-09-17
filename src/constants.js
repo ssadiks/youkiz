@@ -9,40 +9,22 @@ export const DANCES_STYLE = [
 
 export const DANCERS = [
   {
+    id: 0,
     dancer: 'Joy',
     sex: 'MALE'
   },
   {
+    id: 1,
     dancer: 'Isa',
     sex: 'FEMALE'
   },
   {
+    id: 2,
     dancer: 'Gwany',
     sex: 'MALE'
   },
   {
-    dancer: 'Kizzy',
-    sex: 'FEMALE'
-  }
-];
-
-export const DANCERS_MALE = [
-  {
-    dancer: 'Joy',
-    sex: 'MALE'
-  },
-  {
-    dancer: 'Gwany',
-    sex: 'MALE'
-  }
-];
-
-export const DANCERS_FEMALE = [
-  {
-    dancer: 'Isa',
-    sex: 'FEMALE'
-  },
-  {
+    id: 3,
     dancer: 'Kizzy',
     sex: 'FEMALE'
   }

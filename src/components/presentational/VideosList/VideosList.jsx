@@ -10,7 +10,7 @@ class VideosList extends Component {
   componentWillReceiveProps(nextProps) {
     // console.log('rp', this.props.videosList);
     if (nextProps.videosList !== this.props.videosList) {
-      // this.props.fetchVideosAction();
+      this.props.fetchVideosAction();
     }
   }
 
@@ -56,7 +56,7 @@ class VideosList extends Component {
 }
 
 VideosList.propTypes = {
-  videosList: PropTypes.array.isRequired,
+  videosList: PropTypes.array,
   fetchVideosAction: PropTypes.func.isRequired
 };
 
