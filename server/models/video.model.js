@@ -19,8 +19,7 @@ const VideoSchema = new Schema({
     trim: true,
   },
   dancers: [{
-    dancer: String,
-    sex: String
+    name: String
   }]
 });
 

@@ -1,4 +1,5 @@
 import Video from '../models/video.model';
+import Dancer from '../models/dancer.model';
 
 // middleware to use for all requests
 export const middleware = (req, res, next) => {
@@ -63,12 +64,12 @@ export const getVideos = (req, res) => {
     filters = {
       $and: [
         { type: req.body.filters.type },
-        ...req.body.filters.dancers.map(dancer => ({ 'dancers.dancer': dancer }))
+        ...req.body.filters.dancers.map(dancer => ({ 'dancers.name': dancer }))
       ]
     };
 
     if (req.body.filters.dancers && req.body.filters.dancers.length === 0) {
-      delete filters['dancers.dancer'];
+      delete filters['dancers.name'];
     }
 
     if (req.body.filters.type === '') {
@@ -189,5 +190,119 @@ export const deleteVideo = (req, res) => {
       });
     }
     res.json({message: 'Successfully deleted'});
+  });
+};
+
+/**
+ * Create a dancer
+ * @param req (Dancer Object)
+ * @param res
+ * @returns void
+ */
+export const createDancer = (req, res) => {
+  const paramDancer = {
+    sex: req.body.sex,
+    name: req.body.name,
+  };
+
+  const dancer = new Dancer(paramDancer);
+
+  dancer.save((err, dancer) => {
+    if (err && err.code === 11000) {
+      return res.send({
+        code: 'YK_ERR_03',
+        message: 'This dancer already exists'
+      });
+    }
+    res.json(dancer);
+  });
+};
+
+/**
+ * Get all videos
+ * @param req
+ * @param res
+ * @returns void
+ */
+export const getDancers = (req, res) => {
+  Dancer.find((err, dancers) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json(dancers);
+  });
+};
+
+/**
+ * Get a dancer
+ * @param req
+ * @param res
+ * @returns dancer
+ */
+export const getDancer = (req, res) => {
+  Dancer.findById(req.params.dancer_id, (err, dancer) => {
+    if (err) {
+      return res.send({
+        code: 'YK_ERR_01',
+        message: 'this dancer doesn\'t exists'
+      });
+    }
+    res.json(dancer);
+  });
+};
+
+/**
+ * Update Dancer
+ * @param req (Dancer object)
+ * @param res
+ * @returns void
+ */
+export const updateDancer = (req, res) => {
+  const { dancer_id } = req.params;
+  Dancer.findById(dancer_id, (err, dancer) => {
+
+    if (err) {
+      res.send({
+        code: 'YK_ERR_01',
+        message: 'Error: video not found'
+      });
+    }
+
+    const { sex, name } = req.body;
+    dancer.sex = sex;
+    dancer.name = name;
+    dancer.save((err) => {
+      if (err) {
+        return res.send({
+          code: 'YK_ERR_02',
+          message: 'Error: update has failed'
+        });
+      }
+      res.json({
+        dancer
+      });
+    });
+
+  });
+};
+
+/**
+ * Delete Dancer
+ * @param req
+ * @param res
+ * @returns void
+ */
+export const deleteDancer = (req, res) => {
+  Dancer.remove({
+    _id: req.params.dancer_id
+  }, (err) => {
+    if (err) {
+      return res.send({
+        code: 'YK_ERR_02',
+        message: 'Error: Delete has failed'
+      });
+    }
+    res.json({ message: 'Successfully deleted' });
   });
 };

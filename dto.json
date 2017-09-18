@@ -1,0 +1,19 @@
+{
+  "createVideo": {
+    "videoId": "U4lrHKTEblU",
+    "type": "Semba",
+    "song": "Tabanka Djaz - Sperança",
+    "dancers" : [{"name": "Berto"}, {"name": "Laho"}]
+  },
+  "Filters": {
+    "filters": {
+      "dancers": [],
+      "type": "Tarraxa"
+    },
+    "limit": 10
+  },
+  "Create Dancer": {
+    "name": "Laho",
+    "sex": "Female"
+  }
+}

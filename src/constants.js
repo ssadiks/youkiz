@@ -1,10 +1,10 @@
 export const DANCE_STYLE = ['Kizomba', 'Tarraxa', 'Semba', 'Afro House'];
 
 export const DANCES_STYLE = [
-  { id: 1, name: 'Kizomba' },
-  { id: 2, name: 'Tarraxa' },
-  { id: 3, name: 'Semba' },
-  { id: 4, name: 'Afro House' }
+  { id: 'Kizomba', name: 'Kizomba' },
+  { id: 'Tarraxa', name: 'Tarraxa' },
+  { id: 'Semba', name: 'Semba' },
+  { id: 'Afro House', name: 'Afro House' }
 ];
 
 export const DANCERS = [

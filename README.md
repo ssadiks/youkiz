@@ -36,8 +36,21 @@ Install [MongoDb](https://docs.mongodb.com/manual/administration/install-communi
 
 ```
 {
-	"videoId": "kT4JuLKFyZA",
-	"type": "typeOfVideo",
-	"song": "Title of the song"
+	"videoId": "U4lrHKTEblU",
+	"type": "Semba",
+	"song": "Tabanka Djaz - Speran?a",
+	"dancers" : [{"name": "Berto"}, {"name": "Laho"}]
+}
+```
+
+#### Filters
+
+```
+{
+	"filters": {
+		"dancers": ["Gwany", "Kizzy"],
+		"type": "Tarraxa"
+	},
+	"limit": 10
 }
 ```
