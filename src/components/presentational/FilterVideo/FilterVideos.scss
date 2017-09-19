@@ -9,5 +9,27 @@
   &__select {
     width: 100%;
     margin-bottom: $small-value;
+
+    @include breakpoint (desktop) {
+      width: 50%;
+
+      &--dancers {
+        padding-left: $medium-value;
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    &__filter {
+      margin-left: $small-value;
+    }
+
+    @include breakpoint (desktop) {
+      justify-content: flex-end;
+    }
   }
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
+import RaisedButton from 'material-ui/RaisedButton';
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray, getArrayOfValue } from '../../../helpers';
 
@@ -8,7 +9,7 @@ class FilterVideos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      typeDance: '',
+      typeDance: null,
       dancersTab: []
     };
   }
@@ -49,18 +50,26 @@ class FilterVideos extends Component {
       params.filters.dancers = this.state.dancersTab;
     }
 
-    if (dancersTab.length === 0 && typeDance === '') {
+    if (dancersTab.length === 0 && typeDance === null) {
       this.props.onSubmit();
     } else {
       this.props.onSubmit(params);
     }
   }
 
-  // handleChangeTypeDance = typeDance => this.setState({ typeDance });
-  handleChangeTypeDance = typeDance => {
-    console.log('typeDance', typeDance);
+  resetFilter = () => {
+    this.setState({
+      typeDance: null,
+      dancersTab: [],
+      dancers: []
+    });
+    this.props.onSubmit();
+  };
+
+  handleChangeTypeDance = (typeDance) => {
     this.setState({ typeDance });
-  }
+  };
+
   handleChangeDancers = (dancers) => {
     const dancersTab = getArrayOfValue(dancers, 'label');
     this.setState({ dancers, dancersTab });
@@ -95,7 +104,10 @@ class FilterVideos extends Component {
               className="filterVideos__select filterVideos__select--dancers"
             />
           }
-          <button type="submit">Filter</button>
+          <div className="filterVideos__buttons">
+            <RaisedButton onClick={() => this.resetFilter()} label="Reset" secondary />
+            <RaisedButton className="filterVideos__buttons__filter" type="submit" label="Filter" primary />
+          </div>
         </form>
       </div>
     );

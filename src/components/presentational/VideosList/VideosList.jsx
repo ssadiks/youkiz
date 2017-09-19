@@ -27,7 +27,6 @@ class VideosList extends Component {
             dancersList={dancersList}
           />
         }
-        <h2>List of videos</h2>
         {
           videosList &&
           <ListOfVideos videosList={videosList} />

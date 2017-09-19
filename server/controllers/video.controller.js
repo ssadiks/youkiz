@@ -56,7 +56,9 @@ export const createVideo = (req, res) => {
  * @returns void
  */
 export const getVideos = (req, res) => {
-  console.log('req.body', req.body);
+  // console.log('req.body', req.body.filters);
+  // console.log('req', !!req.body.filters || (req.body.filters.dancers.length > 0 && req.body.filters.type !== ''));
+
   let filters = {};
   let limit = '';
 
