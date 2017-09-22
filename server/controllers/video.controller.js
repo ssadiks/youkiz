@@ -59,13 +59,14 @@ export const getVideos = (req, res) => {
   // console.log('req.body', req.body.filters);
   // console.log('req', !!req.body.filters || (req.body.filters.dancers.length > 0 && req.body.filters.type !== ''));
 
-  let filters = {};
+  let filters = null;
   let limit = '';
 
   if (req.body.filters) {
     filters = {
       $and: [
         { type: req.body.filters.type },
+        { online: true },
         ...req.body.filters.dancers.map(dancer => ({ 'dancers.name': dancer }))
       ]
     };
@@ -83,12 +84,12 @@ export const getVideos = (req, res) => {
 
   limit = req.body.limit ? req.body.limit : '';
 
-  Video.find(filters, (err, videos) => {
+  Video.find(filters || { online: true }, (err, videos) => {
     if (err) {
       return res.send(err);
     }
 
-    res.json(videos);
+    res.json(videos.map(video => Object.assign(video, { _id: (video._id).toString() })));
   }).limit(limit);
 };
 
@@ -196,6 +197,22 @@ export const deleteVideo = (req, res) => {
 };
 
 /**
+ * Get all videos
+ * @param req
+ * @param res
+ * @returns void
+ */
+export const getDancers = (req, res) => {
+  Dancer.find({}, (err, dancers) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json(dancers);
+  }).sort({ name: 1 });
+};
+
+/**
  * Create a dancer
  * @param req (Dancer Object)
  * @param res
@@ -203,7 +220,7 @@ export const deleteVideo = (req, res) => {
  */
 export const createDancer = (req, res) => {
   const paramDancer = {
-    sex: req.body.sex,
+    gender: req.body.gender,
     name: req.body.name,
   };
 
@@ -216,23 +233,9 @@ export const createDancer = (req, res) => {
         message: 'This dancer already exists'
       });
     }
-    res.json(dancer);
-  });
-};
 
-/**
- * Get all videos
- * @param req
- * @param res
- * @returns void
- */
-export const getDancers = (req, res) => {
-  Dancer.find((err, dancers) => {
-    if (err) {
-      return res.send(err);
-    }
-
-    return res.json(dancers);
+    return res.json(dancer);
+    // getDancers(req, res);
   });
 };
 
@@ -250,6 +253,7 @@ export const getDancer = (req, res) => {
         message: 'this dancer doesn\'t exists'
       });
     }
+
     res.json(dancer);
   });
 };
@@ -271,8 +275,8 @@ export const updateDancer = (req, res) => {
       });
     }
 
-    const { sex, name } = req.body;
-    dancer.sex = sex;
+    const { gender, name } = req.body;
+    dancer.gender = gender;
     dancer.name = name;
     dancer.save((err) => {
       if (err) {
@@ -305,6 +309,7 @@ export const deleteDancer = (req, res) => {
         message: 'Error: Delete has failed'
       });
     }
-    res.json({ message: 'Successfully deleted' });
+
+    res.json({ message: 'Successfully deleted', id: req.params.dancer_id });
   });
 };

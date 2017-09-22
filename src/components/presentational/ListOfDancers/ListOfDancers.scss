@@ -1,4 +1,50 @@
 .ListOfDancers {
-  display: block;
-  padding-bottom: $medium-value;
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin: auto;
+
+    @include breakpoint (tablet) {
+      width: (64 + $double-extra-small-value * 2);
+    }
+
+    @include breakpoint (desktop) {
+      width: (96 + $double-extra-small-value * 2);
+    }
+
+    &__item {
+      display: flex;
+      flex-wrap: wrap;
+
+      @include breakpoint (tablet) {
+        margin-left: $double-extra-small-value;
+        width: 25%;
+
+        &:nth-child(2n+1) {
+          margin-left: 0;
+        }
+      }
+
+      @include breakpoint (desktop) {
+        margin-left: $double-extra-small-value;
+        width: 25%;
+
+        &:nth-child(4n - 3) {
+          margin-left: 0;
+        }
+      }
+
+      &--male {
+        padding: $small-value;
+        background-color: rgb(100, 181, 246) !important;
+      }
+
+      &--female {
+        padding: $small-value;
+        background-color: rgb(235, 158, 217) !important;
+      }
+    }
+  }
 }

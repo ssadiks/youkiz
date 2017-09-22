@@ -2,17 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { updateDancerAction } from '../../../redux/actions';
+import { createDancerAction } from '../../../redux/actions';
 import { GENDERS } from '../../../constants';
 
-class DancersEdit extends Component {
-  componentWillMount() {
-    const { selectedDancer } = this.props;
-    this.props.fetchDancerAction(selectedDancer);
-  }
 
+class DancersNew extends Component {
   onSubmit = (values) => {
-    this.props.updateDancerAction(values);
+    this.props.createDancerAction(values);
   }
 
   renderField(field) {
@@ -57,9 +53,8 @@ class DancersEdit extends Component {
   render() {
     const { handleSubmit, pristine, submitting, reset } = this.props;
     console.log('props', this.props);
-
     return (
-      <div className="DancersEdit">
+      <div className="DancersNew">
         <form onSubmit={handleSubmit(this.onSubmit)}>
           <Field
             label="Name"
@@ -95,17 +90,15 @@ function validate(values) {
   return errors;
 }
 
-DancersEdit.propTypes = {
+DancersNew.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-  updateDancerAction: PropTypes.func.isRequired,
-  fetchDancerAction: PropTypes.func.isRequired,
-  selectedDancer: PropTypes.string,
+  createDancerAction: PropTypes.func.isRequired,
 };
 
 export default reduxForm({
   validate,
   form: 'DancersNewForm'
-})(connect(null, { updateDancerAction })(DancersEdit));
+})(connect(null, { createDancerAction })(DancersNew));

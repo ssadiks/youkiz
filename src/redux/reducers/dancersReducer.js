@@ -45,6 +45,60 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
         error: action.error,
         isPending: false
       };
+    case types.CREATE_DANCER.REQUEST:
+      return {
+        ...state,
+        isPending: true,
+        error: null
+      };
+    case types.CREATE_DANCER.SUCCESS:
+      return {
+        ...state,
+        dancersList: [...state.dancersList, action.data.data],
+        isPending: false
+      };
+    case types.CREATE_DANCER.FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isPending: false
+      };
+    case types.DELETE_DANCER.REQUEST:
+      return {
+        ...state,
+        isPending: true,
+        error: null
+      };
+    case types.DELETE_DANCER.SUCCESS:
+      return {
+        ...state,
+        dancersList: state.dancersList.filter(dancer => dancer._id !== action.data.data.id),
+        isPending: false
+      };
+    case types.DELETE_DANCER.FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isPending: false
+      };
+    case types.UPDATE_DANCER.REQUEST:
+      return {
+        ...state,
+        isPending: true,
+        error: null
+      };
+    case types.UPDATE_DANCER.SUCCESS:
+      return {
+        ...state,
+        dancersList: action.data.data,
+        isPending: false
+      };
+    case types.UPDATE_DANCER.FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isPending: false
+      };
     default:
       return state;
   }

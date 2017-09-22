@@ -6,4 +6,4 @@ export const DANCES_STYLE = [
   { id: 'Lady styling', name: 'Lady styling' }
 ];
 
-export const SEX = ['Male', 'Female'];
+export const GENDERS = ['Male', 'Female'];

@@ -18,17 +18,6 @@ class FilterVideos extends Component {
     this.props.fetchDancersAction();
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.dancersList !== this.props.dancersList) {
-      if (nextProps.dancersList.length > 0) {
-        const dancersList = changePropretiesOfObjectInArray(nextProps.dancersList, ['_id', 'name'], ['value', 'label']);
-        this.setState({
-          dancersList
-        });
-      }
-    }
-  }
-
   onSubmitSearch = (e) => {
     e.preventDefault();
 
@@ -77,11 +66,12 @@ class FilterVideos extends Component {
 
   render() {
     const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
+    const dancersListSelect = changePropretiesOfObjectInArray(this.props.dancersList, ['_id', 'name'], ['value', 'label']);
 
     return (
-      <div className="filterVideos">
+      <div className="FilterVideos">
         <h2>Filter</h2>
-        <form className="filterVideos__form" onSubmit={this.onSubmitSearch}>
+        <form className="FilterVideos__form" onSubmit={this.onSubmitSearch}>
           <Select
             name="form-field-name"
             options={DANCES_STYLE_SELECT}
@@ -89,24 +79,24 @@ class FilterVideos extends Component {
             value={this.state.typeDance}
             simpleValue
             placeholder="Select a dance style"
-            className="filterVideos__select filterVideos__select--typeDance"
+            className="FilterVideos__select FilterVideos__select--typeDance"
           />
           {
-            this.state.dancersList &&
+            dancersListSelect &&
             <Select
               name="form-field-name"
-              options={this.state.dancersList}
+              options={dancersListSelect}
               onChange={this.handleChangeDancers}
               value={this.state.dancers}
               multi
               autosize
               placeholder="Select dancers"
-              className="filterVideos__select filterVideos__select--dancers"
+              className="FilterVideos__select FilterVideos__select--dancers"
             />
           }
-          <div className="filterVideos__buttons">
+          <div className="FilterVideos__buttons">
             <RaisedButton onClick={() => this.resetFilter()} label="Reset" secondary />
-            <RaisedButton className="filterVideos__buttons__filter" type="submit" label="Filter" primary />
+            <RaisedButton className="FilterVideos__buttons__filter" type="submit" label="Filter" primary />
           </div>
         </form>
       </div>

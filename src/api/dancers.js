@@ -9,3 +9,18 @@ export function fetchDancer(dancerId) {
   return axios.get(`http://localhost:3030/api/dancer/${dancerId}`)
     .then(response => response);
 }
+
+export function createDancer(dancer) {
+  return axios.post('http://localhost:3030/api/dancers', dancer)
+    .then(response => response);
+}
+
+export function deleteDancer(dancerId) {
+  return axios.delete(`http://localhost:3030/api/dancers/${dancerId}`)
+    .then(response => response);
+}
+
+export function updateDancer(dancerId, params) {
+  return axios.delete(`http://localhost:3030/api/dancers/${dancerId}`, params)
+    .then(response => response);
+}

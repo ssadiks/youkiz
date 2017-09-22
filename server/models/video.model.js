@@ -20,7 +20,12 @@ const VideoSchema = new Schema({
   },
   dancers: [{
     name: String
-  }]
+  }],
+  online: { type: Boolean, default: false }
 });
+
+VideoSchema.methods.isOnline = function () {
+  return this.online;
+};
 
 export default mongoose.model('Video', VideoSchema);

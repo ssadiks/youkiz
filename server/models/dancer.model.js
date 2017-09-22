@@ -9,10 +9,10 @@ const DancerSchema = new Schema({
     unique: true,
     required: 'videoId is required'
   },
-  sex: {
+  gender: {
     type: String,
     trim: true,
-    required: 'Sex is required'
+    required: 'Gender is required'
   }
 });
 

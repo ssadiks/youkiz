@@ -3,6 +3,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 // import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
 import autoprefixer from 'autoprefixer';
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
 const resolve = dir => path.resolve(__dirname, dir);
 
@@ -91,6 +92,7 @@ const config = {
       names: ['vendors'],
       minChunks: Infinity
     }),
+    // new UglifyJSPlugin()
     /* new HtmlWebpackPlugin({
         template: `${APP_DIR}/index.tpl.ejs`,
         chunks: ['app', 'vendors']

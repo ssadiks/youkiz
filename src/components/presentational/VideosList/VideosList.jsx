@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Loader from '../Loader/Loader';
 import FilterVideos from '../FilterVideo/FilterVideos';
 import ListOfVideos from '../ListOfVideos/ListOfVideos';
 
@@ -28,19 +29,25 @@ class VideosList extends Component {
           />
         }
         {
-          videosList &&
-          <ListOfVideos videosList={videosList} />
+          this.props.isPending ? <Loader /> : <ListOfVideos videosList={videosList} />
+
         }
       </div>
     );
   }
 }
 
+VideosList.defaultProps = {
+  videosList: [],
+  dancersList: []
+};
+
 VideosList.propTypes = {
   videosList: PropTypes.array,
   dancersList: PropTypes.array,
   fetchVideosAction: PropTypes.func.isRequired,
-  fetchDancersAction: PropTypes.func.isRequired
+  fetchDancersAction: PropTypes.func.isRequired,
+  isPending: PropTypes.bool.isRequired
 };
 
 export default VideosList;
