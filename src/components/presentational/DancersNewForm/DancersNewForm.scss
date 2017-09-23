@@ -1,0 +1,13 @@
+.DancersNewForm {
+  position: relative;
+
+  &__form {
+    display: flex;
+    flex-wrap: wrap;
+
+    &__group {
+      width: 100%;
+      margin-top: $extra-small-value;
+    }
+  }
+}

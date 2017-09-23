@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
-import DancersNew from '../DancersNew/DancersNew';
-import DancersEdit from '../DancersEdit/DancersEdit';
+import DancersNewForm from '../DancersNewForm/DancersNewForm';
+import DancersEditForm from '../DancersEditForm/DancersEditForm';
 import ListOfDancers from '../ListOfDancers/ListOfDancers';
 
 const styles = {
@@ -62,8 +62,8 @@ class DancersList extends Component {
             <div>
               {
                 !selectedDancer ?
-                  <DancersNew /> :
-                  <DancersEdit
+                  <DancersNewForm /> :
+                  <DancersEditForm
                     selectedDancer={selectedDancer}
                     resetDancerDetails={this.resetDancerDetails}
                   />

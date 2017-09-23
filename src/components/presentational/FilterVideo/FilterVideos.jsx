@@ -98,6 +98,7 @@ class FilterVideos extends Component {
             <RaisedButton onClick={() => this.resetFilter()} label="Reset" secondary />
             <RaisedButton className="FilterVideos__buttons__filter" type="submit" label="Filter" primary />
           </div>
+
         </form>
       </div>
     );

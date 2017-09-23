@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { updateDancerAction, fetchDancerAction } from '../../../redux/actions';
 import { GENDERS } from '../../../constants';
 
-class DancersEdit extends Component {
+class DancersEditForm extends Component {
   onSubmit = (values) => {
     this.props.updateDancerAction(this.props.selectedDancer, values);
     this.props.resetDancerDetails();
@@ -13,34 +16,35 @@ class DancersEdit extends Component {
 
   renderField(field) {
     const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
     return (
-      <div className={className}>
-        <label htmlFor={`${field.name}Edit`}>{field.label}</label>
-        <input id={`${field.name}Edit`} className="form-control" type="text" placeholder={field.label} {...field.input} />
-        <div className="text-help">
-          { touched ? error : '' }
-        </div>
+      <div className="DancersNewForm__form__group">
+        <TextField
+          hintText={field.label}
+          {...field.input}
+          errorText={touched ? error : ''}
+        />
       </div>
     );
   }
 
   renderRadio(field) {
     const { meta: { touched, error } } = field;
-    const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+    const className = `DancersNewForm__form__group ${touched && error ? 'has-error' : ''}`;
 
     return (
       <div className={className}>
-        {
-          GENDERS.map(gender => (
-            <label htmlFor={`genderEdit${gender}`} key={gender}>
-              <Field name="gender" id={`genderEdit${gender}`} component="input" type="radio" value={gender} />
-              {' '}
-              {gender}
-            </label>
-          ))
-        }
+        <RadioButtonGroup {...field.input} valueSelected={field.input.value}>
+          {
+            GENDERS.map(gender => (
+              <RadioButton
+                key={gender}
+                value={gender}
+                label={gender}
+              />
+            ))
+          }
+        </RadioButtonGroup>
         <div className="text-help">
           { touched ? error : '' }
         </div>
@@ -52,7 +56,7 @@ class DancersEdit extends Component {
     const { handleSubmit, resetDancerDetails } = this.props;
 
     return (
-      <div className="DancersEdit">
+      <div className="DancersEditForm">
         {
           <form onSubmit={handleSubmit(this.onSubmit)}>
             <Field
@@ -65,10 +69,10 @@ class DancersEdit extends Component {
               name="gender"
               component={this.renderRadio}
             />
-            <button type="submit" className="btn btn-primary">Submit</button>
-            <button type="button" onClick={resetDancerDetails}>
-              Return
-            </button>
+            <div className="DancersNewForm__form__group DancersNewForm__buttons">
+              <RaisedButton onClick={resetDancerDetails} label="Back" secondary />
+              <RaisedButton className="DancersNew__buttons__filter" type="submit" label="Create" primary />
+            </div>
           </form>
         }
       </div>
@@ -90,7 +94,7 @@ function validate(values) {
   return errors;
 }
 
-DancersEdit.propTypes = {
+DancersEditForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
@@ -101,13 +105,13 @@ DancersEdit.propTypes = {
   selectedDancer: PropTypes.string.isRequired,
 };
 
-DancersEdit = reduxForm({
+DancersEditForm = reduxForm({
   validate,
   form: 'DancersEditForm',
   enableReinitialize: true,
-})(DancersEdit);
+})(DancersEditForm);
 
-DancersEdit = connect(
+DancersEditForm = connect(
   state => ({
     dancerDetails: state.dancersReducer.dancerDetails,
     isPending: state.videosReducer.isPending,
@@ -119,7 +123,7 @@ DancersEdit = connect(
       }
   }),
   { fetchDancerAction, updateDancerAction }
-)(DancersEdit);
+)(DancersEditForm);
 
-export default DancersEdit;
+export default DancersEditForm;
 
