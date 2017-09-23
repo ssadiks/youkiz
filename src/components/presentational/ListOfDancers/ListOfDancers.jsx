@@ -32,7 +32,6 @@ class ListOfDancers extends Component {
                 'ListOfDancers__list__item--male': dancer.gender === 'Male',
                 'ListOfDancers__list__item--female': dancer.gender === 'Female',
               });
-// console.log(dancer);
               return (
                 <Chip
                   key={dancer._id}
