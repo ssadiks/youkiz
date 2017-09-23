@@ -71,7 +71,7 @@ class DancersEditForm extends Component {
             />
             <div className="DancersNewForm__form__group DancersNewForm__buttons">
               <RaisedButton onClick={resetDancerDetails} label="Back" secondary />
-              <RaisedButton className="DancersNew__buttons__filter" type="submit" label="Create" primary />
+              <RaisedButton className="DancersNew__buttons__filter" type="submit" label="Edit" primary />
             </div>
           </form>
         }
