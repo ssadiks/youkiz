@@ -18,10 +18,6 @@ export class ListOfDancers extends Component {
     this.props.deleteDancerAction(key);
   };
 
-  handleTouchTap = (key) => {
-    console.log('You clicked the Chip.', key);
-  }
-
   render() {
     const { dancersList, handleDancersEdit } = this.props;
 

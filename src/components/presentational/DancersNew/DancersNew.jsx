@@ -12,14 +12,13 @@ class DancersNew extends Component {
   }
 
   renderField(field) {
-    console.log('field', field)
     const { meta: { touched, error } } = field;
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
     return (
       <div className={className}>
-        <label htmlFor="test">{field.label}</label>
-        <input id="test" className="form-control" type="text" {...field.input} />
+        <label htmlFor={`${field.name}New`}>{field.label}</label>
+        <input id={`${field.name}New`} className="form-control" type="text" {...field.input} />
         <div className="text-help">
           { touched ? error : '' }
         </div>
@@ -28,7 +27,6 @@ class DancersNew extends Component {
   }
 
   renderRadio(field) {
-    console.log('field', field)
     const { meta: { touched, error } } = field;
     const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
@@ -36,8 +34,8 @@ class DancersNew extends Component {
       <div className={className}>
         {
           GENDERS.map(gender => (
-            <label htmlFor="gender" key={gender}>
-              <Field name="gender" id="gender" component="input" type="radio" value={gender} />
+            <label htmlFor={`genderNew${gender}`} key={gender}>
+              <Field name="gender" id={`genderNew${gender}`} component="input" type="radio" value={gender} />
               {' '}
               {gender}
             </label>
@@ -52,7 +50,6 @@ class DancersNew extends Component {
 
   render() {
     const { handleSubmit, pristine, submitting, reset } = this.props;
-    console.log('props', this.props);
     return (
       <div className="DancersNew">
         <form onSubmit={handleSubmit(this.onSubmit)}>

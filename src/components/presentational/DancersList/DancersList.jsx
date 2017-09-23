@@ -36,6 +36,7 @@ class DancersList extends Component {
     this.setState({
       selectedDancer
     })
+    this.props.fetchDancerAction(selectedDancer);
     console.log('You clicked the Chip.', selectedDancer);
   }
 
@@ -53,7 +54,6 @@ class DancersList extends Component {
                 selectedDancer &&
                 <DancersEdit
                   selectedDancer={selectedDancer}
-                  fetchDancerAction={fetchDancerAction}
                 />
               }
 

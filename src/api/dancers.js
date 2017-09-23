@@ -6,7 +6,7 @@ export function fetchDancers(params) {
 }
 
 export function fetchDancer(dancerId) {
-  return axios.get(`http://localhost:3030/api/dancer/${dancerId}`)
+  return axios.get(`http://localhost:3030/api/dancers/${dancerId}`)
     .then(response => response);
 }
 
