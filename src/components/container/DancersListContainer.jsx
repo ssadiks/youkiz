@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import DancersList from '../presentational/DancersList/DancersList';
-import { fetchDancersAction, deleteDancerAction, fetchDancerAction } from '../../redux/actions';
+import { fetchDancersAction, deleteDancerAction, fetchDancerAction, resetDancerAction } from '../../redux/actions';
 
 const mapStateToProps = state => ({
   dancersList: state.dancersReducer.dancersList,
@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 const DancersListContainer = connect(mapStateToProps, {
   fetchDancersAction,
   deleteDancerAction,
-  fetchDancerAction
+  fetchDancerAction,
+  resetDancerAction
 })(DancersList);
 
 export default DancersListContainer;

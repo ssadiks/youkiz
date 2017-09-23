@@ -285,9 +285,7 @@ export const updateDancer = (req, res) => {
           message: 'Error: update has failed'
         });
       }
-      res.json({
-        dancer
-      });
+      res.json(dancer);
     });
 
   });

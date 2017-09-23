@@ -90,7 +90,12 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
     case types.UPDATE_DANCER.SUCCESS:
       return {
         ...state,
-        dancersList: action.data.data,
+        dancersList: state.dancersList.map((item) => {
+          if (item._id !== action.data.data._id) {
+            return item;
+          }
+          return action.data.data;
+        }),
         isPending: false
       };
     case types.UPDATE_DANCER.FAILURE:
@@ -98,6 +103,11 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: action.error,
         isPending: false
+      };
+    case types.RESET_DANCER:
+      return {
+        ...state,
+        dancerDetails: {}
       };
     default:
       return state;

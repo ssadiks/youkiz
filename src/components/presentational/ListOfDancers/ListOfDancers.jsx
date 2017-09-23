@@ -4,7 +4,6 @@ import classnames from 'classnames';
 import Chip from 'material-ui/Chip';
 
 export class ListOfDancers extends Component {
-
   constructor(props) {
     super(props);
     this.styles = {
@@ -50,8 +49,7 @@ export class ListOfDancers extends Component {
       </div>
     );
   }
-
-};
+}
 
 ListOfDancers.propTypes = {
   dancersList: PropTypes.array.isRequired,

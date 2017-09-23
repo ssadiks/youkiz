@@ -7,7 +7,8 @@ import { GENDERS } from '../../../constants';
 
 class DancersEdit extends Component {
   onSubmit = (values) => {
-    this.props.updateDancerAction(values);
+    this.props.updateDancerAction(this.props.selectedDancer, values);
+    this.props.resetDancerDetails();
   }
 
   renderField(field) {
@@ -48,7 +49,7 @@ class DancersEdit extends Component {
   }
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, resetDancerDetails } = this.props;
 
     return (
       <div className="DancersEdit">
@@ -65,7 +66,7 @@ class DancersEdit extends Component {
               component={this.renderRadio}
             />
             <button type="submit" className="btn btn-primary">Submit</button>
-            <button type="button">
+            <button type="button" onClick={resetDancerDetails}>
               Return
             </button>
           </form>
@@ -96,22 +97,9 @@ DancersEdit.propTypes = {
   submitting: PropTypes.bool.isRequired,
   updateDancerAction: PropTypes.func.isRequired,
   fetchDancerAction: PropTypes.func.isRequired,
-  selectedDancer: PropTypes.string,
+  resetDancerDetails: PropTypes.func.isRequired,
+  selectedDancer: PropTypes.string.isRequired,
 };
-
-/* const mapStateToProps = state => ({
-  dancerDetails: state.dancersReducer.dancerDetails,
-  isPending: state.videosReducer.isPending,
-  error: state.videosReducer.error,
-  initialValues: state.dancersReducer.dancerDetails
-});
-
-export default reduxForm({
-  validate,
-  form: 'DancersEditForm',
-  initialValues: state.initialValues,
-})(connect(mapStateToProps, { updateDancerAction, fetchDancerAction })(DancersEdit));
-*/
 
 DancersEdit = reduxForm({
   validate,

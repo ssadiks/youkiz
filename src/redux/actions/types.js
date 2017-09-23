@@ -15,3 +15,4 @@ export const FETCH_DANCER = createRequestTypes('FETCH_DANCER');
 export const CREATE_DANCER = createRequestTypes('CREATE_DANCER');
 export const DELETE_DANCER = createRequestTypes('DELETE_DANCER');
 export const UPDATE_DANCER = createRequestTypes('UPDATE_DANCER');
+export const RESET_DANCER = 'RESET_DANCER';

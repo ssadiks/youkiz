@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
-
-// import FilterVideos from '../FilterVideo/FilterVideos';
-import ListOfDancers from '../ListOfDancers/ListOfDancers';
 import DancersNew from '../DancersNew/DancersNew';
 import DancersEdit from '../DancersEdit/DancersEdit';
+import ListOfDancers from '../ListOfDancers/ListOfDancers';
 
 const styles = {
   headline: {
@@ -33,15 +31,28 @@ class DancersList extends Component {
   }
 
   handleDancersEdit = (selectedDancer) => {
+    if (selectedDancer === this.state.selectedDancer) {
+      this.setState({
+        selectedDancer: null
+      });
+      this.props.resetDancerAction();
+    } else {
+      this.setState({
+        selectedDancer
+      });
+      this.props.fetchDancerAction(selectedDancer);
+    }
+  }
+
+  resetDancerDetails = () => {
     this.setState({
-      selectedDancer
-    })
-    this.props.fetchDancerAction(selectedDancer);
-    console.log('You clicked the Chip.', selectedDancer);
+      selectedDancer: null
+    });
+    this.props.resetDancerAction();
   }
 
   render() {
-    const { dancersList, deleteDancerAction, fetchDancerAction } = this.props;
+    const { dancersList, deleteDancerAction } = this.props;
     const { selectedDancer } = this.state;
 
     return (
@@ -49,14 +60,14 @@ class DancersList extends Component {
         <Tabs>
           <Tab label="Dancers" >
             <div>
-              <DancersNew />
               {
-                selectedDancer &&
-                <DancersEdit
-                  selectedDancer={selectedDancer}
-                />
+                !selectedDancer ?
+                  <DancersNew /> :
+                  <DancersEdit
+                    selectedDancer={selectedDancer}
+                    resetDancerDetails={this.resetDancerDetails}
+                  />
               }
-
               {
                 dancersList &&
                 <ListOfDancers
@@ -67,9 +78,9 @@ class DancersList extends Component {
               }
             </div>
           </Tab>
-          <Tab label="BO" >
+          <Tab label="Videos" >
             <div>
-              <span>bo</span>
+              <span>Videos CRUD</span>
             </div>
           </Tab>
           <Tab
@@ -97,7 +108,9 @@ DancersList.defaultProps = {
 DancersList.propTypes = {
   dancersList: PropTypes.array,
   fetchDancersAction: PropTypes.func.isRequired,
+  fetchDancerAction: PropTypes.func.isRequired,
   deleteDancerAction: PropTypes.func.isRequired,
+  resetDancerAction: PropTypes.func.isRequired,
 };
 
 export default DancersList;

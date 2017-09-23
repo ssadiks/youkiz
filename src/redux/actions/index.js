@@ -72,9 +72,11 @@ export const deleteDancerAction = id => (dispatch) => {
     .catch(error => dispatch(deleteDancerFailure(error)));
 };
 
-export const updateDancerAction = id => (dispatch) => {
+export const updateDancerAction = (id, params) => (dispatch) => {
   dispatch(updateDancerRequest());
-  return updateDancer(id)
+  return updateDancer(id, params)
     .then(res => dispatch(updateDancerSuccess(res)))
     .catch(error => dispatch(updateDancerFailure(error)));
 };
+
+export const resetDancerAction = () => ({ type: types.RESET_DANCER });

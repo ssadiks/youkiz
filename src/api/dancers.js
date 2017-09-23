@@ -21,6 +21,6 @@ export function deleteDancer(dancerId) {
 }
 
 export function updateDancer(dancerId, params) {
-  return axios.delete(`http://localhost:3030/api/dancers/${dancerId}`, params)
+  return axios.put(`http://localhost:3030/api/dancers/${dancerId}`, params)
     .then(response => response);
 }

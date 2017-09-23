@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
+import RaisedButton from 'material-ui/RaisedButton';
 import { createDancerAction } from '../../../redux/actions';
 import { GENDERS } from '../../../constants';
 
@@ -63,10 +64,11 @@ class DancersNew extends Component {
             name="gender"
             component={this.renderRadio}
           />
-          <button type="submit" className="btn btn-primary">Submit</button>
-          <button type="button" disabled={pristine || submitting} onClick={reset}>
-            Clear Values
-          </button>
+
+          <div className="DancersNew__buttons">
+            <RaisedButton onClick={reset} label="Reset" disabled={pristine || submitting} secondary />
+            <RaisedButton className="DancersNew__buttons__filter" type="submit" label="Create" primary />
+          </div>
         </form>
       </div>
     );
@@ -95,7 +97,10 @@ DancersNew.propTypes = {
   createDancerAction: PropTypes.func.isRequired,
 };
 
+const afterSubmit = (result, dispatch) => dispatch(reset('DancersNewForm'));
+
 export default reduxForm({
   validate,
-  form: 'DancersNewForm'
+  form: 'DancersNewForm',
+  onSubmitSuccess: afterSubmit,
 })(connect(null, { createDancerAction })(DancersNew));
