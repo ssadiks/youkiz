@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Chip from 'material-ui/Chip';
 
-export class ListOfDancers extends Component {
+class ListOfDancers extends Component {
   constructor(props) {
     super(props);
     this.styles = {
@@ -15,6 +15,7 @@ export class ListOfDancers extends Component {
 
   handleRequestDelete = (key) => {
     this.props.deleteDancerAction(key);
+    this.props.resetDancerDetails();
   };
 
   render() {
@@ -31,7 +32,7 @@ export class ListOfDancers extends Component {
                 'ListOfDancers__list__item--male': dancer.gender === 'Male',
                 'ListOfDancers__list__item--female': dancer.gender === 'Female',
               });
-
+// console.log(dancer);
               return (
                 <Chip
                   key={dancer._id}
@@ -55,6 +56,7 @@ ListOfDancers.propTypes = {
   dancersList: PropTypes.array.isRequired,
   deleteDancerAction: PropTypes.func.isRequired,
   handleDancersEdit: PropTypes.func.isRequired,
+  resetDancerDetails: PropTypes.func.isRequired,
 };
 
 export default ListOfDancers;

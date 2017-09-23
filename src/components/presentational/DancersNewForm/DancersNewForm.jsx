@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Field, reduxForm, reset } from 'redux-form';
+import { Field, reduxForm, reset as resetForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
@@ -101,7 +101,7 @@ DancersNewForm.propTypes = {
   createDancerAction: PropTypes.func.isRequired,
 };
 
-const afterSubmit = (result, dispatch) => dispatch(reset('DancersNewForm'));
+const afterSubmit = (result, dispatch) => dispatch(resetForm('DancersNewForm'));
 
 export default reduxForm({
   validate,

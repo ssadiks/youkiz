@@ -18,8 +18,8 @@ export const filterArrayBy = (arr = [], property = '', value = '') => arr.filter
 /**
  *
  * @param array
- * @param properties
- * @param values
+ * @param properties ['_id', 'name']
+ * @param values ['value', 'label']
  * @returns {array}
  *
  * Rename properties of object in array
@@ -27,11 +27,12 @@ export const filterArrayBy = (arr = [], property = '', value = '') => arr.filter
 export const changePropretiesOfObjectInArray = (array, properties, values) => {
   array.forEach((o) => {
     Object.keys(o).forEach((key) => {
-      const titi = properties.indexOf(key);
-      if (titi > -1) {
-        const pos = values[titi];
-        o[pos] = o[key];
-        delete o[key];
+      const keyIndex = properties.indexOf(key);
+      if (keyIndex > -1) {
+        const newKey = values[keyIndex];
+        const objClone = o;
+        objClone[newKey] = o[key];
+        delete objClone[key];
       }
     });
   });

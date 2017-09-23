@@ -26,9 +26,9 @@ class DancersList extends Component {
     this.props.fetchDancersAction();
   }
 
-  handleActive(tab) {
+  /* handleActive(tab) {
     console.log('actiiiive tab' + tab);
-  }
+  } */
 
   handleDancersEdit = (selectedDancer) => {
     if (selectedDancer === this.state.selectedDancer) {
@@ -74,6 +74,7 @@ class DancersList extends Component {
                   dancersList={dancersList}
                   deleteDancerAction={deleteDancerAction}
                   handleDancersEdit={this.handleDancersEdit}
+                  resetDancerDetails={this.resetDancerDetails}
                 />
               }
             </div>
