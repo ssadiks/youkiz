@@ -4,6 +4,8 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import DancersNewForm from '../DancersNewForm/DancersNewForm';
 import DancersEditForm from '../DancersEditForm/DancersEditForm';
 import ListOfDancers from '../ListOfDancers/ListOfDancers';
+import VideosListContainer from '../../container/VideosListContainer';
+import VideosNewForm from '../VideosNewForm/VideosNewForm';
 
 const styles = {
   headline: {
@@ -81,7 +83,11 @@ class DancersList extends Component {
           </Tab>
           <Tab label="Videos" >
             <div>
-              <span>Videos CRUD</span>
+              {/*
+                <VideosListContainer />
+              */
+                <VideosNewForm />
+              }
             </div>
           </Tab>
           <Tab

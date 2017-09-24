@@ -1,4 +1,70 @@
 .ListOfVideos {
   display: block;
   padding-bottom: $medium-value;
+
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+
+    @include breakpoint (tablet) {
+      width: (64 + $double-extra-small-value * 2);
+      justify-content: flex-start;
+    }
+
+    @include breakpoint (desktop) {
+      width: (96 + $double-extra-small-value * 2);
+      justify-content: flex-start;
+    }
+  }
+
+  &__item {
+    position: relative;
+    flex: 0 0 auto;
+    width: 32rem;
+    margin-bottom: $double-extra-small-value;
+
+    @include breakpoint (tablet) {
+      margin-left: $double-extra-small-value;
+
+      &:nth-child(2n+1) {
+        margin-left: 0;
+      }
+    }
+
+    @include breakpoint (desktop) {
+      margin-left: $double-extra-small-value;
+
+      &:nth-child(3n+1) {
+        margin-left: 0;
+      }
+    }
+
+    &__more {
+      position: absolute !important;
+      right: $extra-small-value;
+      top:$extra-small-value;
+      background-color: $white;
+      border-radius: $medium-value;
+    }
+
+    &__link {
+      display: block;
+      height: calc(100% - 3.5rem);
+      width: 100%;
+      background: grey;
+    }
+
+    &__description {
+      background-color: $red;
+      color: $white;
+      padding: $small-value;
+    }
+
+    img {
+      display: block;
+    }
+  }
 }

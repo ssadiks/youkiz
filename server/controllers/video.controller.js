@@ -34,6 +34,7 @@ export const createVideo = (req, res) => {
     type: req.body.type,
     song: req.body.song,
     dancers: req.body.dancers,
+    online: true
   };
 
   const video = new Video(paramVideo);
@@ -192,7 +193,7 @@ export const deleteVideo = (req, res) => {
         message: 'Error: Delete has failed'
       });
     }
-    res.json({message: 'Successfully deleted'});
+    res.json({ message: 'Successfully deleted', id: req.params.video_id });
   });
 };
 

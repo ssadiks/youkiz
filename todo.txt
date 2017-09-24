@@ -1,2 +1,7 @@
 eslint css
 reducers action.data.data
+
+More
+  Edit
+  Delete
+  Infos

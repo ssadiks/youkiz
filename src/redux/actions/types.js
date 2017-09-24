@@ -10,6 +10,7 @@ function createRequestTypes(base) {
 
 export const FETCH_VIDEOS = createRequestTypes('FETCH_VIDEOS');
 export const FETCH_VIDEO = createRequestTypes('FETCH_VIDEO');
+export const DELETE_VIDEO = createRequestTypes('DELETE_VIDEO');
 export const FETCH_DANCERS = createRequestTypes('FETCH_DANCERS');
 export const FETCH_DANCER = createRequestTypes('FETCH_DANCER');
 export const CREATE_DANCER = createRequestTypes('CREATE_DANCER');

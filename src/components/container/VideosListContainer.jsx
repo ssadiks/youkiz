@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import VideosList from '../presentational/VideosList/VideosList';
-import { fetchVideosAction, fetchDancersAction } from '../../redux/actions';
+import { fetchVideosAction, fetchDancersAction, deleteVideoAction } from '../../redux/actions';
 
 const mapStateToProps = state => ({
   videosList: state.videosReducer.videosList,
@@ -11,7 +11,8 @@ const mapStateToProps = state => ({
 
 const VideosListContainer = connect(mapStateToProps, {
   fetchVideosAction,
-  fetchDancersAction
+  fetchDancersAction,
+  deleteVideoAction
 })(VideosList);
 
 export default VideosListContainer;

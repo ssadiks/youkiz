@@ -45,6 +45,24 @@ const videosReducer = (state = INITIAL_STATE, action) => {
         error: action.error,
         isPending: false
       };
+    case types.DELETE_VIDEO.REQUEST:
+      return {
+        ...state,
+        isPending: true,
+        error: null
+      };
+    case types.DELETE_VIDEO.SUCCESS:
+      return {
+        ...state,
+        videosList: state.videosList.filter(video => video._id !== action.data.data.id),
+        isPending: false
+      };
+    case types.DELETE_VIDEO.FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isPending: false
+      };
     default:
       return state;
   }
