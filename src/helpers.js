@@ -25,16 +25,21 @@ export const filterArrayBy = (arr = [], property = '', value = '') => arr.filter
  * Rename properties of object in array
  */
 export const changePropretiesOfObjectInArray = (array, properties, values) => {
-  array.forEach((o) => {
-    Object.keys(o).forEach((key) => {
-      const keyIndex = properties.indexOf(key);
-      if (keyIndex > -1) {
-        const newKey = values[keyIndex];
-        const objClone = o;
-        objClone[newKey] = o[key];
-        delete objClone[key];
-      }
+  const sliced = array && (array.map(item => ({ ...item }))).slice(0);
+
+  if (sliced) {
+    sliced.forEach((o) => {
+      Object.keys(o).forEach((key) => {
+        const keyIndex = properties.indexOf(key);
+        if (keyIndex > -1) {
+          const newKey = values[keyIndex];
+          const objClone = o;
+          objClone[newKey] = o[key];
+          delete objClone[key];
+        }
+      });
     });
-  });
-  return array;
+  }
+
+  return sliced;
 };

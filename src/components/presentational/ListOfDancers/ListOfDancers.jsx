@@ -23,7 +23,9 @@ class ListOfDancers extends Component {
 
     return (
       <div className="ListOfDancers">
-        <h2>{`${dancersList.length} result(s)`}</h2>
+        {
+          dancersList && <h2>{`${dancersList.length} result(s)`}</h2>
+        }
         <div className="ListOfDancers__list">
           {
             dancersList.map((dancer) => {

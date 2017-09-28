@@ -4,11 +4,13 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, reset as resetForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Select from 'react-select';
+import classnames from 'classnames';
+
 import { createDancerAction } from '../../../redux/actions';
 
-import { GENDERS, DANCES_STYLE } from '../../../constants';
-import Select from 'react-select';
-import { changePropretiesOfObjectInArray, getArrayOfValue } from '../../../helpers';
+import { DANCES_STYLE } from '../../../constants';
+import { changePropretiesOfObjectInArray } from '../../../helpers';
 
 
 class VideosNewForm extends Component {
@@ -22,13 +24,12 @@ class VideosNewForm extends Component {
 
   onSubmit = (values) => {
     // this.props.createDancerAction(values);
-    console.log('values', values);
+    console.log('values', values.dancers);
+    const tabDancers = (values.dancers).slice()
+    const videodata = changePropretiesOfObjectInArray(tabDancers, ['value', 'label'], ['_id', 'name']);
+    console.log('videodata', videodata);
+    // console.log('values.dancers', values.dancers);
   }
-
-  handleChangeTypeDance = (typeDance) => {
-    console.log('typeDance', typeDance);
-    this.setState({ typeDance });
-  };
 
   renderField(field) {
     const { meta: { touched, error } } = field;
@@ -46,25 +47,35 @@ class VideosNewForm extends Component {
 
   renderSelect = (field) => {
     const { meta: { touched, error } } = field;
-    const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
 
-    console.log('field', field);
+    const formGroupClass = classnames({
+      DancersNewForm__form__group: true,
+    });
+
+    // console.log('field', field);
     return (
-      <div className="DancersNewForm__form__group">
+      <div className={formGroupClass}>
         <Select
           name="form-field-name"
-          options={DANCES_STYLE_SELECT}
-          onChange={this.handleChangeTypeDance}
-          {...field.input}
-          simpleValue
-          placeholder="Select a dance style"
+          options={field.options}
+          onChange={value => field.input.onChange(value)}
+          placeholder={field.placeholder}
+          value={field.input.value}
+          multi={field.multi}
+          simpleValue={field.simpleValue}
         />
+        <div className="text-help">
+          { touched ? error : '' }
+        </div>
       </div>
     );
   }
 
   render() {
-    const { handleSubmit, pristine, submitting, reset } = this.props;
+    const { handleSubmit, pristine, submitting, reset, dancersList } = this.props;
+
+    const dancersListSelect = changePropretiesOfObjectInArray(dancersList, ['_id', 'name'], ['value', 'label']);
+    const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
     return (
       <div className="DancersNewForm">
         <form className="DancersNewForm__form" onSubmit={handleSubmit(this.onSubmit)}>
@@ -81,19 +92,24 @@ class VideosNewForm extends Component {
           {
             <Field
               label="Dances style"
-              name="dancesStyle"
+              name="typeDance"
               component={this.renderSelect}
+              options={DANCES_STYLE_SELECT}
+              placeholder="Select a dance style"
+              multi={false}
+              simpleValue
             />
           }
           {
-            /*
-            <Field name="favoriteColor" component="select">
-              <option />
-              <option value="ff0000">Red</option>
-              <option value="00ff00">Green</option>
-              <option value="0000ff">Blue</option>
-            </Field>
-          */
+            <Field
+              label="Dances style"
+              name="dancers"
+              component={this.renderSelect}
+              options={dancersListSelect}
+              placeholder="Select dancers"
+              multi
+              simpleValue={false}
+            />
           }
           <div className="DancersNewForm__form__group DancersNewForm__buttons">
             <RaisedButton onClick={reset} label="Reset" disabled={pristine || submitting} secondary />
@@ -112,8 +128,12 @@ function validate(values) {
     errors.videoId = 'Enter a video Id';
   }
 
-  if (!values.gender) {
-    errors.gender = 'Select a gender';
+  if (!values.typeDance) {
+    errors.typeDance = 'Select a dance style';
+  }
+
+  if (values.dancers && values.dancers.length === 0) {
+    errors.dancers = 'Select dancer(s)';
   }
 
   return errors;
@@ -125,6 +145,7 @@ VideosNewForm.propTypes = {
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
   createDancerAction: PropTypes.func.isRequired,
+  dancersList: PropTypes.array.isRequired,
 };
 
 const afterSubmit = (result, dispatch) => dispatch(resetForm('VideosNewForm'));

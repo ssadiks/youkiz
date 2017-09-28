@@ -83,10 +83,8 @@ class DancersList extends Component {
           </Tab>
           <Tab label="Videos" >
             <div>
-              {/*
-                <VideosListContainer />
-              */
-                <VideosNewForm />
+              {
+                dancersList && <VideosNewForm dancersList={dancersList} />
               }
             </div>
           </Tab>

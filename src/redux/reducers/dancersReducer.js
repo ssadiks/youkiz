@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 const INITIAL_STATE = {
-  dancersList: [],
+  dancersList: null,
   dancerDetails: {},
   isPending: false,
   error: null

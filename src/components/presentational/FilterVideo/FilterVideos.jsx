@@ -95,8 +95,19 @@ class FilterVideos extends Component {
             />
           }
           <div className="FilterVideos__buttons">
-            <RaisedButton onClick={() => this.resetFilter()} label="Reset" secondary />
-            <RaisedButton className="FilterVideos__buttons__filter" type="submit" label="Filter" primary />
+            <RaisedButton
+              onClick={() => this.resetFilter()}
+              label="Reset"
+              secondary
+              disabled={!this.state.typeDance && this.state.dancersTab.length === 0}
+            />
+            <RaisedButton
+              className="FilterVideos__buttons__filter"
+              type="submit"
+              label="Filter"
+              primary
+              disabled={!this.state.typeDance && this.state.dancersTab.length === 0}
+            />
           </div>
 
         </form>
