@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
+import RaisedButton from 'material-ui/RaisedButton';
 import DancersNewForm from '../DancersNewForm/DancersNewForm';
 import DancersEditForm from '../DancersEditForm/DancersEditForm';
 import ListOfDancers from '../ListOfDancers/ListOfDancers';
@@ -16,11 +17,12 @@ const styles = {
   },
 };
 
-class DancersList extends Component {
+class BackOffice extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedDancer: null
+      selectedDancer: null,
+      addVideo: false
     };
   }
 
@@ -53,8 +55,14 @@ class DancersList extends Component {
     this.props.resetDancerAction();
   }
 
+  onClickAddVideo = () => {
+    this.setState({
+      addVideo: true
+    });
+  }
+
   render() {
-    const { dancersList, deleteDancerAction } = this.props;
+    const { dancersList, deleteDancerAction, videosList } = this.props;
     const { selectedDancer } = this.state;
 
     return (
@@ -86,6 +94,16 @@ class DancersList extends Component {
               {
                 dancersList && <VideosNewForm dancersList={dancersList} />
               }
+              <RaisedButton
+                className="BackOffice__newVideo"
+                type="submit"
+                label="Add"
+                primary
+                onClick={this.onClickAddVideo}
+              />
+              {
+                videosList && <VideosListContainer userConnected />
+              }
             </div>
           </Tab>
           <Tab
@@ -106,11 +124,11 @@ class DancersList extends Component {
   }
 }
 
-DancersList.defaultProps = {
+BackOffice.defaultProps = {
   dancersList: []
 };
 
-DancersList.propTypes = {
+BackOffice.propTypes = {
   dancersList: PropTypes.array,
   fetchDancersAction: PropTypes.func.isRequired,
   fetchDancerAction: PropTypes.func.isRequired,
@@ -118,4 +136,4 @@ DancersList.propTypes = {
   resetDancerAction: PropTypes.func.isRequired,
 };
 
-export default DancersList;
+export default BackOffice;

@@ -17,7 +17,7 @@ class VideosList extends Component {
   }
 
   render() {
-    const { videosList, dancersList, deleteVideoAction } = this.props;
+    const { videosList, dancersList, deleteVideoAction, userConnected } = this.props;
 
     return (
       <div className="o-container">
@@ -29,7 +29,7 @@ class VideosList extends Component {
           />
         }
         {
-          this.props.isPending ? <Loader /> : <ListOfVideos videosList={videosList} deleteVideoAction={deleteVideoAction} />
+          this.props.isPending ? <Loader /> : <ListOfVideos videosList={videosList} deleteVideoAction={deleteVideoAction} userConnected={userConnected} />
         }
       </div>
     );
@@ -38,7 +38,8 @@ class VideosList extends Component {
 
 VideosList.defaultProps = {
   videosList: [],
-  dancersList: []
+  dancersList: [],
+  userConnected: false
 };
 
 VideosList.propTypes = {
@@ -47,7 +48,8 @@ VideosList.propTypes = {
   fetchVideosAction: PropTypes.func.isRequired,
   fetchDancersAction: PropTypes.func.isRequired,
   deleteVideoAction: PropTypes.func.isRequired,
-  isPending: PropTypes.bool.isRequired
+  isPending: PropTypes.bool.isRequired,
+  userConnected: PropTypes.bool,
 };
 
 export default VideosList;

@@ -25,16 +25,19 @@ const ListOfVideos = props => (
               <div className="ListOfVideos__item__description">
                 <span>{video.song}</span>
                 <span>{video.type}</span>
-                <IconMenu
-                  iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-                  anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                  targetOrigin={{horizontal: 'left', vertical: 'top'}}
-                  className="ListOfVideos__item__more"
-                >
-                  <MenuItem primaryText="Edit" />
-                  <MenuItem primaryText="Delete" onClick={() => props.deleteVideoAction(video._id)} />
-                  <MenuItem primaryText="Infos" />
-                </IconMenu>
+                {
+                  props.userConnected &&
+                  <IconMenu
+                    iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    className="ListOfVideos__item__more"
+                  >
+                    <MenuItem primaryText="Edit" />
+                    <MenuItem primaryText="Delete" onClick={() => props.deleteVideoAction(video._id)} />
+                    <MenuItem primaryText="Infos" />
+                  </IconMenu>
+                }
               </div>
             </div>
           );
@@ -45,7 +48,8 @@ const ListOfVideos = props => (
 );
 
 ListOfVideos.propTypes = {
-  videosList: PropTypes.array.isRequired
+  videosList: PropTypes.array.isRequired,
+  userConnected: PropTypes.bool
 };
 
 export default ListOfVideos;
