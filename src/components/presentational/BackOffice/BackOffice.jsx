@@ -22,7 +22,7 @@ class BackOffice extends Component {
     super(props);
     this.state = {
       selectedDancer: null,
-      addVideo: false
+      createVideoFormDisplayed: false
     };
   }
 
@@ -55,15 +55,17 @@ class BackOffice extends Component {
     this.props.resetDancerAction();
   }
 
-  onClickAddVideo = () => {
+  /* OnClick on button to Display VideosNewForm or VideosListContainer */
+  handleDisplayVideos = () => {
+    const { createVideoFormDisplayed } = this.state;
     this.setState({
-      addVideo: true
+      createVideoFormDisplayed: !createVideoFormDisplayed
     });
   }
 
   render() {
     const { dancersList, deleteDancerAction, videosList } = this.props;
-    const { selectedDancer } = this.state;
+    const { selectedDancer, createVideoFormDisplayed } = this.state;
 
     return (
       <div className="o-container">
@@ -92,17 +94,18 @@ class BackOffice extends Component {
           <Tab label="Videos" >
             <div>
               {
-                dancersList && <VideosNewForm dancersList={dancersList} />
+                dancersList && createVideoFormDisplayed && <VideosNewForm dancersList={dancersList} handleDisplayVideos={this.handleDisplayVideos} />
               }
+
               <RaisedButton
                 className="BackOffice__newVideo"
                 type="submit"
-                label="Add"
+                label={createVideoFormDisplayed ? 'Back' : 'Add Video'}
                 primary
-                onClick={this.onClickAddVideo}
+                onClick={this.handleDisplayVideos}
               />
               {
-                videosList && <VideosListContainer userConnected />
+                videosList && !createVideoFormDisplayed && <VideosListContainer userConnected />
               }
             </div>
           </Tab>
@@ -112,9 +115,10 @@ class BackOffice extends Component {
             onActive={this.handleActive}
           >
             <div>
-              <h2 style={styles.headline}>Tab Three</h2>
+              <h2 style={styles.headline}>3 videos non validées</h2>
               <p>
-                This is a third example tab.
+                List de videos avec un btn validé ou supprimer
+                peut etre modifier
               </p>
             </div>
           </Tab>
@@ -125,11 +129,13 @@ class BackOffice extends Component {
 }
 
 BackOffice.defaultProps = {
-  dancersList: []
+  dancersList: [],
+  videosList: []
 };
 
 BackOffice.propTypes = {
   dancersList: PropTypes.array,
+  videosList: PropTypes.array,
   fetchDancersAction: PropTypes.func.isRequired,
   fetchDancerAction: PropTypes.func.isRequired,
   deleteDancerAction: PropTypes.func.isRequired,

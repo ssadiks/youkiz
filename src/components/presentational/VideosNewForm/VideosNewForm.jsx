@@ -7,7 +7,7 @@ import TextField from 'material-ui/TextField';
 import Select from 'react-select';
 import classnames from 'classnames';
 
-import { createDancerAction } from '../../../redux/actions';
+import { createVideoAction } from '../../../redux/actions';
 
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray } from '../../../helpers';
@@ -23,12 +23,17 @@ class VideosNewForm extends Component {
   }
 
   onSubmit = (values) => {
-    // this.props.createDancerAction(values);
+    const valuesForm = values;
+
     console.log('values', values.dancers);
-    const tabDancers = (values.dancers).slice()
-    const videodata = changePropretiesOfObjectInArray(tabDancers, ['value', 'label'], ['_id', 'name']);
-    console.log('videodata', videodata);
-    // console.log('values.dancers', values.dancers);
+    const tabDancers = (values.dancers).slice();
+    const dancersData = changePropretiesOfObjectInArray(tabDancers, ['value', 'label'], ['_id', 'name']);
+    console.log('dancersData', dancersData);
+
+    valuesForm.dancers = dancersData;
+
+    this.props.createVideoAction(valuesForm);
+    console.log('valuesForm', valuesForm);
   }
 
   renderField(field) {
@@ -92,7 +97,7 @@ class VideosNewForm extends Component {
           {
             <Field
               label="Dances style"
-              name="typeDance"
+              name="type"
               component={this.renderSelect}
               options={DANCES_STYLE_SELECT}
               placeholder="Select a dance style"
@@ -128,8 +133,8 @@ function validate(values) {
     errors.videoId = 'Enter a video Id';
   }
 
-  if (!values.typeDance) {
-    errors.typeDance = 'Select a dance style';
+  if (!values.type) {
+    errors.type = 'Select a dance style';
   }
 
   if (values.dancers && values.dancers.length === 0) {
@@ -144,14 +149,17 @@ VideosNewForm.propTypes = {
   reset: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-  createDancerAction: PropTypes.func.isRequired,
+  createVideoAction: PropTypes.func.isRequired,
   dancersList: PropTypes.array.isRequired,
 };
 
-const afterSubmit = (result, dispatch) => dispatch(resetForm('VideosNewForm'));
+const afterSubmit = (result, dispatch) => {
+  dispatch(resetForm('VideosNewForm'));
+  this.props.handleDisplayVideos();
+}
 
 export default reduxForm({
   validate,
   form: 'VideosNewForm',
   onSubmitSuccess: afterSubmit,
-})(connect(null, { createDancerAction })(VideosNewForm));
+})(connect(null, { createVideoAction })(VideosNewForm));

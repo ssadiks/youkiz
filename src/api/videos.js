@@ -23,3 +23,8 @@ export function deleteVideo(videoId) {
   return axios.delete(`http://localhost:3030/api/videos/${videoId}`)
     .then(response => response);
 }
+
+export function createVideo(video) {
+  return axios.post('http://localhost:3030/api/videos/create', video)
+    .then(response => response);
+}

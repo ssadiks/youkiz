@@ -11,6 +11,7 @@ router.use(VideoController.middleware);
 router.route('/').get(VideoController.rootApi);
 
 router.route('/videos').post(VideoController.getVideos);
+router.route('/offline-videos').get(VideoController.getOfflineVideos);
 router.route('/videos/create').post(VideoController.createVideo);
 router.route('/videos/:video_id').get(VideoController.getVideo);
 router.route('/videos/:video_id').put(VideoController.updateVideo);

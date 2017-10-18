@@ -29,6 +29,7 @@ export const rootApi = (req, res) => {
  * @returns void
  */
 export const createVideo = (req, res) => {
+
   const paramVideo = {
     videoId: req.body.videoId,
     type: req.body.type,
@@ -36,6 +37,8 @@ export const createVideo = (req, res) => {
     dancers: req.body.dancers,
     online: true
   };
+
+  console.log('paramVideo', paramVideo);
 
   const video = new Video(paramVideo);
 
@@ -48,6 +51,22 @@ export const createVideo = (req, res) => {
     }
     res.json(video);
   });
+};
+
+/**
+ * Get offline videos
+ * @param req
+ * @param res
+ * @returns void
+ */
+export const getOfflineVideos = (req, res) => {
+  Video.find({ online: false }, (err, videos) => {
+    if (err) {
+      return res.send(err);
+    }
+
+    return res.json(videos);
+  }).sort({ name: 1 });
 };
 
 /**
