@@ -15,6 +15,7 @@ class FilterVideos extends Component {
     };
   }
 
+  /* Get all Dancers for hydrate Select */
   componentWillMount() {
     this.props.fetchDancersAction();
   }
@@ -47,6 +48,7 @@ class FilterVideos extends Component {
     }
   }
 
+  /* Reset Filter and Results */
   resetFilter = () => {
     this.setState({
       typeDance: null,
@@ -56,10 +58,12 @@ class FilterVideos extends Component {
     this.props.onSubmit();
   };
 
+  /* OnChange Select TypeDancer update state */
   handleChangeTypeDance = (typeDance) => {
     this.setState({ typeDance });
   };
 
+  /* OnChange Select Dancers, update state */
   handleChangeDancers = (dancers) => {
     const dancersTab = getArrayOfValue(dancers, 'label');
     this.setState({ dancers, dancersTab });
@@ -110,7 +114,6 @@ class FilterVideos extends Component {
               disabled={!this.state.typeDance && this.state.dancersTab.length === 0}
             />
           </div>
-
         </form>
       </div>
     );

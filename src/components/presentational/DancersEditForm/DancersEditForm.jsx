@@ -10,7 +10,9 @@ import { GENDERS } from '../../../constants';
 
 class DancersEditForm extends Component {
   onSubmit = (values) => {
-    this.props.updateDancerAction(this.props.selectedDancer, values);
+    const { selectedDancer } = this.props;
+
+    this.props.updateDancerAction(selectedDancer, values);
     this.props.resetDancerDetails();
   }
 

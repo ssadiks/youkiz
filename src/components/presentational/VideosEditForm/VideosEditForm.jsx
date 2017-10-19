@@ -33,6 +33,13 @@ class VideosEditForm extends Component {
     this.props.updateVideoAction(videoId, valuesForm);
   }
 
+  // OnChange Select Dancers update state
+  handleChangeDancers = (dancers) => {
+    console.log(dancers);
+    const dancersTab = getArrayOfValue(dancers, 'label');
+    this.setState({ dancers, dancersTab });
+  }
+
   renderField(field) {
     const { meta: { touched, error } } = field;
 
@@ -71,12 +78,6 @@ class VideosEditForm extends Component {
         </div>
       </div>
     );
-  }
-
-  handleChangeDancers = (dancers) => {
-    console.log(dancers);
-    const dancersTab = getArrayOfValue(dancers, 'label');
-    this.setState({ dancers, dancersTab });
   }
 
   render() {

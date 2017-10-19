@@ -86,6 +86,11 @@ const videosReducer = (state = INITIAL_STATE, action) => {
         error: action.error,
         isPending: false
       };
+    case types.RESET_VIDEO:
+      return {
+        ...state,
+        videoDetails: {}
+      };
     default:
       return state;
   }

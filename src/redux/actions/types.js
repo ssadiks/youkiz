@@ -13,6 +13,7 @@ export const FETCH_VIDEO = createRequestTypes('FETCH_VIDEO');
 export const DELETE_VIDEO = createRequestTypes('DELETE_VIDEO');
 export const CREATE_VIDEO = createRequestTypes('CREATE_VIDEO');
 export const UPDATE_VIDEO = createRequestTypes('UPDATE_VIDEO');
+export const RESET_VIDEO = 'RESET_VIDEO';
 
 export const FETCH_DANCERS = createRequestTypes('FETCH_DANCERS');
 export const FETCH_DANCER = createRequestTypes('FETCH_DANCER');
