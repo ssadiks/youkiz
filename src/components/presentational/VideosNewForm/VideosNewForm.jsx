@@ -2,26 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset as resetForm } from 'redux-form';
+import classnames from 'classnames';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Select from 'react-select';
-import classnames from 'classnames';
-
-import { createVideoAction } from '../../../redux/actions';
-
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray } from '../../../helpers';
-
+import { createVideoAction } from '../../../redux/actions';
 
 class VideosNewForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      typeDance: null,
-      dancersTab: []
-    };
-  }
-
   // OnClick on Create Video button
   onSubmit = (values) => {
     const valuesForm = values;

@@ -10,7 +10,8 @@ class FilterVideos extends Component {
     super(props);
     this.state = {
       typeDance: null,
-      dancersTab: []
+      dancersTab: [],
+      dancers: []
     };
   }
 

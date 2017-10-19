@@ -8,20 +8,21 @@ import TextField from 'material-ui/TextField';
 import Select from 'react-select';
 import { updateDancerAction, fetchDancerAction, updateVideoAction } from '../../../redux/actions';
 import { DANCES_STYLE } from '../../../constants';
-import { changePropretiesOfObjectInArray } from '../../../helpers';
+import { changePropretiesOfObjectInArray, getArrayOfValue } from '../../../helpers';
 
 class VideosEditForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      typeDance: null,
-      dancersTab: []
+      dancersTab: [],
+      dancers: []
     };
   }
 
   // OnClick on Update Video button
   onSubmit = (values) => {
     const valuesForm = values;
+    console.log('valuesForm', valuesForm);
     const videoId = this.props.videoDetails._id;
 
     const tabDancers = (values.dancers).slice();
@@ -72,6 +73,12 @@ class VideosEditForm extends Component {
     );
   }
 
+  handleChangeDancers = (dancers) => {
+    console.log(dancers);
+    const dancersTab = getArrayOfValue(dancers, 'label');
+    this.setState({ dancers, dancersTab });
+  }
+
   render() {
     const { handleSubmit, pristine, submitting, reset, dancersList } = this.props;
 
@@ -107,9 +114,11 @@ class VideosEditForm extends Component {
               name="dancers"
               component={this.renderSelect}
               options={dancersListSelect}
+              onChange={this.handleChangeDancers}
               placeholder="Select dancers"
               multi
               simpleValue={false}
+              value={this.state.dancers}
             />
           }
           <div className="DancersNewForm__form__group DancersNewForm__buttons">
@@ -147,9 +156,7 @@ VideosEditForm.propTypes = {
   submitting: PropTypes.bool.isRequired,
   updateDancerAction: PropTypes.func.isRequired,
   fetchDancerAction: PropTypes.func.isRequired,
-  resetDancerDetails: PropTypes.func.isRequired,
   updateVideoAction: PropTypes.func.isRequired,
-  selectedDancer: PropTypes.string.isRequired,
   dancersList: PropTypes.array.isRequired,
   videoDetails: PropTypes.object.isRequired,
 };
