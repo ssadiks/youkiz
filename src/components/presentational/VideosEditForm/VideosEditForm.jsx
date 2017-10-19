@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Select from 'react-select';
-import { updateDancerAction, fetchDancerAction, updateVideoAction } from '../../../redux/actions';
+import { updateDancerAction, fetchDancerAction, updateVideoAction, fetchVideoAction } from '../../../redux/actions';
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray, getArrayOfValue } from '../../../helpers';
 
@@ -31,6 +31,7 @@ class VideosEditForm extends Component {
     valuesForm.dancers = dancersData;
 
     this.props.updateVideoAction(videoId, valuesForm);
+    this.props.fetchVideoAction(videoId);
   }
 
   // OnChange Select Dancers update state
@@ -115,11 +116,11 @@ class VideosEditForm extends Component {
               name="dancers"
               component={this.renderSelect}
               options={dancersListSelect}
-              onChange={this.handleChangeDancers}
+              // onChange={this.handleChangeDancers}
               placeholder="Select dancers"
               multi
               simpleValue={false}
-              value={this.state.dancers}
+              // value={this.state.dancers}
             />
           }
           <div className="DancersNewForm__form__group DancersNewForm__buttons">
@@ -182,7 +183,7 @@ VideosEditForm = connect(
         changePropretiesOfObjectInArray(state.videosReducer.videoDetails.dancers, ['_id', 'name'], ['value', 'label'])
       }
   }),
-  { fetchDancerAction, updateDancerAction, updateVideoAction }
+  { fetchDancerAction, updateDancerAction, updateVideoAction, fetchVideoAction }
 )(VideosEditForm);
 
 export default VideosEditForm;

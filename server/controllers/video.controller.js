@@ -170,6 +170,9 @@ export const updateVideo = (req, res) => {
   const { video_id } = req.params;
   Video.findById(video_id, (err, video) => {
 
+    const videoData = video;
+    console.log('req.body', req.body);
+
     if (err) {
       res.send({
         code: 'YK_ERR_01',
@@ -177,11 +180,12 @@ export const updateVideo = (req, res) => {
       });
     }
 
-    const { videoId, type, song } = req.body;
-    video.videoId = videoId;
-    video.type = type;
-    video.song = song;
-    video.save((err) => {
+    const { videoId, type, song, dancers } = req.body;
+    videoData.videoId = videoId;
+    videoData.type = type;
+    videoData.song = song;
+    videoData.dancers = dancers;
+    videoData.save((err) => {
       if (err) {
         return res.send({
           code: 'YK_ERR_02',
@@ -189,7 +193,7 @@ export const updateVideo = (req, res) => {
         });
       }
       res.json({
-        video
+        videoData
       });
     });
 
