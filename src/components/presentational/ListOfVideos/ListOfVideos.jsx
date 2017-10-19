@@ -29,11 +29,11 @@ const ListOfVideos = props => (
                   props.userConnected &&
                   <IconMenu
                     iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-                    anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-                    targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                    anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+                    targetOrigin={{ horizontal: 'left', vertical: 'top' }}
                     className="ListOfVideos__item__more"
                   >
-                    <MenuItem primaryText="Edit" />
+                    <MenuItem primaryText="Edit" onClick={() => props.editVideo(video._id)} />
                     <MenuItem primaryText="Delete" onClick={() => props.deleteVideoAction(video._id)} />
                     <MenuItem primaryText="Infos" />
                   </IconMenu>
@@ -46,6 +46,10 @@ const ListOfVideos = props => (
     </div>
   </div>
 );
+
+ListOfVideos.defaultProps = {
+  userConnected: false
+};
 
 ListOfVideos.propTypes = {
   videosList: PropTypes.array.isRequired,

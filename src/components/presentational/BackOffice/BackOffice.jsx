@@ -7,6 +7,7 @@ import DancersEditForm from '../DancersEditForm/DancersEditForm';
 import ListOfDancers from '../ListOfDancers/ListOfDancers';
 import VideosListContainer from '../../container/VideosListContainer';
 import VideosNewForm from '../VideosNewForm/VideosNewForm';
+import VideosEditForm from '../VideosEditForm/VideosEditForm';
 
 const styles = {
   headline: {
@@ -22,10 +23,11 @@ class BackOffice extends Component {
     super(props);
     this.state = {
       selectedDancer: null,
-      createVideoFormDisplayed: false
+      blockDisplayed: 'VIDEO_LIST'
     };
   }
 
+  /* Get all dancers */
   componentWillMount() {
     this.props.fetchDancersAction();
   }
@@ -34,12 +36,10 @@ class BackOffice extends Component {
     console.log('actiiiive tab' + tab);
   } */
 
+  /* OnClick on dancer Chip */
   handleDancersEdit = (selectedDancer) => {
     if (selectedDancer === this.state.selectedDancer) {
-      this.setState({
-        selectedDancer: null
-      });
-      this.props.resetDancerAction();
+      this.resetDancerDetails();
     } else {
       this.setState({
         selectedDancer
@@ -48,6 +48,7 @@ class BackOffice extends Component {
     }
   }
 
+  /* Reset selected dancer */
   resetDancerDetails = () => {
     this.setState({
       selectedDancer: null
@@ -57,15 +58,23 @@ class BackOffice extends Component {
 
   /* OnClick on button to Display VideosNewForm or VideosListContainer */
   handleDisplayVideos = () => {
-    const { createVideoFormDisplayed } = this.state;
+    const { blockDisplayed } = this.state;
     this.setState({
-      createVideoFormDisplayed: !createVideoFormDisplayed
+      blockDisplayed: (blockDisplayed === 'VIDEO_LIST') ? 'VIDEO_CREATE' : 'VIDEO_LIST'
     });
+  }
+
+  /* OnClick Edit Video Button Choice */
+  editVideo = (id) => {
+    this.setState({
+      blockDisplayed: 'VIDEO_EDIT'
+    });
+    this.props.fetchVideoAction(id);
   }
 
   render() {
     const { dancersList, deleteDancerAction, videosList } = this.props;
-    const { selectedDancer, createVideoFormDisplayed } = this.state;
+    const { selectedDancer, blockDisplayed } = this.state;
 
     return (
       <div className="o-container">
@@ -94,18 +103,28 @@ class BackOffice extends Component {
           <Tab label="Videos" >
             <div>
               {
-                dancersList && createVideoFormDisplayed && <VideosNewForm dancersList={dancersList} handleDisplayVideos={this.handleDisplayVideos} />
+                dancersList && (blockDisplayed === 'VIDEO_CREATE') &&
+                <VideosNewForm
+                  dancersList={dancersList}
+                  handleDisplayVideos={this.handleDisplayVideos}
+                />
               }
-
+              {
+                (blockDisplayed === 'VIDEO_EDIT') && <VideosEditForm dancersList={dancersList} />
+              }
               <RaisedButton
                 className="BackOffice__newVideo"
                 type="submit"
-                label={createVideoFormDisplayed ? 'Back' : 'Add Video'}
+                label={(blockDisplayed === 'VIDEO_LIST') ? 'Add Video' : 'Back'}
                 primary
                 onClick={this.handleDisplayVideos}
               />
               {
-                videosList && !createVideoFormDisplayed && <VideosListContainer userConnected />
+                videosList && (blockDisplayed === 'VIDEO_LIST') &&
+                <VideosListContainer
+                  editVideo={this.editVideo}
+                  userConnected
+                />
               }
             </div>
           </Tab>
@@ -116,10 +135,10 @@ class BackOffice extends Component {
           >
             <div>
               <h2 style={styles.headline}>3 videos non validées</h2>
-              <p>
-                List de videos avec un btn validé ou supprimer
-                peut etre modifier
-              </p>
+              <p>video x v o</p>
+              <p>video x v o</p>
+              <p>video x v o</p>
+              <p>video x v o</p>
             </div>
           </Tab>
         </Tabs>
@@ -140,6 +159,7 @@ BackOffice.propTypes = {
   fetchDancerAction: PropTypes.func.isRequired,
   deleteDancerAction: PropTypes.func.isRequired,
   resetDancerAction: PropTypes.func.isRequired,
+  fetchVideoAction: PropTypes.func.isRequired,
 };
 
 export default BackOffice;

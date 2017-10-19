@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Field, reduxForm, reset as resetForm } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
+import classnames from 'classnames';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import Select from 'react-select';
-import classnames from 'classnames';
-
-import { createVideoAction } from '../../../redux/actions';
-
+import { updateDancerAction, fetchDancerAction, updateVideoAction } from '../../../redux/actions';
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray } from '../../../helpers';
 
-
-class VideosNewForm extends Component {
+class VideosEditForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,16 +19,17 @@ class VideosNewForm extends Component {
     };
   }
 
-  // OnClick on Create Video button
+  // OnClick on Update Video button
   onSubmit = (values) => {
     const valuesForm = values;
+    const videoId = this.props.videoDetails._id;
 
     const tabDancers = (values.dancers).slice();
     const dancersData = changePropretiesOfObjectInArray(tabDancers, ['value', 'label'], ['_id', 'name']);
 
     valuesForm.dancers = dancersData;
 
-    this.props.createVideoAction(valuesForm);
+    this.props.updateVideoAction(videoId, valuesForm);
   }
 
   renderField(field) {
@@ -55,6 +53,7 @@ class VideosNewForm extends Component {
       DancersNewForm__form__group: true,
     });
 
+    // console.log('field', field);
     return (
       <div className={formGroupClass}>
         <Select
@@ -141,22 +140,42 @@ function validate(values) {
   return errors;
 }
 
-VideosNewForm.propTypes = {
+VideosEditForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   pristine: PropTypes.bool.isRequired,
   submitting: PropTypes.bool.isRequired,
-  createVideoAction: PropTypes.func.isRequired,
+  updateDancerAction: PropTypes.func.isRequired,
+  fetchDancerAction: PropTypes.func.isRequired,
+  resetDancerDetails: PropTypes.func.isRequired,
+  updateVideoAction: PropTypes.func.isRequired,
+  selectedDancer: PropTypes.string.isRequired,
   dancersList: PropTypes.array.isRequired,
+  videoDetails: PropTypes.object.isRequired,
 };
 
-const afterSubmit = (result, dispatch) => {
-  dispatch(resetForm('VideosNewForm'));
-  this.props.handleDisplayVideos();
-};
-
-export default reduxForm({
+VideosEditForm = reduxForm({
   validate,
-  form: 'VideosNewForm',
-  onSubmitSuccess: afterSubmit,
-})(connect(null, { createVideoAction })(VideosNewForm));
+  form: 'VideosEditForm',
+  enableReinitialize: true,
+})(VideosEditForm);
+
+VideosEditForm = connect(
+  state => ({
+    videoDetails: state.videosReducer.videoDetails,
+    isPending: state.videosReducer.isPending,
+    error: state.videosReducer.error,
+    initialValues:
+      {
+        videoId: state.videosReducer.videoDetails && state.videosReducer.videoDetails.videoId,
+        song: state.videosReducer.videoDetails && state.videosReducer.videoDetails.song,
+        type: state.videosReducer.videoDetails && state.videosReducer.videoDetails.type,
+        dancers: state.videosReducer.videoDetails &&
+        changePropretiesOfObjectInArray(state.videosReducer.videoDetails.dancers, ['_id', 'name'], ['value', 'label'])
+      }
+  }),
+  { fetchDancerAction, updateDancerAction, updateVideoAction }
+)(VideosEditForm);
+
+export default VideosEditForm;
+

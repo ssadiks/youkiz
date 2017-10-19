@@ -28,3 +28,8 @@ export function createVideo(video) {
   return axios.post('http://localhost:3030/api/videos/create', video)
     .then(response => response);
 }
+
+export function updateVideo(videoId, params) {
+  return axios.put(`http://localhost:3030/api/videos/${videoId}`, params)
+    .then(response => response);
+}

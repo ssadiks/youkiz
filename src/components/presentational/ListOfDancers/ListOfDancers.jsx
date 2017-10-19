@@ -13,6 +13,7 @@ class ListOfDancers extends Component {
     };
   }
 
+  /* OnClick on cross delete dancer */
   handleRequestDelete = (key) => {
     this.props.deleteDancerAction(key);
     this.props.resetDancerDetails();

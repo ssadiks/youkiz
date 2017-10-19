@@ -63,6 +63,29 @@ const videosReducer = (state = INITIAL_STATE, action) => {
         error: action.error,
         isPending: false
       };
+    case types.UPDATE_VIDEO.REQUEST:
+      return {
+        ...state,
+        isPending: true,
+        error: null
+      };
+    case types.UPDATE_VIDEO.SUCCESS:
+      return {
+        ...state,
+        videosList: state.videosList.map((item) => {
+          if (item._id !== action.data.data._id) {
+            return item;
+          }
+          return action.data.data;
+        }),
+        isPending: false
+      };
+    case types.UPDATE_VIDEO.FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isPending: false
+      };
     default:
       return state;
   }

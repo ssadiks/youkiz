@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import BackOffice from '../presentational/BackOffice/BackOffice';
-import { fetchDancersAction, deleteDancerAction, fetchDancerAction, resetDancerAction, fetchVideosAction } from '../../redux/actions';
+import { fetchDancersAction, deleteDancerAction, fetchDancerAction, resetDancerAction, fetchVideosAction, fetchVideoAction } from '../../redux/actions';
 
 const mapStateToProps = state => ({
   dancersList: state.dancersReducer.dancersList,
@@ -14,7 +14,8 @@ const BackOfficeContainer = connect(mapStateToProps, {
   deleteDancerAction,
   fetchDancerAction,
   resetDancerAction,
-  fetchVideosAction
+  fetchVideosAction,
+  fetchVideoAction,
 })(BackOffice);
 
 export default BackOfficeContainer;

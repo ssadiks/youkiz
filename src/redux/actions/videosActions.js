@@ -1,5 +1,5 @@
 import * as types from './types';
-import { fetchVideos, fetchVideo, deleteVideo, createVideo } from '../../api/videos';
+import { fetchVideos, fetchVideo, deleteVideo, createVideo, updateVideo } from '../../api/videos';
 
 const fetchVideosRequest = () => ({ type: types.FETCH_VIDEOS.REQUEST });
 const fetchVideosSuccess = data => ({ type: types.FETCH_VIDEOS.SUCCESS, data });
@@ -16,6 +16,17 @@ const deleteVideoFailure = error => ({ type: types.DELETE_VIDEO.FAILURE, error }
 const createVideoRequest = () => ({ type: types.CREATE_VIDEO.REQUEST });
 const createVideoSuccess = data => ({ type: types.CREATE_VIDEO.SUCCESS, data });
 const createVideoFailure = error => ({ type: types.CREATE_VIDEO.FAILURE, error });
+
+const updateVideoRequest = () => ({ type: types.UPDATE_VIDEO.REQUEST });
+const updateVideoSuccess = data => ({ type: types.UPDATE_VIDEO.SUCCESS, data });
+const updateVideoFailure = error => ({ type: types.UPDATE_VIDEO.FAILURE, error });
+
+export const updateVideoAction = (id, params) => (dispatch) => {
+  dispatch(updateVideoRequest());
+  return updateVideo(id, params)
+    .then(res => dispatch(updateVideoSuccess(res)))
+    .catch(error => dispatch(updateVideoFailure(error)));
+};
 
 export const createVideoAction = params => (dispatch) => {
   dispatch(createVideoRequest());

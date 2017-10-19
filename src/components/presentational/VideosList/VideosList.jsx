@@ -17,7 +17,7 @@ class VideosList extends Component {
   }
 
   render() {
-    const { videosList, dancersList, deleteVideoAction, userConnected } = this.props;
+    const { videosList, dancersList, deleteVideoAction, editVideo, userConnected } = this.props;
 
     return (
       <div className="o-container">
@@ -29,7 +29,14 @@ class VideosList extends Component {
           />
         }
         {
-          this.props.isPending ? <Loader /> : <ListOfVideos videosList={videosList} deleteVideoAction={deleteVideoAction} userConnected={userConnected} />
+          this.props.isPending ?
+            <Loader /> :
+            <ListOfVideos
+              videosList={videosList}
+              deleteVideoAction={deleteVideoAction}
+              editVideo={editVideo}
+              userConnected={userConnected}
+            />
         }
       </div>
     );
@@ -48,6 +55,7 @@ VideosList.propTypes = {
   fetchVideosAction: PropTypes.func.isRequired,
   fetchDancersAction: PropTypes.func.isRequired,
   deleteVideoAction: PropTypes.func.isRequired,
+  editVideo: PropTypes.func.isRequired,
   isPending: PropTypes.bool.isRequired,
   userConnected: PropTypes.bool,
 };
