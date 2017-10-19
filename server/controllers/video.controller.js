@@ -170,7 +170,6 @@ export const updateVideo = (req, res) => {
   const { video_id } = req.params;
   Video.findById(video_id, (err, video) => {
 
-    const videoData = video;
     console.log('req.body', req.body);
 
     if (err) {
@@ -181,20 +180,18 @@ export const updateVideo = (req, res) => {
     }
 
     const { videoId, type, song, dancers } = req.body;
-    videoData.videoId = videoId;
-    videoData.type = type;
-    videoData.song = song;
-    videoData.dancers = dancers;
-    videoData.save((err) => {
+    video.videoId = videoId;
+    video.type = type;
+    video.song = song;
+    video.dancers = dancers;
+    video.save((err) => {
       if (err) {
         return res.send({
           code: 'YK_ERR_02',
           message: 'Error: update has failed'
         });
       }
-      res.json({
-        videoData
-      });
+      res.json(video);
     });
 
   });
