@@ -141,7 +141,6 @@ VideosNewForm.propTypes = {
 
 const afterSubmit = (result, dispatch) => {
   dispatch(resetForm('VideosNewForm'));
-  this.props.handleDisplayVideos();
 };
 
 export default reduxForm({

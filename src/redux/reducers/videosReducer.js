@@ -80,6 +80,7 @@ const videosReducer = (state = INITIAL_STATE, action) => {
           }
           return action.data;
         }),
+        videoDetails: action.data,
         isPending: false
       };
     case types.UPDATE_VIDEO.FAILURE:

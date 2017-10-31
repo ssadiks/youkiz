@@ -159,6 +159,7 @@ VideosEditForm.propTypes = {
   updateDancerAction: PropTypes.func.isRequired,
   fetchDancerAction: PropTypes.func.isRequired,
   updateVideoAction: PropTypes.func.isRequired,
+  fetchVideoAction: PropTypes.func.isRequired,
   dancersList: PropTypes.array.isRequired,
   videoDetails: PropTypes.object.isRequired,
 };
