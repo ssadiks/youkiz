@@ -24,35 +24,35 @@ const updateDancerFailure = error => ({ type: types.UPDATE_DANCER.FAILURE, error
 export const fetchDancersAction = params => (dispatch) => {
   dispatch(fetchDancersRequest());
   return fetchDancers(params)
-    .then(res => dispatch(fetchDancersSuccess(res)))
+    .then(res => dispatch(fetchDancersSuccess(res.data)))
     .catch(error => dispatch(fetchDancersFailure(error)));
 };
 
 export const fetchDancerAction = id => (dispatch) => {
   dispatch(fetchDancerRequest());
   return fetchDancer(id)
-    .then(res => dispatch(fetchDancerSuccess(res)))
+    .then(res => dispatch(fetchDancerSuccess(res.data)))
     .catch(error => dispatch(fetchDancerFailure(error)));
 };
 
 export const createDancerAction = params => (dispatch) => {
   dispatch(createDancerRequest());
   return createDancer(params)
-    .then(res => dispatch(createDancerSuccess(res)))
+    .then(res => dispatch(createDancerSuccess(res.data)))
     .catch(error => dispatch(createDancerFailure(error)));
 };
 
 export const deleteDancerAction = id => (dispatch) => {
   dispatch(deleteDancerRequest());
   return deleteDancer(id)
-    .then(res => dispatch(deleteDancerSuccess(res)))
+    .then(res => dispatch(deleteDancerSuccess(res.data)))
     .catch(error => dispatch(deleteDancerFailure(error)));
 };
 
 export const updateDancerAction = (id, params) => (dispatch) => {
   dispatch(updateDancerRequest());
   return updateDancer(id, params)
-    .then(res => dispatch(updateDancerSuccess(res)))
+    .then(res => dispatch(updateDancerSuccess(res.data)))
     .catch(error => dispatch(updateDancerFailure(error)));
 };
 

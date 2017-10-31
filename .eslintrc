@@ -3,11 +3,10 @@
     "browser": true
   },
   "globals": {
-    "APP": true,
-    "ENV": true,
-    "google": true,
-    "dataLayer": true,
-    "autoData": true
+    "test": true,
+    "expect": true,
+    "describe": true,
+    "it": true
   },
   "extends": "airbnb",
   "parser": "babel-eslint",

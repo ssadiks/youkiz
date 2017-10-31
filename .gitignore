@@ -12,3 +12,6 @@ public.zip
 
 # Mac DS Store
 .DS_Store
+
+# Code Coverage
+coverage

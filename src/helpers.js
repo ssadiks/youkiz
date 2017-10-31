@@ -5,7 +5,7 @@
  *
  * Get Array of Value From Array of object
  */
-export const getArrayOfValue = (arr = [], property = '') => arr.map(a => a[property]);
+export const getArrayOfValue = (arr = [], property = '') => (arr ? arr.filter(a => a[property]).map(b => b[property]) : []);
 
 /**
  *
@@ -43,3 +43,5 @@ export const changePropretiesOfObjectInArray = (array, properties, values) => {
 
   return sliced;
 };
+
+export const sum = (a, b) => a + b;

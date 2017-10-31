@@ -18,7 +18,7 @@ const videosReducer = (state = INITIAL_STATE, action) => {
     case types.FETCH_VIDEOS.SUCCESS:
       return {
         ...state,
-        videosList: action.data.data,
+        videosList: action.data,
         isPending: false
       };
     case types.FETCH_VIDEOS.FAILURE:
@@ -36,7 +36,7 @@ const videosReducer = (state = INITIAL_STATE, action) => {
     case types.FETCH_VIDEO.SUCCESS:
       return {
         ...state,
-        videoDetails: action.data.data,
+        videoDetails: action.data,
         isPending: false
       };
     case types.FETCH_VIDEO.FAILURE:
@@ -54,7 +54,9 @@ const videosReducer = (state = INITIAL_STATE, action) => {
     case types.DELETE_VIDEO.SUCCESS:
       return {
         ...state,
-        videosList: state.videosList.filter(video => video._id !== action.data.data.id),
+        videosList:
+          state.videosList ?
+            state.videosList.filter(video => video._id !== action.data.data.id) : [],
         isPending: false
       };
     case types.DELETE_VIDEO.FAILURE:
@@ -73,10 +75,10 @@ const videosReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         videosList: state.videosList.map((item) => {
-          if (item._id !== action.data.data._id) {
+          if (item._id !== action.data._id) {
             return item;
           }
-          return action.data.data;
+          return action.data;
         }),
         isPending: false
       };

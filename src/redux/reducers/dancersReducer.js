@@ -18,7 +18,7 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
     case types.FETCH_DANCERS.SUCCESS:
       return {
         ...state,
-        dancersList: action.data.data,
+        dancersList: action.data,
         isPending: false
       };
     case types.FETCH_DANCERS.FAILURE:
@@ -36,7 +36,7 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
     case types.FETCH_DANCER.SUCCESS:
       return {
         ...state,
-        dancerDetails: action.data.data,
+        dancerDetails: action.data,
         isPending: false
       };
     case types.FETCH_DANCER.FAILURE:
@@ -54,7 +54,7 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
     case types.CREATE_DANCER.SUCCESS:
       return {
         ...state,
-        dancersList: [...state.dancersList, action.data.data],
+        dancersList: [...state.dancersList, action.data],
         isPending: false
       };
     case types.CREATE_DANCER.FAILURE:
@@ -72,7 +72,7 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
     case types.DELETE_DANCER.SUCCESS:
       return {
         ...state,
-        dancersList: state.dancersList.filter(dancer => dancer._id !== action.data.data.id),
+        dancersList: state.dancersList.filter(dancer => dancer._id !== action.data.id),
         isPending: false
       };
     case types.DELETE_DANCER.FAILURE:
@@ -90,12 +90,12 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
     case types.UPDATE_DANCER.SUCCESS:
       return {
         ...state,
-        dancersList: state.dancersList.map((item) => {
-          if (item._id !== action.data.data._id) {
+        dancersList: state.dancersList ? state.dancersList.map((item) => {
+          if (item._id !== action.data._id) {
             return item;
           }
-          return action.data.data;
-        }),
+          return action.data;
+        }) : null,
         isPending: false
       };
     case types.UPDATE_DANCER.FAILURE:

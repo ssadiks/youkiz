@@ -24,7 +24,7 @@ const updateVideoFailure = error => ({ type: types.UPDATE_VIDEO.FAILURE, error }
 export const updateVideoAction = (id, params) => (dispatch) => {
   dispatch(updateVideoRequest());
   return updateVideo(id, params)
-    .then(res => dispatch(updateVideoSuccess(res)))
+    .then(res => dispatch(updateVideoSuccess(res.data)))
     .catch(error => dispatch(updateVideoFailure(error)));
 };
 
@@ -38,14 +38,14 @@ export const createVideoAction = params => (dispatch) => {
 export const fetchVideosAction = params => (dispatch) => {
   dispatch(fetchVideosRequest());
   return fetchVideos(params)
-    .then(res => dispatch(fetchVideosSuccess(res)))
+    .then(res => dispatch(fetchVideosSuccess(res.data)))
     .catch(error => dispatch(fetchVideosFailure(error)));
 };
 
 export const fetchVideoAction = id => (dispatch) => {
   dispatch(fetchVideoRequest());
   return fetchVideo(id)
-    .then(res => dispatch(fetchVideoSuccess(res)))
+    .then(res => dispatch(fetchVideoSuccess(res.data)))
     .catch(error => dispatch(fetchVideoFailure(error)));
 };
 
