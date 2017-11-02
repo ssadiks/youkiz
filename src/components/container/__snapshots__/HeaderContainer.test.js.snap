@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HeaderContainer render renders correctly 1`] = `
+<div>
+  <ul>
+    <li>
+      <a
+        href="/"
+        onClick={[Function]}
+      >
+        Home
+      </a>
+    </li>
+    <li>
+      <a
+        href="/videos"
+        onClick={[Function]}
+      >
+        Videos
+      </a>
+    </li>
+    <li>
+      <a
+        href="/bo"
+        onClick={[Function]}
+      >
+        Back office
+      </a>
+    </li>
+    <li>
+      <a
+        href="/topics"
+        onClick={[Function]}
+      >
+        not found
+      </a>
+    </li>
+  </ul>
+</div>
+`;
