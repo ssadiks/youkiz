@@ -70,14 +70,13 @@ export const getOfflineVideos = (req, res) => {
 };
 
 /**
- * Get all videos
+ * Get videos by filters
  * @param req
  * @param res
  * @returns void
  */
 export const getVideos = (req, res) => {
-  // console.log('req.body', req.body.filters);
-  // console.log('req', !!req.body.filters || (req.body.filters.dancers.length > 0 && req.body.filters.type !== ''));
+  // console.log('req.body m', req.body.filters);
 
   let filters = null;
   let limit = '';
@@ -86,7 +85,7 @@ export const getVideos = (req, res) => {
     filters = {
       $and: [
         { type: req.body.filters.type },
-        { online: true },
+        { online: req.body.filters.online },
         ...req.body.filters.dancers.map(dancer => ({ 'dancers.name': dancer }))
       ]
     };
@@ -112,33 +111,6 @@ export const getVideos = (req, res) => {
     res.json(videos.map(video => Object.assign(video, { _id: (video._id).toString() })));
   }).limit(limit);
 };
-
-/* export function getAssignment(params = {}) {
-    const { limit = 10, page, status = STATUS_TABS.BOOKING_REQUEST[0], sort, order } = params;
-    return request('get', API_GARAGE('/garage/v1/assignments'), {
-        params: {
-            limit,
-            page,
-            status,
-            sort,
-            order
-        }
-    })
-        .then((res) => {
-            const assignments = res.assignments.map(assignment => ({
-                ...assignment,
-                appointmentDate: formatDate(assignment.appointmentDate),
-                createdDate: formatDate(assignment.createdDate),
-                estimatedEndDate: formatDate(assignment.estimatedEndDate),
-                lastModifiedDate: formatDate(assignment.lastModifiedDate),
-                workDoneDate: formatDate(assignment.workDoneDate)
-            }));
-            return {
-                ...res,
-                assignments
-            };
-        });
-} */
 
 /**
  * Get a video

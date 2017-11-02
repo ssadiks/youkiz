@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import RaisedButton from 'material-ui/RaisedButton';
+import Checkbox from 'material-ui/Checkbox';
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray, getArrayOfValue } from '../../../helpers';
 
@@ -11,7 +12,8 @@ class FilterVideos extends Component {
     this.state = {
       typeDance: null,
       dancersTab: [],
-      dancers: []
+      dancers: [],
+      online: true
     };
   }
 
@@ -26,6 +28,7 @@ class FilterVideos extends Component {
     const params = {
       filters: {
         dancers: [],
+        online: this.state.online,
         type: ''
       },
       limit: 10
@@ -41,11 +44,7 @@ class FilterVideos extends Component {
       params.filters.dancers = this.state.dancersTab;
     }
 
-    if (dancersTab.length === 0 && typeDance === null) {
-      this.props.onSubmit();
-    } else {
-      this.props.onSubmit(params);
-    }
+    this.props.onSubmit(params);
   }
 
   /* Reset Filter and Results */
@@ -53,7 +52,8 @@ class FilterVideos extends Component {
     this.setState({
       typeDance: null,
       dancersTab: [],
-      dancers: []
+      dancers: [],
+      online: true
     });
     this.props.onSubmit();
   };
@@ -68,6 +68,11 @@ class FilterVideos extends Component {
     const dancersTab = getArrayOfValue(dancers, 'label');
     this.setState({ dancers, dancersTab });
   };
+
+  /* OnCheck Online, update online state */
+  handleCheckOnline = () => {
+    this.setState({ online: !this.state.online });
+  }
 
   render() {
     const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
@@ -99,6 +104,13 @@ class FilterVideos extends Component {
               className="FilterVideos__select FilterVideos__select--dancers"
             />
           }
+          {
+            <Checkbox
+              label="Online"
+              onCheck={this.handleCheckOnline}
+              checked={this.state.online}
+            />
+          }
           <div className="FilterVideos__buttons">
             <RaisedButton
               onClick={() => this.resetFilter()}
@@ -111,7 +123,6 @@ class FilterVideos extends Component {
               type="submit"
               label="Filter"
               primary
-              disabled={!this.state.typeDance && this.state.dancersTab.length === 0}
             />
           </div>
         </form>
