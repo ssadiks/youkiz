@@ -134,6 +134,7 @@ describe('Videos Reducer', () => {
   it('should handle UPDATE_VIDEO_SUCCESS', () => {
     const state = { videosList: [{ _id: 1, title: 'video 1' }, { _id: 2, title: 'video 2' }] };
     const output = [{ _id: 1, title: 'video 1' }, { _id: 2, title: 'video 22' }];
+    const outputDetails = { _id: 2, title: 'video 22' };
     expect(
       reducer(state, {
         type: types.UPDATE_VIDEO.SUCCESS,
@@ -141,6 +142,7 @@ describe('Videos Reducer', () => {
       })
     ).toEqual({
       videosList: output,
+      videoDetails: outputDetails,
       isPending: false
     });
   });
