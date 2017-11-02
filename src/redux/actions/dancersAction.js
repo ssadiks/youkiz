@@ -38,8 +38,16 @@ export const fetchDancerAction = id => (dispatch) => {
 export const createDancerAction = params => (dispatch) => {
   dispatch(createDancerRequest());
   return createDancer(params)
+    .then((res) => {
+      if (res.data.code) {
+        throw new Error(res.data.code);
+      }
+      return res;
+    })
     .then(res => dispatch(createDancerSuccess(res.data)))
-    .catch(error => dispatch(createDancerFailure(error)));
+    .catch((error) => {
+      dispatch(createDancerFailure(error.message));
+    });
 };
 
 export const deleteDancerAction = id => (dispatch) => {

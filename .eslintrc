@@ -6,7 +6,8 @@
     "test": true,
     "expect": true,
     "describe": true,
-    "it": true
+    "it": true,
+    "jest": true
   },
   "extends": "airbnb",
   "parser": "babel-eslint",

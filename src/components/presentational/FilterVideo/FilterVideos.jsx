@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import RaisedButton from 'material-ui/RaisedButton';
-import Checkbox from 'material-ui/Checkbox';
+import { RaisedButton, Checkbox } from 'material-ui';
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray, getArrayOfValue } from '../../../helpers';
 
@@ -77,7 +76,7 @@ class FilterVideos extends Component {
   render() {
     const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
     const dancersListSelect = changePropretiesOfObjectInArray(this.props.dancersList, ['_id', 'name'], ['value', 'label']);
-
+    console.log('render', this.state);
     return (
       <div className="FilterVideos">
         <h2>Filter</h2>
@@ -104,13 +103,11 @@ class FilterVideos extends Component {
               className="FilterVideos__select FilterVideos__select--dancers"
             />
           }
-          {
-            <Checkbox
-              label="Online"
-              onCheck={this.handleCheckOnline}
-              checked={this.state.online}
-            />
-          }
+          <Checkbox
+            label="Online"
+            onCheck={this.handleCheckOnline}
+            checked={this.state.online}
+          />
           <div className="FilterVideos__buttons">
             <RaisedButton
               onClick={() => this.resetFilter()}
