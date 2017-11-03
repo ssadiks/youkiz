@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-export function fetchDancers(params) {
-  return axios.get('http://localhost:3030/api/dancers', params)
+export function fetchDancers() {
+  return axios.get('http://localhost:3030/api/dancers')
     .then(response => response);
 }
 

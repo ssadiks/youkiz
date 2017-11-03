@@ -40,13 +40,13 @@ export const createDancerAction = params => (dispatch) => {
   return createDancer(params)
     .then((res) => {
       if (res.data.code) {
-        throw new Error(res.data.code);
+        throw (res.data.code);
       }
       return res;
     })
     .then(res => dispatch(createDancerSuccess(res.data)))
     .catch((error) => {
-      dispatch(createDancerFailure(error.message));
+      dispatch(createDancerFailure(error));
     });
 };
 
