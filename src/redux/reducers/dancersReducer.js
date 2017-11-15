@@ -49,19 +49,22 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isPending: true,
-        error: null
+        error: null,
+        createDancerSuccess: false
       };
     case types.CREATE_DANCER.SUCCESS:
       return {
         ...state,
         dancersList: [...state.dancersList, action.data],
-        isPending: false
+        isPending: false,
+        createDancerSuccess: true
       };
     case types.CREATE_DANCER.FAILURE:
       return {
         ...state,
         error: action.error,
-        isPending: false
+        isPending: false,
+        createDancerSuccess: false
       };
     case types.DELETE_DANCER.REQUEST:
       return {

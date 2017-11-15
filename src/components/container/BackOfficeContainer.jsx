@@ -6,7 +6,8 @@ const mapStateToProps = state => ({
   dancersList: state.dancersReducer.dancersList,
   isPending: state.dancersReducer.isPending,
   error: state.dancersReducer.error,
-  videosList: state.videosReducer.videosList,
+  createDancerSuccess: state.dancersReducer.createDancerSuccess,
+  videosList: state.videosReducer.videosList
 });
 
 const BackOfficeContainer = connect(mapStateToProps, {

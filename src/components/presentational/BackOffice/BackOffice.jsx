@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
+
 import DancersNewForm from '../DancersNewForm/DancersNewForm';
 import DancersEditForm from '../DancersEditForm/DancersEditForm';
 import ListOfDancers from '../ListOfDancers/ListOfDancers';
@@ -28,7 +30,7 @@ class BackOffice extends Component {
   }
 
   /* Get all dancers */
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchDancersAction();
   }
 
@@ -75,6 +77,7 @@ class BackOffice extends Component {
   render() {
     const { dancersList, deleteDancerAction, videosList } = this.props;
     const { selectedDancer, blockDisplayed } = this.state;
+    console.log('createDancerSuccess', this.props.createDancerSuccess);
 
     return (
       <div className="o-container">
@@ -142,6 +145,11 @@ class BackOffice extends Component {
             </div>
           </Tab>
         </Tabs>
+        <Snackbar
+          open={this.props.createDancerSuccess}
+          message="Dancer created"
+          autoHideDuration={4000}
+        />
       </div>
     );
   }
@@ -149,7 +157,8 @@ class BackOffice extends Component {
 
 BackOffice.defaultProps = {
   dancersList: [],
-  videosList: []
+  videosList: [],
+  createDancerSuccess: false
 };
 
 BackOffice.propTypes = {
@@ -160,6 +169,7 @@ BackOffice.propTypes = {
   deleteDancerAction: PropTypes.func.isRequired,
   resetDancerAction: PropTypes.func.isRequired,
   fetchVideoAction: PropTypes.func.isRequired,
+  createDancerSuccess: PropTypes.bool,
 };
 
 export default BackOffice;
