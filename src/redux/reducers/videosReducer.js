@@ -1,13 +1,13 @@
 import * as types from '../actions/types';
 
-const INITIAL_STATE = {
+const initialState = () => ({
   videosList: [],
   videoDetails: {},
   isPending: false,
   error: null
-};
+});
 
-const videosReducer = (state = INITIAL_STATE, action) => {
+const videosReducer = (state = initialState(), action) => {
   switch (action.type) {
     case types.FETCH_VIDEOS.REQUEST:
       return {
@@ -84,6 +84,25 @@ const videosReducer = (state = INITIAL_STATE, action) => {
         isPending: false
       };
     case types.UPDATE_VIDEO.FAILURE:
+      return {
+        ...state,
+        error: action.error,
+        isPending: false
+      };
+    case types.CREATE_VIDEO.REQUEST:
+      return {
+        ...state,
+        isPending: true,
+        error: null
+      };
+    case types.CREATE_VIDEO.SUCCESS:
+      return {
+        ...state,
+        videosList: [...state.videosList, action.data],
+        videoDetails: action.data,
+        isPending: false
+      };
+    case types.CREATE_VIDEO.FAILURE:
       return {
         ...state,
         error: action.error,

@@ -1,13 +1,13 @@
 import * as types from '../actions/types';
 
-const INITIAL_STATE = {
+const initialState = () => ({
   dancersList: null,
   dancerDetails: {},
   isPending: false,
   error: null
-};
+});
 
-const dancersReducer = (state = INITIAL_STATE, action) => {
+const dancersReducer = (state = initialState(), action) => {
   switch (action.type) {
     case types.FETCH_DANCERS.REQUEST:
       return {
@@ -49,22 +49,19 @@ const dancersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         isPending: true,
-        error: null,
-        createDancerSuccess: false
+        error: null
       };
     case types.CREATE_DANCER.SUCCESS:
       return {
         ...state,
         dancersList: [...state.dancersList, action.data],
-        isPending: false,
-        createDancerSuccess: true
+        isPending: false
       };
     case types.CREATE_DANCER.FAILURE:
       return {
         ...state,
         error: action.error,
-        isPending: false,
-        createDancerSuccess: false
+        isPending: false
       };
     case types.DELETE_DANCER.REQUEST:
       return {

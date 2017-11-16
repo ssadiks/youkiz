@@ -7,3 +7,28 @@ export const DANCES_STYLE = [
 ];
 
 export const GENDERS = ['Male', 'Female'];
+
+/* export const SNACKBAR_MESSAGE = {
+  VIDEO_CREATE_SUCCESS: 'Video created',
+  VIDEO_UPDATED: 'Video updated',
+  VIDEO_DELETED: 'Video updated',
+} */
+
+export const SNACKBAR_MSG = {
+  SUCCESS: {
+    VIDEO_CREATE: 'Video created',
+    VIDEO_UPDATE: 'Video updated',
+    VIDEO_DELETE: 'Video deleted',
+    DANCER_CREATE: 'Dancer created',
+    DANCER_UPDATE: 'Dancer updated',
+    DANCER_DELETE: 'Dancer deleted',
+  },
+  FAILURE: {
+    VIDEO_CREATE: 'Video creation failed',
+    VIDEO_UPDATE: 'Video update failed',
+    VIDEO_DELETE: 'Video delete failed',
+    DANCER_CREATE: 'Dancer creation failed',
+    DANCER_UPDATE: 'Dancer update failed',
+    DANCER_DELETE: 'Dancer delete failed',
+  }
+};

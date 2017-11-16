@@ -25,7 +25,7 @@ class BackOffice extends Component {
     super(props);
     this.state = {
       selectedDancer: null,
-      blockDisplayed: 'VIDEO_LIST'
+      blockDisplayed: 'VIDEO_LIST',
     };
   }
 
@@ -33,6 +33,13 @@ class BackOffice extends Component {
   componentDidMount() {
     this.props.fetchDancersAction();
   }
+
+  handleRequestClose = () => {
+    this.props.updateSnackMessage({
+      state: false,
+      message: ''
+    });
+  };
 
   /* handleActive(tab) {
     console.log('actiiiive tab' + tab);
@@ -75,9 +82,8 @@ class BackOffice extends Component {
   }
 
   render() {
-    const { dancersList, deleteDancerAction, videosList } = this.props;
+    const { dancersList, deleteDancerAction, videosList, snackMessage } = this.props;
     const { selectedDancer, blockDisplayed } = this.state;
-    console.log('createDancerSuccess', this.props.createDancerSuccess);
 
     return (
       <div className="o-container">
@@ -146,9 +152,12 @@ class BackOffice extends Component {
           </Tab>
         </Tabs>
         <Snackbar
-          open={this.props.createDancerSuccess}
-          message="Dancer created"
-          autoHideDuration={4000}
+          open={
+            snackMessage && snackMessage.state
+          }
+          message={snackMessage && snackMessage.message}
+          autoHideDuration={2000}
+          onRequestClose={this.handleRequestClose}
         />
       </div>
     );
@@ -158,7 +167,12 @@ class BackOffice extends Component {
 BackOffice.defaultProps = {
   dancersList: [],
   videosList: [],
-  createDancerSuccess: false
+  createDancerSuccess: false,
+  deleteDancerSuccess: false,
+  deleteVideoSuccess: false,
+  createVideoSuccess: false,
+  updateVideoSuccess: false,
+  snackMessage: null
 };
 
 BackOffice.propTypes = {
@@ -169,7 +183,8 @@ BackOffice.propTypes = {
   deleteDancerAction: PropTypes.func.isRequired,
   resetDancerAction: PropTypes.func.isRequired,
   fetchVideoAction: PropTypes.func.isRequired,
-  createDancerSuccess: PropTypes.bool,
+  updateSnackMessage: PropTypes.func.isRequired,
+  snackMessage: PropTypes.object,
 };
 
 export default BackOffice;

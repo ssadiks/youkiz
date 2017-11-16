@@ -12,7 +12,6 @@ const mockStore = configureMockStore(middlewares);
 
 describe('async actions', () => {
   it('creates FETCH_DANCERS.SUCCESS when fetching dancers has been done', () => {
-
     axios.get.mockImplementation(() =>
       Promise.resolve({
         data: [{ id: 1, name: 'dancer 1' }],
@@ -47,7 +46,6 @@ describe('async actions', () => {
   });
 
   it('creates CREATE_DANCER.SUCCESS when create dancer has been done', () => {
-
     axios.post.mockImplementation(() =>
       Promise.resolve({
         data: [{ id: 1, name: 'dancer 1' }],

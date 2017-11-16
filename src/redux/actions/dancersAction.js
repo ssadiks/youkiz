@@ -1,5 +1,7 @@
 import * as types from './types';
 import { fetchDancers, fetchDancer, createDancer, deleteDancer, updateDancer } from '../../api/dancers';
+import { updateSnackMessage } from './';
+import { SNACKBAR_MSG } from '../../constants';
 
 const fetchDancersRequest = () => ({ type: types.FETCH_DANCERS.REQUEST });
 const fetchDancersSuccess = data => ({ type: types.FETCH_DANCERS.SUCCESS, data });
@@ -44,17 +46,39 @@ export const createDancerAction = params => (dispatch) => {
       }
       return res;
     })
-    .then(res => dispatch(createDancerSuccess(res.data)))
+    .then((res) => {
+      dispatch(createDancerSuccess(res.data));
+      dispatch(updateSnackMessage({
+        state: true,
+        message: SNACKBAR_MSG.SUCCESS.DANCER_CREATE
+      }));
+    })
     .catch((error) => {
       dispatch(createDancerFailure(error));
+      dispatch(updateSnackMessage({
+        state: true,
+        message: SNACKBAR_MSG.FAILURE.DANCER_CREATE
+      }));
     });
 };
 
 export const deleteDancerAction = id => (dispatch) => {
   dispatch(deleteDancerRequest());
   return deleteDancer(id)
-    .then(res => dispatch(deleteDancerSuccess(res.data)))
-    .catch(error => dispatch(deleteDancerFailure(error)));
+    .then((res) => {
+      dispatch(deleteDancerSuccess(res.data));
+      dispatch(updateSnackMessage({
+        state: true,
+        message: SNACKBAR_MSG.SUCCESS.DANCER_DELETE
+      }));
+    })
+    .catch((error) => {
+      dispatch(deleteDancerFailure(error));
+      dispatch(updateSnackMessage({
+        state: true,
+        message: SNACKBAR_MSG.FAILURE.DANCER_DELETE
+      }));
+    });
 };
 
 export const updateDancerAction = (id, params) => (dispatch) => {
