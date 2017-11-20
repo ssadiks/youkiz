@@ -23,3 +23,6 @@ export const UPDATE_DANCER = createRequestTypes('UPDATE_DANCER');
 export const RESET_DANCER = 'RESET_DANCER';
 
 export const UPDATE_SNACK_MESSAGE = 'UPDATE_SNACK_MESSAGE';
+
+export const OPEN_MODAL_DIALOG = 'OPEN_MODAL_DIALOG';
+export const HIDE_MODAL_DIALOG = 'HIDE_MODAL_DIALOG';

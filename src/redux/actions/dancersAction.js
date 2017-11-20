@@ -3,6 +3,8 @@ import { fetchDancers, fetchDancer, createDancer, deleteDancer, updateDancer } f
 import { updateSnackMessage } from './';
 import { SNACKBAR_MSG } from '../../constants';
 
+import { hideModalDialog } from './modalDialogAction';
+
 const fetchDancersRequest = () => ({ type: types.FETCH_DANCERS.REQUEST });
 const fetchDancersSuccess = data => ({ type: types.FETCH_DANCERS.SUCCESS, data });
 const fetchDancersFailure = error => ({ type: types.FETCH_DANCERS.FAILURE, error });
@@ -71,9 +73,10 @@ export const deleteDancerAction = id => (dispatch) => {
         state: true,
         message: SNACKBAR_MSG.SUCCESS.DANCER_DELETE
       }));
+      dispatch(hideModalDialog());
     })
     .catch((error) => {
-      dispatch(deleteDancerFailure(error));
+      dispatch(deleteDancerFailure(error))
       dispatch(updateSnackMessage({
         state: true,
         message: SNACKBAR_MSG.FAILURE.DANCER_DELETE

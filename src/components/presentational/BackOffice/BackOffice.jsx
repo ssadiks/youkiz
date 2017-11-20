@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Tabs, Tab } from 'material-ui/Tabs';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
+import Dialog from 'material-ui/Dialog';
 
 import DancersNewForm from '../DancersNewForm/DancersNewForm';
 import DancersEditForm from '../DancersEditForm/DancersEditForm';
@@ -10,6 +11,8 @@ import ListOfDancers from '../ListOfDancers/ListOfDancers';
 import VideosListContainer from '../../container/VideosListContainer';
 import VideosNewForm from '../VideosNewForm/VideosNewForm';
 import VideosEditForm from '../VideosEditForm/VideosEditForm';
+import ModalDialog from '../ModalDialog/ModalDialog';
+
 
 const styles = {
   headline: {
@@ -26,6 +29,7 @@ class BackOffice extends Component {
     this.state = {
       selectedDancer: null,
       blockDisplayed: 'VIDEO_LIST',
+      snackMessage: null
     };
   }
 
@@ -82,8 +86,24 @@ class BackOffice extends Component {
   }
 
   render() {
-    const { dancersList, deleteDancerAction, videosList, snackMessage } = this.props;
+    const { dancersList, deleteDancerAction, videosList, snackMessage, modalDialog, openModalDialog } = this.props;
     const { selectedDancer, blockDisplayed } = this.state;
+    console.log('render modalDialog', modalDialog)
+    const actions = [
+      <RaisedButton
+        label="Cancel"
+        primary
+        //onClick={this.handleClose}
+        onClick={modalDialog && modalDialog.onCancel}
+      />,
+      <RaisedButton
+        label="Submit"
+        primary
+        keyboardFocused
+        //onClick={this.handleClose}
+        onClick={modalDialog && modalDialog.onValid}
+      />,
+    ];
 
     return (
       <div className="o-container">
@@ -105,6 +125,7 @@ class BackOffice extends Component {
                   deleteDancerAction={deleteDancerAction}
                   handleDancersEdit={this.handleDancersEdit}
                   resetDancerDetails={this.resetDancerDetails}
+                  openModalDialog={openModalDialog}
                 />
               }
             </div>
@@ -159,6 +180,17 @@ class BackOffice extends Component {
           autoHideDuration={2000}
           onRequestClose={this.handleRequestClose}
         />
+        <Dialog
+          title="Dialog With Actions"
+          actions={actions}
+          modal={false}
+          open={modalDialog && modalDialog.state}
+          onRequestClose={this.handleClose}
+        >
+          {
+            modalDialog && modalDialog.message
+          }
+        </Dialog>
       </div>
     );
   }
@@ -172,7 +204,8 @@ BackOffice.defaultProps = {
   deleteVideoSuccess: false,
   createVideoSuccess: false,
   updateVideoSuccess: false,
-  snackMessage: null
+  snackMessage: null,
+  modalDialog: null
 };
 
 BackOffice.propTypes = {
@@ -185,6 +218,7 @@ BackOffice.propTypes = {
   fetchVideoAction: PropTypes.func.isRequired,
   updateSnackMessage: PropTypes.func.isRequired,
   snackMessage: PropTypes.object,
+  modalDialog: PropTypes.object
 };
 
 export default BackOffice;

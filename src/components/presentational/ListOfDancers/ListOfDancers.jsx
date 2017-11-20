@@ -15,8 +15,13 @@ class ListOfDancers extends Component {
 
   /* OnClick on cross delete dancer */
   handleRequestDelete = (key) => {
-    this.props.deleteDancerAction(key);
-    this.props.resetDancerDetails();
+    this.props.openModalDialog({
+      onValid: () => {
+        this.props.deleteDancerAction(key);
+        this.props.resetDancerDetails();
+      },
+      onCancel: () => console.log('onCancel')
+    })
   };
 
   render() {

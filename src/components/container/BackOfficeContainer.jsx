@@ -7,7 +7,8 @@ import {
   resetDancerAction,
   fetchVideosAction,
   fetchVideoAction,
-  updateSnackMessage
+  updateSnackMessage,
+  openModalDialog
 } from '../../redux/actions';
 
 const mapStateToProps = state => ({
@@ -17,7 +18,8 @@ const mapStateToProps = state => ({
   createDancerSuccess: state.dancersReducer.createDancerSuccess,
   deleteDancerSuccess: state.dancersReducer.deleteDancerSuccess,
   videosList: state.videosReducer.videosList,
-  snackMessage: state.snackMessageReducer.snackMessage
+  snackMessage: state.snackMessageReducer.snackMessage,
+  modalDialog: state.modalDialogReducer.modalDialog
 });
 
 const BackOfficeContainer = connect(mapStateToProps, {
@@ -27,7 +29,8 @@ const BackOfficeContainer = connect(mapStateToProps, {
   resetDancerAction,
   fetchVideosAction,
   fetchVideoAction,
-  updateSnackMessage
+  updateSnackMessage,
+  openModalDialog
 })(BackOffice);
 
 export default BackOfficeContainer;

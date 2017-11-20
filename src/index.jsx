@@ -15,6 +15,7 @@ import VideosListContainer from './components/container/VideosListContainer';
 import DancersListContainer from './components/container/BackOfficeContainer';
 import NotFound from './components/presentational/NotFound/NotFound';
 import reducers from './redux/reducers';
+import modalDialogMiddleware from './redux/middlewares/modalDialogMiddleware';
 
 const Root = () => (
   <Router>
@@ -30,9 +31,9 @@ const Root = () => (
     </div>
   </Router>
 );
+const middleware = [modalDialogMiddleware, thunk];
 
-
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
 
 ReactDOM.render(
   <Provider
