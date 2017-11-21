@@ -8,7 +8,8 @@ import {
   fetchVideosAction,
   fetchVideoAction,
   updateSnackMessage,
-  openModalDialog
+  openModalDialog,
+  hideModalDialog
 } from '../../redux/actions';
 
 const mapStateToProps = state => ({
@@ -30,7 +31,8 @@ const BackOfficeContainer = connect(mapStateToProps, {
   fetchVideosAction,
   fetchVideoAction,
   updateSnackMessage,
-  openModalDialog
+  openModalDialog,
+  hideModalDialog
 })(BackOffice);
 
 export default BackOfficeContainer;

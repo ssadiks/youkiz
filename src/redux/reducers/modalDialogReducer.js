@@ -7,7 +7,6 @@ const initialState = () => ({
 const modalDialogReducer = (state = initialState(), action) => {
   switch (action.type) {
     case types.OPEN_MODAL_DIALOG:
-      console.log('open modal', action);
       return {
         modalDialog: {
           state: true,

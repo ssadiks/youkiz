@@ -16,8 +16,20 @@ class VideosList extends Component {
     }
   }
 
+  handleDeleteVideo = (videoId) => {
+    this.props.openModalDialog({
+      title: 'Delete Video',
+      message: 'Are you sure',
+      onValid: () => {
+        this.props.deleteVideoAction(videoId);
+      },
+      onCancel: () => this.props.hideModalDialog()
+    });
+  }
+
   render() {
-    const { videosList, dancersList, deleteVideoAction, editVideo, userConnected } = this.props;
+    const { videosList, dancersList, deleteVideoAction, editVideo,
+      userConnected } = this.props;
 
     return (
       <div className="o-container">
@@ -36,6 +48,7 @@ class VideosList extends Component {
               deleteVideoAction={deleteVideoAction}
               editVideo={editVideo}
               userConnected={userConnected}
+              handleDeleteVideo={this.handleDeleteVideo}
             />
         }
       </div>
@@ -55,6 +68,8 @@ VideosList.propTypes = {
   fetchVideosAction: PropTypes.func.isRequired,
   fetchDancersAction: PropTypes.func.isRequired,
   deleteVideoAction: PropTypes.func.isRequired,
+  openModalDialog: PropTypes.func.isRequired,
+  hideModalDialog: PropTypes.func.isRequired,
   editVideo: PropTypes.func.isRequired,
   isPending: PropTypes.bool.isRequired,
   userConnected: PropTypes.bool,

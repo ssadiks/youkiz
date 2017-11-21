@@ -16,12 +16,14 @@ class ListOfDancers extends Component {
   /* OnClick on cross delete dancer */
   handleRequestDelete = (key) => {
     this.props.openModalDialog({
+      title: 'Delete Dancer',
+      message: 'Are you sure',
       onValid: () => {
         this.props.deleteDancerAction(key);
         this.props.resetDancerDetails();
       },
-      onCancel: () => console.log('onCancel')
-    })
+      onCancel: () => this.props.hideModalDialog()
+    });
   };
 
   render() {
@@ -64,6 +66,8 @@ ListOfDancers.propTypes = {
   deleteDancerAction: PropTypes.func.isRequired,
   handleDancersEdit: PropTypes.func.isRequired,
   resetDancerDetails: PropTypes.func.isRequired,
+  openModalDialog: PropTypes.func.isRequired,
+  hideModalDialog: PropTypes.func.isRequired,
 };
 
 export default ListOfDancers;

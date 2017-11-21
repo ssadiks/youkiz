@@ -76,7 +76,7 @@ class FilterVideos extends Component {
   render() {
     const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
     const dancersListSelect = changePropretiesOfObjectInArray(this.props.dancersList, ['_id', 'name'], ['value', 'label']);
-    console.log('render', this.state);
+
     return (
       <div className="FilterVideos">
         <h2>Filter</h2>
@@ -128,10 +128,14 @@ class FilterVideos extends Component {
   }
 }
 
+FilterVideos.defaultProps = {
+  dancersList: []
+};
+
 FilterVideos.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   fetchDancersAction: PropTypes.func.isRequired,
-  dancersList: PropTypes.array.isRequired
+  dancersList: PropTypes.array
 };
 
 export default FilterVideos;

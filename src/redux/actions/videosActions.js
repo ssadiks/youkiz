@@ -1,6 +1,6 @@
 import * as types from './types';
 import { fetchVideos, fetchVideo, deleteVideo, createVideo, updateVideo } from '../../api/videos';
-import { updateSnackMessage } from './';
+import { updateSnackMessage, hideModalDialog } from './';
 import { SNACKBAR_MSG } from '../../constants';
 
 /* Create Video Actions */
@@ -96,6 +96,7 @@ export const deleteVideoAction = id => (dispatch) => {
         state: true,
         message: SNACKBAR_MSG.SUCCESS.VIDEO_DELETE
       }));
+      dispatch(hideModalDialog());
     })
     .catch((error) => {
       dispatch(deleteVideoFailure(error));

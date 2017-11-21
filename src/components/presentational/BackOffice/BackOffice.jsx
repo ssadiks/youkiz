@@ -86,21 +86,21 @@ class BackOffice extends Component {
   }
 
   render() {
-    const { dancersList, deleteDancerAction, videosList, snackMessage, modalDialog, openModalDialog } = this.props;
+    const {
+      dancersList, deleteDancerAction, videosList, snackMessage,
+      modalDialog, openModalDialog, hideModalDialog } = this.props;
+
     const { selectedDancer, blockDisplayed } = this.state;
-    console.log('render modalDialog', modalDialog)
     const actions = [
       <RaisedButton
         label="Cancel"
         primary
-        //onClick={this.handleClose}
         onClick={modalDialog && modalDialog.onCancel}
       />,
       <RaisedButton
         label="Submit"
         primary
         keyboardFocused
-        //onClick={this.handleClose}
         onClick={modalDialog && modalDialog.onValid}
       />,
     ];
@@ -126,6 +126,7 @@ class BackOffice extends Component {
                   handleDancersEdit={this.handleDancersEdit}
                   resetDancerDetails={this.resetDancerDetails}
                   openModalDialog={openModalDialog}
+                  hideModalDialog={hideModalDialog}
                 />
               }
             </div>
@@ -158,33 +159,20 @@ class BackOffice extends Component {
               }
             </div>
           </Tab>
-          <Tab
-            label="Manage requests"
-            data-route="/home"
-            onActive={this.handleActive}
-          >
-            <div>
-              <h2 style={styles.headline}>3 videos non validées</h2>
-              <p>video x v o</p>
-              <p>video x v o</p>
-              <p>video x v o</p>
-              <p>video x v o</p>
-            </div>
-          </Tab>
         </Tabs>
         <Snackbar
           open={
-            snackMessage && snackMessage.state
+            !!(snackMessage && snackMessage.state)
           }
           message={snackMessage && snackMessage.message}
           autoHideDuration={2000}
           onRequestClose={this.handleRequestClose}
         />
         <Dialog
-          title="Dialog With Actions"
+          title={modalDialog && modalDialog.title}
           actions={actions}
           modal={false}
-          open={modalDialog && modalDialog.state}
+          open={!!(modalDialog && modalDialog.state)}
           onRequestClose={this.handleClose}
         >
           {
@@ -217,8 +205,10 @@ BackOffice.propTypes = {
   resetDancerAction: PropTypes.func.isRequired,
   fetchVideoAction: PropTypes.func.isRequired,
   updateSnackMessage: PropTypes.func.isRequired,
+  openModalDialog: PropTypes.func.isRequired,
+  hideModalDialog: PropTypes.func.isRequired,
   snackMessage: PropTypes.object,
-  modalDialog: PropTypes.object
+  modalDialog: PropTypes.object,
 };
 
 export default BackOffice;
