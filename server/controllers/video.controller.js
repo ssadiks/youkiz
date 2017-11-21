@@ -142,7 +142,7 @@ export const updateVideo = (req, res) => {
   const { video_id } = req.params;
   Video.findById(video_id, (err, video) => {
 
-    console.log('req.body', req.body);
+    // console.log('req.body', req.body);
 
     if (err) {
       res.send({
@@ -151,11 +151,8 @@ export const updateVideo = (req, res) => {
       });
     }
 
-    const { videoId, type, song, dancers } = req.body;
-    video.videoId = videoId;
-    video.type = type;
-    video.song = song;
-    video.dancers = dancers;
+    const { videoId, type, song, dancers, online } = req.body;
+    Object.assign(video, { videoId, type, song, dancers, online });
     video.save((err) => {
       if (err) {
         return res.send({
@@ -269,8 +266,7 @@ export const updateDancer = (req, res) => {
     }
 
     const { gender, name } = req.body;
-    dancer.gender = gender;
-    dancer.name = name;
+    Object.assign(dancer, { gender, name });
     dancer.save((err) => {
       if (err) {
         return res.send({

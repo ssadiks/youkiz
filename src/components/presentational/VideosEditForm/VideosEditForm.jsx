@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form';
 import classnames from 'classnames';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Checkbox from 'material-ui/Checkbox';
 import Select from 'react-select';
 import { updateDancerAction, fetchDancerAction, updateVideoAction, fetchVideoAction } from '../../../redux/actions';
 import { DANCES_STYLE } from '../../../constants';
@@ -81,6 +82,15 @@ class VideosEditForm extends Component {
     );
   }
 
+  renderCheckbox = ({ input, label }) => (
+    <Checkbox
+      label={label}
+      checked={input.value}
+      onCheck={input.onChange}
+    />
+  );
+
+
   render() {
     const { handleSubmit, pristine, submitting, reset, dancersList } = this.props;
 
@@ -121,6 +131,14 @@ class VideosEditForm extends Component {
               multi
               simpleValue={false}
               // value={this.state.dancers}
+            />
+          }
+          {
+            <Field
+              name="online"
+              id="online"
+              component={this.renderCheckbox}
+              label="mon label"
             />
           }
           <div className="DancersNewForm__form__group DancersNewForm__buttons">
@@ -181,7 +199,8 @@ VideosEditForm = connect(
         song: state.videosReducer.videoDetails && state.videosReducer.videoDetails.song,
         type: state.videosReducer.videoDetails && state.videosReducer.videoDetails.type,
         dancers: state.videosReducer.videoDetails &&
-        changePropretiesOfObjectInArray(state.videosReducer.videoDetails.dancers, ['_id', 'name'], ['value', 'label'])
+        changePropretiesOfObjectInArray(state.videosReducer.videoDetails.dancers, ['_id', 'name'], ['value', 'label']),
+        online: state.videosReducer.videoDetails && state.videosReducer.videoDetails.online,
       }
   }),
   { fetchDancerAction, updateDancerAction, updateVideoAction, fetchVideoAction }
