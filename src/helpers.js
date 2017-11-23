@@ -1,3 +1,89 @@
+import Polyglot from 'node-polyglot';
+import enTranslation from '../src/i18n/en.json';
+import frTranslation from '../src/i18n/fr.json';
+import esTranslation from '../src/i18n/es.json';
+import { BROWSER_LOCALE } from './constants';
+
+/**
+ *
+ * @param cname
+ * @param cvalue
+ * @param exdays
+ *
+ * Set a cookie
+ */
+export const setCookie = (cname, cvalue, exdays) => {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  const expires = `expires=${d.toUTCString()}`;
+  document.cookie = `${cname}=${cvalue};${expires};path=/`;
+};
+
+/**
+ *
+ * @param cname
+ * @returns {*}
+ *
+ * Get a cookie
+ */
+export const getCookie = (cname) => {
+  const name = `${cname}=`;
+  const decodedCookie = decodeURIComponent(document.cookie);
+  const ca = decodedCookie.split(';');
+
+  for (let i = 0; i < ca.length; i += 1) {
+    let c = ca[i];
+    while (c.charAt(0) === ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) === 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return '';
+};
+
+/* We set a locale cookie for for the refresh of the page */
+const DEFAULT_LOCALE = getCookie('locale') || BROWSER_LOCALE;
+
+/* All the translations json */
+const localesTranslation = {
+  en: enTranslation,
+  fr: frTranslation,
+  es: esTranslation
+};
+
+/* Init of polyglot */
+const polyglot = new Polyglot({
+  locale: DEFAULT_LOCALE,
+  phrases: localesTranslation[DEFAULT_LOCALE]
+});
+
+export const getLocale = () => polyglot.locale();
+
+export const setLocale = (locale) => {
+  polyglot.locale({ locale });
+  return new Promise((resolve, reject) => {
+    if (localesTranslation[locale]) {
+      resolve(locale);
+      setCookie('locale', locale, 7);
+    } else {
+      reject('wrong locale');
+    }
+  });
+}
+
+/**
+ *
+ * @param key
+ * @returns Translation
+ */
+export const translate = (key) => {
+  const { locale } = getLocale();
+  polyglot.extend(localesTranslation[locale]);
+  return polyglot.t(key);
+};
+
 /**
  *
  * @param arr (Array)

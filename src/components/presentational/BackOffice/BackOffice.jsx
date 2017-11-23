@@ -4,15 +4,13 @@ import { Tabs, Tab } from 'material-ui/Tabs';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import Dialog from 'material-ui/Dialog';
-
 import DancersNewForm from '../DancersNewForm/DancersNewForm';
 import DancersEditForm from '../DancersEditForm/DancersEditForm';
 import ListOfDancers from '../ListOfDancers/ListOfDancers';
 import VideosListContainer from '../../container/VideosListContainer';
 import VideosNewForm from '../VideosNewForm/VideosNewForm';
 import VideosEditForm from '../VideosEditForm/VideosEditForm';
-import ModalDialog from '../ModalDialog/ModalDialog';
-
+import TranslationHOC from '../../container/TranslationHOC';
 
 const styles = {
   headline: {
@@ -88,12 +86,12 @@ class BackOffice extends Component {
   render() {
     const {
       dancersList, deleteDancerAction, videosList, snackMessage,
-      modalDialog, openModalDialog, hideModalDialog } = this.props;
+      modalDialog, openModalDialog, hideModalDialog, translate } = this.props;
 
     const { selectedDancer, blockDisplayed } = this.state;
     const actions = [
       <RaisedButton
-        label="Cancel"
+        label={translate('YK.CANCEL')}
         primary
         onClick={modalDialog && modalDialog.onCancel}
       />,
@@ -108,7 +106,7 @@ class BackOffice extends Component {
     return (
       <div className="o-container">
         <Tabs>
-          <Tab label="Dancers" >
+          <Tab label={translate('YK.DANCERS')} >
             <div>
               {
                 !selectedDancer ?
@@ -131,7 +129,7 @@ class BackOffice extends Component {
               }
             </div>
           </Tab>
-          <Tab label="Videos" >
+          <Tab label={translate('YK.VIDEOS')} >
             <div>
               {
                 dancersList && (blockDisplayed === 'VIDEO_CREATE') &&
@@ -209,6 +207,7 @@ BackOffice.propTypes = {
   hideModalDialog: PropTypes.func.isRequired,
   snackMessage: PropTypes.object,
   modalDialog: PropTypes.object,
+  translate: PropTypes.func.isRequired,
 };
 
-export default BackOffice;
+export default TranslationHOC(BackOffice);

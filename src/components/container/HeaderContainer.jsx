@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LanguageContainer from './LanguageContainer';
 
 const HeaderContainer = () => (
   <div>
@@ -9,6 +10,7 @@ const HeaderContainer = () => (
       <li><Link to="/bo">Back office</Link></li>
       <li><Link to="/topics">not found</Link></li>
     </ul>
+    <LanguageContainer />
   </div>
 );
 

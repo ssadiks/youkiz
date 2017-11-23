@@ -1,3 +1,5 @@
+import { getCookie } from "./helpers";
+
 export const DANCES_STYLE = [
   { id: 'Kizomba', name: 'Kizomba' },
   { id: 'Tarraxa', name: 'Tarraxa' },
@@ -7,12 +9,6 @@ export const DANCES_STYLE = [
 ];
 
 export const GENDERS = ['Male', 'Female'];
-
-/* export const SNACKBAR_MESSAGE = {
-  VIDEO_CREATE_SUCCESS: 'Video created',
-  VIDEO_UPDATED: 'Video updated',
-  VIDEO_DELETED: 'Video updated',
-} */
 
 export const SNACKBAR_MSG = {
   SUCCESS: {
@@ -32,3 +28,7 @@ export const SNACKBAR_MSG = {
     DANCER_DELETE: 'Dancer delete failed',
   }
 };
+
+export const LOCALES = ['en', 'fr', 'es'];
+export const BROWSER_LOCALE = LOCALES.includes(navigator.language) ? navigator.language : 'en';
+

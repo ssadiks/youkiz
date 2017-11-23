@@ -26,3 +26,5 @@ export const UPDATE_SNACK_MESSAGE = 'UPDATE_SNACK_MESSAGE';
 
 export const OPEN_MODAL_DIALOG = 'OPEN_MODAL_DIALOG';
 export const HIDE_MODAL_DIALOG = 'HIDE_MODAL_DIALOG';
+
+export const SET_LOCALE = createRequestTypes('SET_LOCALE');
