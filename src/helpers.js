@@ -3,7 +3,7 @@ import enTranslation from '../src/i18n/en.json';
 import frTranslation from '../src/i18n/fr.json';
 import esTranslation from '../src/i18n/es.json';
 import { BROWSER_LOCALE } from './constants';
-
+console.log('BROWSER_LOCALE', BROWSER_LOCALE)
 /**
  *
  * @param cname

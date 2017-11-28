@@ -86,12 +86,13 @@ class BackOffice extends Component {
   render() {
     const {
       dancersList, deleteDancerAction, videosList, snackMessage,
-      modalDialog, openModalDialog, hideModalDialog, translate } = this.props;
+      modalDialog, openModalDialog, hideModalDialog, t
+    } = this.props;
 
     const { selectedDancer, blockDisplayed } = this.state;
     const actions = [
       <RaisedButton
-        label={translate('YK.CANCEL')}
+        label={t('YK.CANCEL')}
         primary
         onClick={modalDialog && modalDialog.onCancel}
       />,
@@ -106,7 +107,7 @@ class BackOffice extends Component {
     return (
       <div className="o-container">
         <Tabs>
-          <Tab label={translate('YK.DANCERS')} >
+          <Tab label={t('YK.DANCERS')} >
             <div>
               {
                 !selectedDancer ?
@@ -129,7 +130,7 @@ class BackOffice extends Component {
               }
             </div>
           </Tab>
-          <Tab label={translate('YK.VIDEOS')} >
+          <Tab label={t('YK.VIDEOS')} >
             <div>
               {
                 dancersList && (blockDisplayed === 'VIDEO_CREATE') &&
@@ -207,7 +208,7 @@ BackOffice.propTypes = {
   hideModalDialog: PropTypes.func.isRequired,
   snackMessage: PropTypes.object,
   modalDialog: PropTypes.object,
-  translate: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default TranslationHOC(BackOffice);

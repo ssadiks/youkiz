@@ -5,7 +5,7 @@ import { translate } from '../../helpers';
 function TranslationHOC(WrappedComponent) {
   class TranslationComponent extends React.Component {
     render() {
-      return <WrappedComponent {...this.props} translate={translate} />;
+      return <WrappedComponent {...this.props} t={translate} />;
     }
   }
 

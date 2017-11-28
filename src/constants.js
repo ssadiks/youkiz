@@ -1,5 +1,3 @@
-import { getCookie } from "./helpers";
-
 export const DANCES_STYLE = [
   { id: 'Kizomba', name: 'Kizomba' },
   { id: 'Tarraxa', name: 'Tarraxa' },
@@ -31,4 +29,3 @@ export const SNACKBAR_MSG = {
 
 export const LOCALES = ['en', 'fr', 'es'];
 export const BROWSER_LOCALE = LOCALES.includes(navigator.language) ? navigator.language : 'en';
-
