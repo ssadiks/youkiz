@@ -1,5 +1,5 @@
-import * as types from './types';
-import { setLocale } from '../../helpers';
+import * as types from '../types';
+import { setLocale } from '../../../helpers';
 
 const setLocaleRequest = () => ({ type: types.SET_LOCALE.REQUEST });
 const setLocaleSuccess = locale => ({ type: types.SET_LOCALE.SUCCESS, locale });

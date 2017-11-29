@@ -7,10 +7,10 @@ import Dialog from 'material-ui/Dialog';
 import DancersNewForm from '../DancersNewForm/DancersNewForm';
 import DancersEditForm from '../DancersEditForm/DancersEditForm';
 import ListOfDancers from '../ListOfDancers/ListOfDancers';
-import VideosListContainer from '../../container/VideosListContainer';
+import VideosListContainer from '../../container/VideosListContainer/VideosListContainer';
 import VideosNewForm from '../VideosNewForm/VideosNewForm';
 import VideosEditForm from '../VideosEditForm/VideosEditForm';
-import TranslationHOC from '../../container/TranslationHOC';
+import TranslationHOC from '../../container/TranslationHOC/TranslationHOC';
 
 const styles = {
   headline: {

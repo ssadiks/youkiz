@@ -5,15 +5,8 @@ import FilterVideos from '../FilterVideo/FilterVideos';
 import ListOfVideos from '../ListOfVideos/ListOfVideos';
 
 class VideosList extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchVideosAction();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    // console.log('rp', this.props.videosList);
-    if (nextProps.videosList !== this.props.videosList) {
-      // this.props.fetchVideosAction();
-    }
   }
 
   handleDeleteVideo = (videoId) => {

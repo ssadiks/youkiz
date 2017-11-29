@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import BackOffice from '../presentational/BackOffice/BackOffice';
+import BackOffice from '../../presentational/BackOffice/BackOffice';
 import {
   fetchDancersAction,
   deleteDancerAction,
@@ -10,7 +10,7 @@ import {
   updateSnackMessage,
   openModalDialog,
   hideModalDialog
-} from '../../redux/actions';
+} from '../../../redux/actions/index';
 
 const mapStateToProps = state => ({
   dancersList: state.dancersReducer.dancersList,

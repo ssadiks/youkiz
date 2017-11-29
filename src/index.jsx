@@ -9,10 +9,10 @@ import {
   Switch
 } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import App from './components/container/App';
-import HeaderContainer from './components/container/HeaderContainer';
-import VideosListContainer from './components/container/VideosListContainer';
-import DancersListContainer from './components/container/BackOfficeContainer';
+import App from './components/container/App/App';
+import HeaderContainer from './components/container/HeaderContainer/HeaderContainer';
+import VideosListContainer from './components/container/VideosListContainer/VideosListContainer';
+import DancersListContainer from './components/container/BackOfficeContainer/BackOfficeContainer';
 import NotFound from './components/presentational/NotFound/NotFound';
 import reducers from './redux/reducers';
 import modalDialogMiddleware from './redux/middlewares/modalDialogMiddleware';

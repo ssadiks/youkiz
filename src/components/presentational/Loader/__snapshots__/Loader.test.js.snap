@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loader render renders correctly 1`] = `
+<div
+  className="Loader"
+>
+  <RefreshIndicator
+    className="Loader__refresh"
+    left={10}
+    size={40}
+    status="loading"
+    style={
+      Object {
+        "left": "50%",
+        "position": "absolute",
+        "top": "50%",
+        "transform": "translate(-50%, -50%)",
+      }
+    }
+    top={0}
+  />
+</div>
+`;

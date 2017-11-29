@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { translate } from '../../helpers';
+import { translate } from '../../../helpers';
 
 function TranslationHOC(WrappedComponent) {
   class TranslationComponent extends React.Component {

@@ -7,7 +7,9 @@ exports[`VideosListContainer renders with default props 1`] = `
   error={null}
   fetchDancersAction={[Function]}
   fetchVideosAction={[Function]}
+  hideModalDialog={[Function]}
   isPending={false}
+  openModalDialog={[Function]}
   store={
     Object {
       "clearActions": [Function],

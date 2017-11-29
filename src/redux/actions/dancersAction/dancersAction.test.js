@@ -2,7 +2,8 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import { fetchDancersAction, createDancerAction } from './dancersAction';
-import * as types from './types';
+import * as types from '../types';
+import { SNACKBAR_MSG } from '../../../constants';
 
 jest.mock('axios');
 
@@ -55,7 +56,11 @@ describe('async actions', () => {
 
     const expectedActions = [
       { type: types.CREATE_DANCER.REQUEST },
-      { type: types.CREATE_DANCER.SUCCESS, data: [{ id: 1, name: 'dancer 1' }] }
+      { type: types.CREATE_DANCER.SUCCESS, data: [{ id: 1, name: 'dancer 1' }] },
+      {
+        type: types.UPDATE_SNACK_MESSAGE,
+        data: { state: true, message: SNACKBAR_MSG.SUCCESS.DANCER_CREATE }
+      }
     ];
     const store = mockStore({ dancersList: null });
 

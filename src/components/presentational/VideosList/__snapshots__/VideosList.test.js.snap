@@ -1,0 +1,571 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideosList render if user is authentificated 1`] = `
+<div
+  className="o-container"
+>
+  <div
+    className="FilterVideos"
+  >
+    <h2>
+      Filter
+    </h2>
+    <form
+      className="FilterVideos__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="Select FilterVideos__select FilterVideos__select--typeDance Select--single is-clearable is-searchable"
+        style={undefined}
+      >
+        <div
+          className="Select-control"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={undefined}
+        >
+          <span
+            className="Select-multi-value-wrapper"
+            id="react-select-2--value"
+          >
+            <div
+              className="Select-placeholder"
+            >
+              Select a dance style
+            </div>
+            <div
+              className="Select-input"
+              style={
+                Object {
+                  "display": "inline-block",
+                }
+              }
+            >
+              <style
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "input#undefined::-ms-clear {display: none;}",
+                  }
+                }
+              />
+              <input
+                aria-activedescendant="react-select-2--value"
+                aria-describedby={undefined}
+                aria-expanded="false"
+                aria-haspopup="false"
+                aria-label={undefined}
+                aria-labelledby={undefined}
+                aria-owns=""
+                className={undefined}
+                id={undefined}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                required={false}
+                role="combobox"
+                style={
+                  Object {
+                    "boxSizing": "content-box",
+                    "width": "5px",
+                  }
+                }
+                tabIndex={undefined}
+                value=""
+              />
+              <div
+                style={
+                  Object {
+                    "height": 0,
+                    "left": 0,
+                    "overflow": "scroll",
+                    "position": "absolute",
+                    "top": 0,
+                    "visibility": "hidden",
+                    "whiteSpace": "pre",
+                  }
+                }
+              >
+                
+              </div>
+            </div>
+          </span>
+          <span
+            className="Select-arrow-zone"
+            onMouseDown={[Function]}
+          >
+            <span
+              className="Select-arrow"
+              onMouseDown={[Function]}
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="Select FilterVideos__select FilterVideos__select--dancers Select--multi is-clearable is-searchable"
+        style={undefined}
+      >
+        <div
+          className="Select-control"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={undefined}
+        >
+          <span
+            className="Select-multi-value-wrapper"
+            id="react-select-3--value"
+          >
+            <div
+              className="Select-placeholder"
+            >
+              Select dancers
+            </div>
+            <div
+              className="Select-input"
+              style={
+                Object {
+                  "display": "inline-block",
+                }
+              }
+            >
+              <style
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "input#undefined::-ms-clear {display: none;}",
+                  }
+                }
+              />
+              <input
+                aria-activedescendant="react-select-3--value"
+                aria-describedby={undefined}
+                aria-expanded="false"
+                aria-haspopup="false"
+                aria-label={undefined}
+                aria-labelledby={undefined}
+                aria-owns=""
+                className={undefined}
+                id={undefined}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                required={false}
+                role="combobox"
+                style={
+                  Object {
+                    "boxSizing": "content-box",
+                    "width": "5px",
+                  }
+                }
+                tabIndex={undefined}
+                value=""
+              />
+              <div
+                style={
+                  Object {
+                    "height": 0,
+                    "left": 0,
+                    "overflow": "scroll",
+                    "position": "absolute",
+                    "top": 0,
+                    "visibility": "hidden",
+                    "whiteSpace": "pre",
+                  }
+                }
+              >
+                
+              </div>
+            </div>
+          </span>
+          <span
+            className="Select-arrow-zone"
+            onMouseDown={[Function]}
+          >
+            <span
+              className="Select-arrow"
+              onMouseDown={[Function]}
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="FilterVideos__buttons"
+      />
+    </form>
+  </div>
+  <div
+    className="ListOfVideos"
+  >
+    <h2>
+      2 result(s)
+    </h2>
+    <div
+      className="ListOfVideos__list"
+    >
+      <div
+        className="ListOfVideos__item"
+      >
+        <a
+          className="ListOfVideos__item__link"
+          href="//www.youtube.com/watch?v=undefined"
+          target="_blank"
+        >
+          <img
+            alt=""
+            className="media-object"
+            src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+          />
+        </a>
+        <div
+          className="ListOfVideos__item__description"
+        >
+          <span />
+          <span />
+          <IconMenu
+            anchorOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "top",
+              }
+            }
+            className="ListOfVideos__item__more"
+            iconButtonElement={
+              <IconButton>
+                <NavigationMoreVert />
+              </IconButton>
+            }
+            targetOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "top",
+              }
+            }
+          >
+            <MenuItem
+              onClick={[Function]}
+              primaryText="Edit"
+            />
+            <MenuItem
+              onClick={[Function]}
+              primaryText="Delete"
+            />
+            <MenuItem
+              primaryText="Infos"
+            />
+          </IconMenu>
+        </div>
+      </div>
+      <div
+        className="ListOfVideos__item"
+      >
+        <a
+          className="ListOfVideos__item__link"
+          href="//www.youtube.com/watch?v=undefined"
+          target="_blank"
+        >
+          <img
+            alt=""
+            className="media-object"
+            src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+          />
+        </a>
+        <div
+          className="ListOfVideos__item__description"
+        >
+          <span />
+          <span />
+          <IconMenu
+            anchorOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "top",
+              }
+            }
+            className="ListOfVideos__item__more"
+            iconButtonElement={
+              <IconButton>
+                <NavigationMoreVert />
+              </IconButton>
+            }
+            targetOrigin={
+              Object {
+                "horizontal": "left",
+                "vertical": "top",
+              }
+            }
+          >
+            <MenuItem
+              onClick={[Function]}
+              primaryText="Edit"
+            />
+            <MenuItem
+              onClick={[Function]}
+              primaryText="Delete"
+            />
+            <MenuItem
+              primaryText="Infos"
+            />
+          </IconMenu>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`VideosList render if user is not authentificated 1`] = `
+<div
+  className="o-container"
+>
+  <div
+    className="FilterVideos"
+  >
+    <h2>
+      Filter
+    </h2>
+    <form
+      className="FilterVideos__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="Select FilterVideos__select FilterVideos__select--typeDance Select--single is-clearable is-searchable"
+        style={undefined}
+      >
+        <div
+          className="Select-control"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={undefined}
+        >
+          <span
+            className="Select-multi-value-wrapper"
+            id="react-select-4--value"
+          >
+            <div
+              className="Select-placeholder"
+            >
+              Select a dance style
+            </div>
+            <div
+              className="Select-input"
+              style={
+                Object {
+                  "display": "inline-block",
+                }
+              }
+            >
+              <style
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "input#undefined::-ms-clear {display: none;}",
+                  }
+                }
+              />
+              <input
+                aria-activedescendant="react-select-4--value"
+                aria-describedby={undefined}
+                aria-expanded="false"
+                aria-haspopup="false"
+                aria-label={undefined}
+                aria-labelledby={undefined}
+                aria-owns=""
+                className={undefined}
+                id={undefined}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                required={false}
+                role="combobox"
+                style={
+                  Object {
+                    "boxSizing": "content-box",
+                    "width": "5px",
+                  }
+                }
+                tabIndex={undefined}
+                value=""
+              />
+              <div
+                style={
+                  Object {
+                    "height": 0,
+                    "left": 0,
+                    "overflow": "scroll",
+                    "position": "absolute",
+                    "top": 0,
+                    "visibility": "hidden",
+                    "whiteSpace": "pre",
+                  }
+                }
+              >
+                
+              </div>
+            </div>
+          </span>
+          <span
+            className="Select-arrow-zone"
+            onMouseDown={[Function]}
+          >
+            <span
+              className="Select-arrow"
+              onMouseDown={[Function]}
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="Select FilterVideos__select FilterVideos__select--dancers Select--multi is-clearable is-searchable"
+        style={undefined}
+      >
+        <div
+          className="Select-control"
+          onKeyDown={[Function]}
+          onMouseDown={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          style={undefined}
+        >
+          <span
+            className="Select-multi-value-wrapper"
+            id="react-select-5--value"
+          >
+            <div
+              className="Select-placeholder"
+            >
+              Select dancers
+            </div>
+            <div
+              className="Select-input"
+              style={
+                Object {
+                  "display": "inline-block",
+                }
+              }
+            >
+              <style
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "input#undefined::-ms-clear {display: none;}",
+                  }
+                }
+              />
+              <input
+                aria-activedescendant="react-select-5--value"
+                aria-describedby={undefined}
+                aria-expanded="false"
+                aria-haspopup="false"
+                aria-label={undefined}
+                aria-labelledby={undefined}
+                aria-owns=""
+                className={undefined}
+                id={undefined}
+                onBlur={[Function]}
+                onChange={[Function]}
+                onFocus={[Function]}
+                required={false}
+                role="combobox"
+                style={
+                  Object {
+                    "boxSizing": "content-box",
+                    "width": "5px",
+                  }
+                }
+                tabIndex={undefined}
+                value=""
+              />
+              <div
+                style={
+                  Object {
+                    "height": 0,
+                    "left": 0,
+                    "overflow": "scroll",
+                    "position": "absolute",
+                    "top": 0,
+                    "visibility": "hidden",
+                    "whiteSpace": "pre",
+                  }
+                }
+              >
+                
+              </div>
+            </div>
+          </span>
+          <span
+            className="Select-arrow-zone"
+            onMouseDown={[Function]}
+          >
+            <span
+              className="Select-arrow"
+              onMouseDown={[Function]}
+            />
+          </span>
+        </div>
+      </div>
+      <div
+        className="FilterVideos__buttons"
+      />
+    </form>
+  </div>
+  <div
+    className="ListOfVideos"
+  >
+    <h2>
+      2 result(s)
+    </h2>
+    <div
+      className="ListOfVideos__list"
+    >
+      <div
+        className="ListOfVideos__item"
+      >
+        <a
+          className="ListOfVideos__item__link"
+          href="//www.youtube.com/watch?v=undefined"
+          target="_blank"
+        >
+          <img
+            alt=""
+            className="media-object"
+            src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+          />
+        </a>
+        <div
+          className="ListOfVideos__item__description"
+        >
+          <span />
+          <span />
+        </div>
+      </div>
+      <div
+        className="ListOfVideos__item"
+      >
+        <a
+          className="ListOfVideos__item__link"
+          href="//www.youtube.com/watch?v=undefined"
+          target="_blank"
+        >
+          <img
+            alt=""
+            className="media-object"
+            src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+          />
+        </a>
+        <div
+          className="ListOfVideos__item__description"
+        >
+          <span />
+          <span />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

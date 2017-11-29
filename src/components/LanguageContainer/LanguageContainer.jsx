@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import { setLocaleAction } from '../../redux/actions';
+import { setLocaleAction } from '../../redux/actions/index';
 import { LOCALES } from '../../constants';
 
 class LanguageContainer extends React.Component {

@@ -159,6 +159,45 @@ describe('Videos Reducer', () => {
     });
   });
 
+  it('should handle CREATE_VIDEO_REQUEST', () => {
+    expect(
+      reducer({}, {
+        type: types.CREATE_VIDEO.REQUEST,
+      })
+    ).toEqual({
+      isPending: true,
+      error: null
+    });
+  });
+
+  it('should handle CREATE_VIDEO_SUCCESS', () => {
+    const state = { videosList: [{ _id: 1, title: 'video 1' }] };
+    const output = [{ _id: 1, title: 'video 1' }, { _id: 2, title: 'video 2' }];
+    const outputDetails = { _id: 2, title: 'video 2' };
+    expect(
+      reducer(state, {
+        type: types.CREATE_VIDEO.SUCCESS,
+        data: { _id: 2, title: 'video 2' }
+      })
+    ).toEqual({
+      videosList: output,
+      videoDetails: outputDetails,
+      isPending: false
+    });
+  });
+
+  it('should handle CREATE_VIDEO_FAILURE', () => {
+    expect(
+      reducer({}, {
+        type: types.CREATE_VIDEO.FAILURE,
+        error: 'error'
+      })
+    ).toEqual({
+      error: 'error',
+      isPending: false
+    });
+  });
+
   it('should handle RESET_VIDEO', () => {
     expect(
       reducer({}, {

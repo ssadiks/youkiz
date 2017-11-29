@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import FilterVideos from '../presentational/FilterVideo/FilterVideos';
-import { fetchDancersAction } from '../../redux/actions';
+import FilterVideos from '../../presentational/FilterVideo/FilterVideos';
+import { fetchDancersAction } from '../../../redux/actions/index';
 
 const mapStateToProps = state => ({
   dancersList: state.dancersReducer.dancersList,

@@ -1,7 +1,7 @@
-import * as types from './types';
-import { fetchDancers, fetchDancer, createDancer, deleteDancer, updateDancer } from '../../api/dancers';
-import { updateSnackMessage, hideModalDialog } from './';
-import { SNACKBAR_MSG } from '../../constants';
+import * as types from '../types';
+import { fetchDancers, fetchDancer, createDancer, deleteDancer, updateDancer } from '../../../api/dancers';
+import { updateSnackMessage, hideModalDialog } from '../index';
+import { SNACKBAR_MSG } from '../../../constants';
 
 const createDancerRequest = () => ({ type: types.CREATE_DANCER.REQUEST });
 const createDancerSuccess = data => ({ type: types.CREATE_DANCER.SUCCESS, data });

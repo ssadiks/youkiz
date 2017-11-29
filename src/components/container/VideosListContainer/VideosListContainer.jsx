@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import VideosList from '../presentational/VideosList/VideosList';
+import VideosList from '../../presentational/VideosList/VideosList';
 import {
   fetchVideosAction,
   fetchDancersAction,
   deleteVideoAction,
   openModalDialog,
   hideModalDialog
-} from '../../redux/actions';
+} from '../../../redux/actions/index';
 
 const mapStateToProps = state => ({
   videosList: state.videosReducer.videosList,

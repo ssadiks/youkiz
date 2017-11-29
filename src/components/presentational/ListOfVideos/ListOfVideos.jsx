@@ -48,12 +48,16 @@ const ListOfVideos = props => (
 );
 
 ListOfVideos.defaultProps = {
-  userConnected: false
+  userConnected: false,
+  editVideo: null,
+  handleDeleteVideo: null
 };
 
 ListOfVideos.propTypes = {
   videosList: PropTypes.array.isRequired,
-  userConnected: PropTypes.bool
+  userConnected: PropTypes.bool,
+  editVideo: PropTypes.func,
+  handleDeleteVideo: PropTypes.func
 };
 
 export default ListOfVideos;

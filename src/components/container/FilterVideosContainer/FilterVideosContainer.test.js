@@ -5,7 +5,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Adapter from 'enzyme-adapter-react-16';
 import FilterVideosContainer from './FilterVideosContainer';
-import dancersReducer from '../../redux/reducers/dancersReducer';
+import dancersReducer from '../../../redux/reducers/dancersReducer';
 
 configure({ adapter: new Adapter() });
 

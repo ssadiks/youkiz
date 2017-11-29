@@ -2,6 +2,7 @@
 
 exports[`FilterVideosContainer renders with default props 1`] = `
 <FilterVideos
+  dancersList={Array []}
   fetchDancersAction={[Function]}
   store={
     Object {

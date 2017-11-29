@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListOfVideos render if user is authentificated 1`] = `
+<div
+  className="ListOfVideos"
+>
+  <h2>
+    2 result(s)
+  </h2>
+  <div
+    className="ListOfVideos__list"
+  >
+    <div
+      className="ListOfVideos__item"
+    >
+      <a
+        className="ListOfVideos__item__link"
+        href="//www.youtube.com/watch?v=undefined"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="media-object"
+          src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+        />
+      </a>
+      <div
+        className="ListOfVideos__item__description"
+      >
+        <span />
+        <span />
+        <IconMenu
+          anchorOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          className="ListOfVideos__item__more"
+          iconButtonElement={
+            <IconButton>
+              <NavigationMoreVert />
+            </IconButton>
+          }
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+        >
+          <MenuItem
+            onClick={[Function]}
+            primaryText="Edit"
+          />
+          <MenuItem
+            onClick={[Function]}
+            primaryText="Delete"
+          />
+          <MenuItem
+            primaryText="Infos"
+          />
+        </IconMenu>
+      </div>
+    </div>
+    <div
+      className="ListOfVideos__item"
+    >
+      <a
+        className="ListOfVideos__item__link"
+        href="//www.youtube.com/watch?v=undefined"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="media-object"
+          src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+        />
+      </a>
+      <div
+        className="ListOfVideos__item__description"
+      >
+        <span />
+        <span />
+        <IconMenu
+          anchorOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+          className="ListOfVideos__item__more"
+          iconButtonElement={
+            <IconButton>
+              <NavigationMoreVert />
+            </IconButton>
+          }
+          targetOrigin={
+            Object {
+              "horizontal": "left",
+              "vertical": "top",
+            }
+          }
+        >
+          <MenuItem
+            onClick={[Function]}
+            primaryText="Edit"
+          />
+          <MenuItem
+            onClick={[Function]}
+            primaryText="Delete"
+          />
+          <MenuItem
+            primaryText="Infos"
+          />
+        </IconMenu>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ListOfVideos render if user is not authentificated 1`] = `
+<div
+  className="ListOfVideos"
+>
+  <h2>
+    2 result(s)
+  </h2>
+  <div
+    className="ListOfVideos__list"
+  >
+    <div
+      className="ListOfVideos__item"
+    >
+      <a
+        className="ListOfVideos__item__link"
+        href="//www.youtube.com/watch?v=undefined"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="media-object"
+          src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+        />
+      </a>
+      <div
+        className="ListOfVideos__item__description"
+      >
+        <span />
+        <span />
+      </div>
+    </div>
+    <div
+      className="ListOfVideos__item"
+    >
+      <a
+        className="ListOfVideos__item__link"
+        href="//www.youtube.com/watch?v=undefined"
+        target="_blank"
+      >
+        <img
+          alt=""
+          className="media-object"
+          src="https://i.ytimg.com/vi/undefined/mqdefault.jpg"
+        />
+      </a>
+      <div
+        className="ListOfVideos__item__description"
+      >
+        <span />
+        <span />
+      </div>
+    </div>
+  </div>
+</div>
+`;

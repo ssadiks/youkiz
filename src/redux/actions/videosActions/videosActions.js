@@ -1,7 +1,7 @@
-import * as types from './types';
-import { fetchVideos, fetchVideo, deleteVideo, createVideo, updateVideo } from '../../api/videos';
-import { updateSnackMessage, hideModalDialog } from './';
-import { SNACKBAR_MSG } from '../../constants';
+import * as types from '../types';
+import { fetchVideos, fetchVideo, deleteVideo, createVideo, updateVideo } from '../../../api/videos';
+import { updateSnackMessage, hideModalDialog } from '../index';
+import { SNACKBAR_MSG } from '../../../constants';
 
 /* Create Video Actions */
 

@@ -1,5 +1,5 @@
 import * as types from '../actions/types';
-import { openModalDialog, hideModalDialog } from '../actions/modalDialogAction';
+import { openModalDialog, hideModalDialog } from '../actions/modalDialogAction/modalDialogAction';
 
 const modalDialogMiddleware = store => next => (action) => {
   const result = next(action);
