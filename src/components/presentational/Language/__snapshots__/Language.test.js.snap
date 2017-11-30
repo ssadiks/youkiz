@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Language render renders correctly 1`] = `
+<SelectField
+  className="country"
+  floatingLabelText="Country"
+  onChange={[Function]}
+  value="es"
+>
+  <MenuItem
+    primaryText="en"
+    value="en"
+  />
+  <MenuItem
+    primaryText="fr"
+    value="fr"
+  />
+  <MenuItem
+    primaryText="es"
+    value="es"
+  />
+</SelectField>
+`;

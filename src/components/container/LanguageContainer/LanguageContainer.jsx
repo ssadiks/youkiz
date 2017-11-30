@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import { setLocaleAction } from '../../redux/actions/index';
-import { LOCALES } from '../../constants';
+import { setLocaleAction } from '../../../redux/actions/index';
+import Language from '../../presentational/Language/Language';
 
 class LanguageContainer extends React.Component {
   constructor(props) {
@@ -20,30 +18,9 @@ class LanguageContainer extends React.Component {
   }
 
   render() {
-    return (
-      <SelectField
-        value={this.state.locale}
-        onChange={this.onChangeLocale}
-        floatingLabelText="Country"
-        className="country"
-      >
-        {
-          LOCALES.map(locale => (
-            <MenuItem
-              key={locale}
-              value={locale}
-              primaryText={locale}
-            />
-          ))
-        }
-
-      </SelectField>
-    );
+    return <Language locale={this.state.locale} onChangeLocale={this.onChangeLocale} />;
   }
 }
-
-LanguageContainer.defaultProps = {
-};
 
 LanguageContainer.PropTypes = {
   setLocaleAction: PropTypes.func.isRequired,

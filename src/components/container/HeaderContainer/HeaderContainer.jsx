@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import LanguageContainer from '../../LanguageContainer/LanguageContainer';
+import LanguageContainer from '../LanguageContainer/LanguageContainer';
 
 const HeaderContainer = () => (
   <div>
