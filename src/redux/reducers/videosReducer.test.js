@@ -100,7 +100,7 @@ describe('Videos Reducer', () => {
     expect(
       reducer(state, {
         type: types.DELETE_VIDEO.SUCCESS,
-        data: { data: { id: 2 } }
+        data: { id: 2 }
       })
     ).toEqual({
       videosList: output,

@@ -35,7 +35,6 @@ const ListOfVideos = props => (
                   >
                     <MenuItem primaryText="Edit" onClick={() => props.editVideo(video._id)} />
                     <MenuItem primaryText="Delete" onClick={() => props.handleDeleteVideo(video._id)} />
-                    <MenuItem primaryText="Infos" />
                   </IconMenu>
                 }
               </div>

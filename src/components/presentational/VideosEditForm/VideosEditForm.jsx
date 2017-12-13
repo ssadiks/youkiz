@@ -138,7 +138,7 @@ class VideosEditForm extends Component {
               name="online"
               id="online"
               component={this.renderCheckbox}
-              label="mon label"
+              label="Online"
             />
           }
           <div className="DancersNewForm__form__group DancersNewForm__buttons">

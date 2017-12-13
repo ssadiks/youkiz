@@ -13,7 +13,7 @@ export const createVideoAction = params => (dispatch) => {
   dispatch(createVideoRequest());
   return createVideo(params)
     .then((res) => {
-      dispatch(createVideoSuccess(res));
+      dispatch(createVideoSuccess(res.data));
       dispatch(updateSnackMessage({
         state: true,
         message: SNACKBAR_MSG.SUCCESS.VIDEO_CREATE
@@ -62,9 +62,7 @@ const fetchVideosFailure = error => ({ type: types.FETCH_VIDEOS.FAILURE, error }
 export const fetchVideosAction = params => (dispatch) => {
   dispatch(fetchVideosRequest());
   return fetchVideos(params)
-    .then((res) => {
-      dispatch(fetchVideosSuccess(res.data));
-    })
+    .then(res => dispatch(fetchVideosSuccess(res.data)))
     .catch(error => dispatch(fetchVideosFailure(error)));
 };
 
@@ -91,7 +89,7 @@ export const deleteVideoAction = id => (dispatch) => {
   dispatch(deleteVideoRequest());
   return deleteVideo(id)
     .then((res) => {
-      dispatch(deleteVideoSuccess(res));
+      dispatch(deleteVideoSuccess(res.data));
       dispatch(updateSnackMessage({
         state: true,
         message: SNACKBAR_MSG.SUCCESS.VIDEO_DELETE

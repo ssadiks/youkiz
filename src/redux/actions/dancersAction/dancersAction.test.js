@@ -134,8 +134,8 @@ describe('async actions', () => {
     );
 
     const expectedActions = [
-      { type: types.DELETE_DANCER.REQUEST },
-      { type: types.DELETE_DANCER.SUCCESS, data: { id: 1, name: 'dancer 1' } },
+      { type: types.UPDATE_DANCER.REQUEST },
+      { type: types.UPDATE_DANCER.SUCCESS, data: { id: 1, name: 'dancer 1' } },
       {
         type: types.UPDATE_SNACK_MESSAGE,
         data: { state: true, message: SNACKBAR_MSG.SUCCESS.DANCER_UPDATE }
@@ -177,7 +177,8 @@ describe('async actions', () => {
       {
         type: types.UPDATE_SNACK_MESSAGE,
         data: { state: true, message: SNACKBAR_MSG.SUCCESS.DANCER_DELETE }
-      }
+      },
+      { type: types.HIDE_MODAL_DIALOG }
     ];
     const store = mockStore({ dancersList: null });
 

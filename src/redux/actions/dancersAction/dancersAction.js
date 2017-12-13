@@ -61,7 +61,13 @@ const updateDancerFailure = error => ({ type: types.UPDATE_DANCER.FAILURE, error
 export const updateDancerAction = (id, params) => (dispatch) => {
   dispatch(updateDancerRequest());
   return updateDancer(id, params)
-    .then(res => dispatch(updateDancerSuccess(res.data)))
+    .then((res) => {
+      dispatch(updateDancerSuccess(res.data));
+      dispatch(updateSnackMessage({
+        state: true,
+        message: SNACKBAR_MSG.SUCCESS.DANCER_UPDATE
+      }));
+    })
     .catch(error => dispatch(updateDancerFailure(error)));
 };
 

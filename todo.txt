@@ -1,9 +1,9 @@
 eslint css
-edit online video
 
-More
-  Edit
-  Delete
-  Infos
+css pages
 
-traductions
+ssr
+
+login
+
+infinite scroll

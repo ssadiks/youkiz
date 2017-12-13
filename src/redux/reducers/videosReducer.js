@@ -56,7 +56,7 @@ const videosReducer = (state = initialState(), action) => {
         ...state,
         videosList:
           state.videosList ?
-            state.videosList.filter(video => video._id !== action.data.data.id) : [],
+            state.videosList.filter(video => video._id !== action.data.id) : [],
         isPending: false
       };
     case types.DELETE_VIDEO.FAILURE:

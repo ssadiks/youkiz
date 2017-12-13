@@ -8,10 +8,14 @@
     "start": "NODE_ENV=development webpack-dev-server",
     "build-dev": "NODE_ENV=development webpack",
     "test": "jest",
+    "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch",
     "start-server": "nodemon ./server/",
     "lint:js": "eslint \"src/**/*.{js,jsx}\""
   },
+  "pre-commit": [
+    "lint:js"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
