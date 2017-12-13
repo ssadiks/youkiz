@@ -5,6 +5,7 @@ import dancersReducer from './dancersReducer';
 import snackMessageReducer from './snackMessageReducer';
 import modalDialogReducer from './modalDialogReducer';
 import translationReducer from './translationReducer';
+import menuReducer from './menuReducer';
 
 const rootReducer = combineReducers({
   videosReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   snackMessageReducer,
   modalDialogReducer,
   translationReducer,
+  menuReducer,
   form: formReducer
 });
 

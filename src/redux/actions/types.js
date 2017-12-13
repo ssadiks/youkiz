@@ -28,3 +28,5 @@ export const OPEN_MODAL_DIALOG = 'OPEN_MODAL_DIALOG';
 export const HIDE_MODAL_DIALOG = 'HIDE_MODAL_DIALOG';
 
 export const SET_LOCALE = createRequestTypes('SET_LOCALE');
+
+export const TOGGLE_MENU = 'TOGGLE_MENU';

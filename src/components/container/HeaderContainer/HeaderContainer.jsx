@@ -1,16 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import LanguageContainer from '../LanguageContainer/LanguageContainer';
+import MenuContainer from '../MenuContainer/MenuContainer';
 
 const HeaderContainer = () => (
   <div>
-    <ul>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/videos">Videos</Link></li>
-      <li><Link to="/bo">Back office</Link></li>
-      <li><Link to="/topics">not found</Link></li>
-    </ul>
-    <LanguageContainer />
+    <MenuContainer />
   </div>
 );
 
