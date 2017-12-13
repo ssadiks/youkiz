@@ -23,7 +23,6 @@ class VideosEditForm extends Component {
   // OnClick on Update Video button
   onSubmit = (values) => {
     const valuesForm = values;
-    console.log('valuesForm', valuesForm);
     const videoId = this.props.videoDetails._id;
 
     const tabDancers = (values.dancers).slice();
@@ -37,7 +36,6 @@ class VideosEditForm extends Component {
 
   // OnChange Select Dancers update state
   handleChangeDancers = (dancers) => {
-    console.log(dancers);
     const dancersTab = getArrayOfValue(dancers, 'label');
     this.setState({ dancers, dancersTab });
   }

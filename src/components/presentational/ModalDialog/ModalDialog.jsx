@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Dialog from 'material-ui/Dialog';
 
-const ModalDialog = (props) => (
+const ModalDialog = props => (
   <Dialog
     title={props.title}
     // actions={actions}
@@ -23,7 +23,8 @@ ModalDialog.defaultProps = {
 ModalDialog.propTypes = {
   modalDialog: PropTypes.object,
   title: PropTypes.string,
-  modal: PropTypes.bool
+  modal: PropTypes.bool,
+  handleClose: PropTypes.func
 };
 
 export default ModalDialog;
