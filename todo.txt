@@ -1,5 +1,3 @@
-eslint css
-
 css pages
 
 ssr

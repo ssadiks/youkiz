@@ -57,9 +57,6 @@ exports[`ListOfVideos render if user is authentificated 1`] = `
             onClick={[Function]}
             primaryText="Delete"
           />
-          <MenuItem
-            primaryText="Infos"
-          />
         </IconMenu>
       </div>
     </div>
@@ -109,9 +106,6 @@ exports[`ListOfVideos render if user is authentificated 1`] = `
           <MenuItem
             onClick={[Function]}
             primaryText="Delete"
-          />
-          <MenuItem
-            primaryText="Infos"
           />
         </IconMenu>
       </div>

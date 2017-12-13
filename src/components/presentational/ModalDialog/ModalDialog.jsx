@@ -17,7 +17,8 @@ const ModalDialog = props => (
 ModalDialog.defaultProps = {
   modalDialog: null,
   title: '',
-  modal: true
+  modal: true,
+  handleClose: null
 };
 
 ModalDialog.propTypes = {
