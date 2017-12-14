@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
-import FilterVideos from '../FilterVideo/FilterVideos';
+import FilterVideos from '../FilterVideos/FilterVideos';
 import ListOfVideos from '../ListOfVideos/ListOfVideos';
 
 class VideosList extends Component {

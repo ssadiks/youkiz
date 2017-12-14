@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { RaisedButton, Checkbox } from 'material-ui';
+import TranslationHOC from '../../container/TranslationHOC/TranslationHOC';
 import { DANCES_STYLE } from '../../../constants';
 import { changePropretiesOfObjectInArray, getArrayOfValue } from '../../../helpers';
 
@@ -77,9 +78,11 @@ class FilterVideos extends Component {
     const DANCES_STYLE_SELECT = changePropretiesOfObjectInArray(DANCES_STYLE, ['id', 'name'], ['value', 'label']);
     const dancersListSelect = changePropretiesOfObjectInArray(this.props.dancersList, ['_id', 'name'], ['value', 'label']);
 
+    const { t } = this.props;
+
     return (
       <div className="FilterVideos">
-        <h2>Filter</h2>
+        <h2>{t('YK.FILTER')}</h2>
         <form className="FilterVideos__form" onSubmit={this.onSubmitSearch}>
           <Select
             name="form-field-name"
@@ -135,7 +138,8 @@ FilterVideos.defaultProps = {
 FilterVideos.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   fetchDancersAction: PropTypes.func.isRequired,
-  dancersList: PropTypes.array
+  dancersList: PropTypes.array,
+  t: PropTypes.func.isRequired,
 };
 
-export default FilterVideos;
+export default TranslationHOC(FilterVideos);

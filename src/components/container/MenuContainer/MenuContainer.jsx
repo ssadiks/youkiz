@@ -1,15 +1,17 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+
 import Menu from '../../presentational/Menu/Menu';
 import {
   toggleMenu,
 } from '../../../redux/actions/index';
 
 const mapStateToProps = state => ({
-  menuClosed: state.menuReducer.menuClosed,
+  menuClosed: state.menuReducer.menuClosed
 });
 
-const MenuContainer = connect(mapStateToProps, {
+const MenuContainer = withRouter(connect(mapStateToProps, {
   toggleMenu,
-})(Menu);
+})(Menu));
 
 export default MenuContainer;

@@ -10,13 +10,30 @@ import LanguageContainer from '../../container/LanguageContainer/LanguageContain
 const Menu = props => (
   <div className="menu">
     <div className="menu__desktop">
-      <span className="logo">Logo</span>
+      <span className="menu__desktop__logo">Logo</span>
       <nav className="menu__desktop__nav">
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/videos">Videos</Link></li>
-          <li><Link to="/bo">Back office</Link></li>
-          <li><Link to="/topics">not found</Link></li>
+          <li className={classnames({
+            menu__desktop__nav__item: true,
+            'menu__desktop__nav__item--active': ((props.location.pathname).substr(1) === ''),
+          })}
+          >
+            <Link to="/">Home</Link>
+          </li>
+          <li className={classnames({
+            menu__desktop__nav__item: true,
+            'menu__desktop__nav__item--active': ((props.location.pathname).substr(1) === 'videos'),
+          })}
+          >
+            <Link to="/videos">Videos</Link>
+          </li>
+          <li className={classnames({
+            menu__desktop__nav__item: true,
+            'menu__desktop__nav__item--active': ((props.location.pathname).substr(1) === 'bo'),
+          })}
+          >
+            <Link to="/bo">Back office</Link>
+          </li>
         </ul>
       </nav>
       <LanguageContainer />
@@ -28,18 +45,36 @@ const Menu = props => (
         onLeftIconButtonClick={() => props.toggleMenu(props.menuClosed)}
       />
       <LanguageContainer />
-      <div className={classnames({
-        menu__nav: true,
-        'menu__nav--closed': props.menuClosed,
+      <span className="menu__mobile__logo">Logo</span>
+      <nav className={classnames({
+        menu__mobile__nav: true,
+        'menu__mobile__nav--closed': props.menuClosed,
       })}
       >
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/videos">Videos</Link></li>
-          <li><Link to="/bo">Back office</Link></li>
-          <li><Link to="/topics">not found</Link></li>
+          <li className={classnames({
+            menu__mobile__nav__item: true,
+            'menu__mobile__nav__item--active': ((props.location.pathname).substr(1) === ''),
+          })}
+          >
+            <Link to="/">Home</Link>
+          </li>
+          <li className={classnames({
+            menu__mobile__nav__item: true,
+            'menu__mobile__nav__item--active': ((props.location.pathname).substr(1) === 'videos'),
+          })}
+          >
+            <Link to="/videos">Videos</Link>
+          </li>
+          <li className={classnames({
+            menu__mobile__nav__item: true,
+            'menu__mobile__nav__item--active': ((props.location.pathname).substr(1) === 'bo'),
+          })}
+          >
+            <Link to="/bo">Back office</Link>
+          </li>
         </ul>
-      </div>
+      </nav>
     </div>
   </div>
 );

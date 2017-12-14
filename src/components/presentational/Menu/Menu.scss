@@ -2,14 +2,44 @@
   &__desktop {
     display: none;
     position: relative;
+    height: 7rem;
+    padding: 1.2rem;
+    border-bottom: 1px solid red;
 
     @include breakpoint (desktop) {
       display: block;
     }
 
-    &__nav ul li {
-      display: inline-block;
-      margin-right: $medium-value;
+    &__logo {
+      font-size: 1.6rem;
+      position: absolute;
+      top: 50%;
+      left: $medium-value;
+      transform: translateY(-50%);
+    }
+
+    &__nav {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      &__item {
+        display: inline-block;
+        margin-right: $large-value;
+        text-transform: uppercase;
+
+        a {
+          font-size: 1.6rem;
+          text-decoration: none;
+        }
+
+        &--active {
+          a {
+            color: red;
+          }
+        }
+      }
     }
   }
 
@@ -19,29 +49,57 @@
     @include breakpoint (desktop) {
       display: none;
     }
-  }
 
-  &__nav {
-    position: fixed;
-    right: inherit;
-    z-index: 9;
-    width: 100%;
-    height: 100%;
-    transition: all 0.5s;
-    box-sizing: border-box;
-    overflow: auto;
-    background-color: #ccc;
-
-    @include breakpoint (tablet) {
-      width: 50%;
+    &__logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
     }
 
-    @include breakpoint (desktop) {
-      width: 30%;
-    }
+    &__nav {
+      position: fixed;
+      right: inherit;
+      z-index: 9;
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s;
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: #ccc;
 
-    &--closed {
-      transform: translate3d(-100%, 0px, 0px);
+      @include breakpoint (tablet) {
+        width: 50%;
+      }
+
+      @include breakpoint (desktop) {
+        width: 30%;
+      }
+
+      &--closed {
+        transform: translate3d(-100%, 0px, 0px);
+      }
+
+      &__item {
+        margin-top: $medium-value;
+        text-transform: uppercase;
+
+        a {
+          font-size: 1.6rem;
+          text-decoration: none;
+        }
+
+        &--active {
+          a {
+            color: red;
+          }
+        }
+      }
+
+      ul {
+        list-style: none;
+      }
     }
   }
 }

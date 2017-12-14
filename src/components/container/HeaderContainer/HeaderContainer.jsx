@@ -2,7 +2,7 @@ import React from 'react';
 import MenuContainer from '../MenuContainer/MenuContainer';
 
 const HeaderContainer = () => (
-  <div>
+  <div className="header">
     <MenuContainer />
   </div>
 );

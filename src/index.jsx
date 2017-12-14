@@ -20,7 +20,6 @@ const Root = () => (
   <Router>
     <div>
       <HeaderContainer />
-      <hr />
       <Switch>
         <Route exact path="/" component={App} />
         <Route path="/videos" component={VideosListContainer} />
