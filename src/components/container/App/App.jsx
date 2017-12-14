@@ -1,8 +1,9 @@
 import React from 'react';
+import Welcome from '../../presentational/Welcome/Welcome';
 
 const App = () => (
-  <div>
-    <span>HOME</span>
+  <div className="homepage">
+    <Welcome />
   </div>
 );
 

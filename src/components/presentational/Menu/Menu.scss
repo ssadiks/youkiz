@@ -1,5 +1,25 @@
 .menu {
-  position: relative;
+  &__desktop {
+    display: none;
+    position: relative;
+
+    @include breakpoint (desktop) {
+      display: block;
+    }
+
+    &__nav ul li {
+      display: inline-block;
+      margin-right: $medium-value;
+    }
+  }
+
+  &__mobile {
+    position: relative;
+
+    @include breakpoint (desktop) {
+      display: none;
+    }
+  }
 
   &__nav {
     position: fixed;
