@@ -1,7 +1,9 @@
 import Polyglot from 'node-polyglot';
-import enTranslation from '../src/i18n/en.json';
+import usTranslation from './i18n/us.json';
 import frTranslation from '../src/i18n/fr.json';
 import esTranslation from '../src/i18n/es.json';
+import itTranslation from '../src/i18n/it.json';
+import ptTranslation from '../src/i18n/pt.json';
 import { BROWSER_LOCALE } from './constants';
 
 /**
@@ -48,9 +50,11 @@ const DEFAULT_LOCALE = getCookie('locale') || BROWSER_LOCALE;
 
 /* All the translations json */
 const localesTranslation = {
-  en: enTranslation,
+  us: usTranslation,
   fr: frTranslation,
-  es: esTranslation
+  es: esTranslation,
+  it: itTranslation,
+  pt: ptTranslation
 };
 
 /* Init of polyglot */

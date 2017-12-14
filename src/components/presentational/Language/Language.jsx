@@ -1,32 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-import { LOCALES } from '../../../constants';
+import ReactFlagsSelect from 'react-flags-select';
 
-const Language = props => (
-  <SelectField
-    value={props.locale}
-    onChange={props.onChangeLocale}
-    floatingLabelText="Country"
-    className="country"
-  >
-    {
-      LOCALES.map(locale => (
-        <MenuItem
-          key={locale}
-          value={locale}
-          primaryText={locale}
-        />
-      ))
-    }
-
-  </SelectField>
+const Language = ({ localesList, locale, onChangeLocale }) => (
+  <div className="language">
+    <ReactFlagsSelect
+      countries={localesList}
+      defaultCountry={locale.toUpperCase()}
+      onSelect={onChangeLocale}
+      showSelectedLabel={false}
+      showOptionLabel={false}
+      selectedSize={20}
+    />
+  </div>
 );
 
-Language.PropTypes = {
+Language.propTypes = {
   onChangeLocale: PropTypes.func.isRequired,
-  locale: PropTypes.string.isRequired
+  locale: PropTypes.string.isRequired,
+  localesList: PropTypes.array.isRequired
 };
 
 export default Language;

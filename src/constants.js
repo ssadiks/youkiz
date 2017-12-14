@@ -27,5 +27,5 @@ export const SNACKBAR_MSG = {
   }
 };
 
-export const LOCALES = ['en', 'fr', 'es'];
-export const BROWSER_LOCALE = LOCALES.includes(navigator.language) ? navigator.language : 'en';
+export const LOCALES = ['us', 'fr', 'es', 'pt', 'it'];
+export const BROWSER_LOCALE = LOCALES.includes(navigator.language) ? navigator.language : 'us';

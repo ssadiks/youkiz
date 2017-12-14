@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setLocaleAction } from '../../../redux/actions/index';
 import Language from '../../presentational/Language/Language';
+import { LOCALES } from '../../../constants';
 
 class LanguageContainer extends React.Component {
   constructor(props) {
@@ -12,17 +13,26 @@ class LanguageContainer extends React.Component {
     };
   }
 
-  onChangeLocale = (event, index, value) => {
+  onChangeLocale = (CountryCode) => {
+    const value = CountryCode.toLowerCase();
     this.setState({ locale: value });
     this.props.setLocaleAction(value);
   }
 
+  upperStringsInArray = array => array.map(str => str.toUpperCase());
+
   render() {
-    return <Language locale={this.state.locale} onChangeLocale={this.onChangeLocale} />;
+    return (
+      <Language
+        locale={this.state.locale}
+        onChangeLocale={this.onChangeLocale}
+        localesList={this.upperStringsInArray(LOCALES)}
+      />
+    );
   }
 }
 
-LanguageContainer.PropTypes = {
+LanguageContainer.propTypes = {
   setLocaleAction: PropTypes.func.isRequired,
   locale: PropTypes.string.isRequired
 };

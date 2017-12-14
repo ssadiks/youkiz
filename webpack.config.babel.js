@@ -1,6 +1,6 @@
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
 import autoprefixer from 'autoprefixer';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
@@ -12,13 +12,14 @@ const postcss = (loader) => [
 ];
 
 // const BUILD_DIR = resolve('./public');
-// const APP_DIR = resolve('./src');
+const APP_DIR = resolve('./src');
+const ROOT_DIR = resolve('./');
 const PORT = '8080';
 
 
 const devServer = process.env.NODE_ENV === 'development' ? {
   publicPath: `http://localhost:${PORT}/`,
-  contentBase: './',
+  contentBase: 'public',
   historyApiFallback: true,
   compress: true,
   port: PORT,
@@ -74,16 +75,59 @@ const config = {
       })
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
-      loader: 'file-loader',
-      options: {
-        name: 'assets/images/[name].[ext]'
-      }
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            hash: 'sha512',
+            digest: 'hex',
+            name: 'assets/images/[hash].[ext]'
+          }
+        }
+      ],
+      include: [
+        `${APP_DIR}/assets/images`,
+        `${APP_DIR}/components`
+      ],
     }, {
       test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'url-loader?name=assets/fonts/[name].[ext]&limit=10000&mimetype=application/font-woff'
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            minetype: 'application/font-woff',
+            name: 'assets/fonts/[hash].[ext]'
+          }
+        }
+      ]
     }, {
       test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: 'file-loader?name=assets/fonts/[name].[ext]'
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'assets/fonts/[hash].[ext]'
+          }
+        },
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 10000
+          }
+        }
+      ],
+      exclude: `${ROOT_DIR}/node_modules/react-flags-select/flags/`,
+    }, {
+      test: /flags\/[a-z]{2}\.(svg)$/i,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'assets/images/flags/[name].[ext]'
+          }
+        }
+      ],
     }]
   },
   plugins: [
@@ -93,10 +137,10 @@ const config = {
       minChunks: Infinity
     }),
     // new UglifyJSPlugin()
-    /* new HtmlWebpackPlugin({
-        template: `${APP_DIR}/index.tpl.ejs`,
-        chunks: ['app', 'vendors']
-    }) */
+    new HtmlWebpackPlugin({
+      template: `${APP_DIR}/index.tpl.ejs`,
+      chunks: ['bundle', 'vendors']
+    })
   ],
   devServer
 };
