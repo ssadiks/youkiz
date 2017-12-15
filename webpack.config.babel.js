@@ -4,7 +4,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
 import autoprefixer from 'autoprefixer';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
+import { LOCALES } from "./src/constants";
 
+console.log('regexp', new RegExp(`flags\\/${LOCALES.join('|')}\\.(svg)$`, 'i'));
 const resolve = dir => path.resolve(__dirname, dir);
 
 const postcss = (loader) => [
@@ -15,7 +17,6 @@ const postcss = (loader) => [
 const APP_DIR = resolve('./src');
 const ROOT_DIR = resolve('./');
 const PORT = '8080';
-
 
 const devServer = process.env.NODE_ENV === 'development' ? {
   publicPath: `http://localhost:${PORT}/`,
@@ -119,7 +120,18 @@ const config = {
       ],
       exclude: `${ROOT_DIR}/node_modules/react-flags-select/flags/`,
     }, {
-      test: /flags\/[a-z]{2}\.(svg)$/i,
+      test: /flags\/[a-z]{2,}\.(svg)$/i,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'assets/images/flags/[name].[ext]',
+            emitFile: false
+          }
+        }
+      ]
+    }, {
+      test: /\.(svg)$/i,
       use: [
         {
           loader: 'file-loader',
@@ -128,6 +140,7 @@ const config = {
           }
         }
       ],
+      exclude: new RegExp(`flags/((?!${LOCALES.join('|')}))([a-z]{2,}).svg$`, 'i'),
     }]
   },
   plugins: [

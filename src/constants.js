@@ -28,4 +28,4 @@ export const SNACKBAR_MSG = {
 };
 
 export const LOCALES = ['us', 'fr', 'es', 'pt', 'it'];
-export const BROWSER_LOCALE = LOCALES.includes(navigator.language) ? navigator.language : 'us';
+export const BROWSER_LOCALE = (typeof navigator !== 'undefined') && LOCALES.includes(navigator.language) ? navigator.language : 'us';

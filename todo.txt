@@ -1,3 +1,5 @@
+TODO
+
 css pages
 
 ssr
@@ -5,3 +7,8 @@ ssr
 login
 
 infinite scroll
+
+translations
+
+QUESTIONS
+
