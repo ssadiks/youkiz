@@ -1,9 +1,9 @@
 {
-  "name": "redux-simple-starter",
+  "name": "youkiz",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Youkiz App",
   "main": "index.js",
-  "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
+  "repository": "https://github.com/ssadiks/youkiz",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
     "build-dev": "NODE_ENV=development webpack",
@@ -19,7 +19,7 @@
   "pre-push": [
     "test"
   ],
-  "author": "",
+  "author": "ss10",
   "license": "ISC",
   "devDependencies": {
     "axios": "0.16.1",

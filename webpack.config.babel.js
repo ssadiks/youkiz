@@ -3,8 +3,9 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CommonsChunkPlugin from 'webpack/lib/optimize/CommonsChunkPlugin';
 import autoprefixer from 'autoprefixer';
-import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
-import { LOCALES } from "./src/constants";
+import { LOCALES } from './src/constants';
+// import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
+
 
 console.log('regexp', new RegExp(`flags\\/${LOCALES.join('|')}\\.(svg)$`, 'i'));
 const resolve = dir => path.resolve(__dirname, dir);
@@ -32,7 +33,7 @@ const config = {
     vendors: ['react', 'react-dom', 'react-redux', 'react-router', 'react-router-dom', 'redux', 'redux-thunk', 'material-ui'],
   },
   output: {
-    filename: '[name].js',
+    filename: 'js/[name].js',
     path: resolve('./public'),
     publicPath: `http://localhost:${PORT}/`
   },
@@ -144,7 +145,7 @@ const config = {
     }]
   },
   plugins: [
-    new ExtractTextPlugin('style.css'),
+    new ExtractTextPlugin('css/style.css'),
     new CommonsChunkPlugin({
       names: ['vendors'],
       minChunks: Infinity

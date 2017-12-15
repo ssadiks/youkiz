@@ -12,3 +12,8 @@ translations
 
 QUESTIONS
 
+dependencies vs dev dependencies
+
+sources map scss css
+
+chunks js
