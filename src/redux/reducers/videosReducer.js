@@ -18,7 +18,7 @@ const videosReducer = (state = initialState(), action) => {
     case types.FETCH_VIDEOS.SUCCESS:
       return {
         ...state,
-        videosList: action.data,
+        videosList: state.videosList.concat(action.data),
         isPending: false
       };
     case types.FETCH_VIDEOS.FAILURE:

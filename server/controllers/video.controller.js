@@ -79,7 +79,6 @@ export const getVideos = (req, res) => {
   // console.log('req.body m', req.body.filters);
 
   let filters = null;
-  let limit = '';
 
   if (req.body.filters) {
     filters = {
@@ -97,11 +96,10 @@ export const getVideos = (req, res) => {
     if (req.body.filters.type === '') {
       filters.$and = filters.$and.filter(item => item.type === undefined);
     }
-
-    console.log('filters', filters);
   }
 
-  limit = req.body.limit ? req.body.limit : '';
+  const limit = req.body.limit ? req.body.limit : '';
+  const skipped = (req.body.page - 1) * limit;
 
   Video.find(filters || { online: true }, (err, videos) => {
     if (err) {
@@ -109,7 +107,7 @@ export const getVideos = (req, res) => {
     }
 
     res.json(videos.map(video => Object.assign(video, { _id: (video._id).toString() })));
-  }).limit(limit);
+  }).skip(skipped).limit(limit);
 };
 
 /**

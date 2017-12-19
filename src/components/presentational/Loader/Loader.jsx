@@ -1,7 +1,8 @@
 import React from 'react';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
+import classnames from 'classnames';
 
-const Loader = () => {
+const Loader = (props) => {
   const style = {
     refresh: {
       position: 'absolute',
@@ -12,7 +13,11 @@ const Loader = () => {
   };
 
   return (
-    <div className="Loader">
+    <div className={classnames({
+      Loader: true,
+      'lazy-loading': props.lazyLoading
+    })}
+    >
       <RefreshIndicator
         size={40}
         left={10}

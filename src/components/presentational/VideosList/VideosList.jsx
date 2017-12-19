@@ -3,10 +3,21 @@ import PropTypes from 'prop-types';
 import Loader from '../Loader/Loader';
 import FilterVideos from '../FilterVideos/FilterVideos';
 import ListOfVideos from '../ListOfVideos/ListOfVideos';
+import LazyLoadingHOC from '../../container/LazyLoadingHOC/LazyLoadingHOC';
 
 class VideosList extends Component {
   componentDidMount() {
-    this.props.fetchVideosAction();
+    /* const params = {
+      filters: {
+        dancers: [],
+        online: true,
+        type: ''
+      },
+      limit: 4,
+      page: 1
+    };
+
+    this.props.fetchVideosAction(params); */
   }
 
   handleDeleteVideo = (videoId) => {
@@ -33,16 +44,15 @@ class VideosList extends Component {
             dancersList={dancersList}
           />
         }
+        <ListOfVideos
+          videosList={videosList}
+          deleteVideoAction={deleteVideoAction}
+          editVideo={editVideo}
+          userConnected={userConnected}
+          handleDeleteVideo={this.handleDeleteVideo}
+        />
         {
-          this.props.isPending ?
-            <Loader /> :
-            <ListOfVideos
-              videosList={videosList}
-              deleteVideoAction={deleteVideoAction}
-              editVideo={editVideo}
-              userConnected={userConnected}
-              handleDeleteVideo={this.handleDeleteVideo}
-            />
+          this.props.isPending && <Loader lazyLoading />
         }
       </div>
     );
@@ -68,4 +78,4 @@ VideosList.propTypes = {
   userConnected: PropTypes.bool,
 };
 
-export default VideosList;
+export default LazyLoadingHOC(VideosList);

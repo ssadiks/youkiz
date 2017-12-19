@@ -30,3 +30,5 @@ export const HIDE_MODAL_DIALOG = 'HIDE_MODAL_DIALOG';
 export const SET_LOCALE = createRequestTypes('SET_LOCALE');
 
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+
+export const ALL_VIDEOS_LOADED = 'ALL_VIDEOS_LOADED';

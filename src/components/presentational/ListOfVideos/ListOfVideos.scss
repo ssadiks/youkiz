@@ -25,6 +25,7 @@
     flex: 0 0 auto;
     width: 32rem;
     margin-bottom: $double-extra-small-value;
+    min-height: 20rem;
 
     @include breakpoint (tablet) {
       margin-left: $double-extra-small-value;

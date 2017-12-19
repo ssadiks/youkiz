@@ -6,6 +6,7 @@ import snackMessageReducer from './snackMessageReducer';
 import modalDialogReducer from './modalDialogReducer';
 import translationReducer from './translationReducer';
 import menuReducer from './menuReducer';
+import lazyLoadingReducer from './lazyLoadingReducer';
 
 const rootReducer = combineReducers({
   videosReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   modalDialogReducer,
   translationReducer,
   menuReducer,
+  lazyLoadingReducer,
   form: formReducer
 });
 
