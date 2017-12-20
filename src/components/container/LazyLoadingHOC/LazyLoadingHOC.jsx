@@ -2,22 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
   fetchVideosAction,
-  updateVideosLoaded
+  updateVideosLoaded,
+  updateVideosParams
 } from '../../../redux/actions/index';
-import { paramsVideos } from '../../../constants';
 
 function LazyLoadingHOC(WrappedComponent) {
   class LazyLoadingComponent extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = ({
-        params: paramsVideos
-      });
-    }
     componentDidMount() {
       window.addEventListener('scroll', this.onScroll, false);
-      if (!this.props.allVideosLoaded) {
-        this.props.fetchVideosAction(this.state.params);
+      if (!this.props.lazyLoadingDisabled) {
+        this.props.fetchVideosAction(this.props.params);
       }
     }
 
@@ -31,19 +25,18 @@ function LazyLoadingHOC(WrappedComponent) {
      */
     onScroll = () => {
       if ((window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 500) &&
-        !this.props.allVideosLoaded > 0 && !this.props.isPending) {
-        const nextPage = this.state.params.page + 1;
-        this.setState({
-          params: {
-            ...this.state.params,
-            page: nextPage
-          }
-        });
+        !this.props.lazyLoadingDisabled && !this.props.isPending) {
+        const nextPage = this.props.params.page + 1;
+        const params = {
+          ...this.props.params,
+          page: nextPage
+        };
+        this.props.updateVideosParams(params);
 
-        this.props.fetchVideosAction(this.state.params).then((res) => {
+        this.props.fetchVideosAction(this.props.params).then((res) => {
           // update store if all videos are loaded
-          if ((res.data).length < this.state.params.limit) {
-            this.props.updateVideosLoaded();
+          if ((res.data).length < this.props.params.limit) {
+            this.props.toggleLazyLoading();
           }
         });
       }
@@ -56,10 +49,12 @@ function LazyLoadingHOC(WrappedComponent) {
 
   const mapStateToProps = state => ({
     isPending: state.videosReducer.isPending,
-    allVideosLoaded: state.lazyLoadingReducer.allVideosLoaded
+    lazyLoadingDisabled: state.lazyLoadingReducer.lazyLoadingDisabled,
+    params: state.lazyLoadingReducer.params
   });
 
-  return connect(mapStateToProps, { fetchVideosAction, updateVideosLoaded })(LazyLoadingComponent);
+  return connect(mapStateToProps,
+    { fetchVideosAction, updateVideosLoaded, updateVideosParams })(LazyLoadingComponent);
 }
 
 export default LazyLoadingHOC;

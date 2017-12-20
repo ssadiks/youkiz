@@ -1,15 +1,33 @@
 import * as types from '../actions/types';
 
 const initialState = () => ({
-  allVideosLoaded: false,
+  lazyLoadingDisabled: false,
+  params: {
+    filters: {
+      dancers: [],
+      online: true,
+      type: ''
+    },
+    limit: 5,
+    page: 1
+  }
 });
 
 const lazyLoadingReducer = (state = initialState(), action) => {
   switch (action.type) {
-    case types.ALL_VIDEOS_LOADED:
+    case types.TOGGLE_LAZY_LOADING:
       return {
         ...state,
-        allVideosLoaded: true
+        lazyLoadingDisabled: !state.lazyLoadingDisabled,
+        params: {
+          ...state.params,
+          page: 1
+        }
+      };
+    case types.UPDATE_VIDEOS_PARAMS:
+      return {
+        ...state,
+        params: action.data
       };
 
     default:

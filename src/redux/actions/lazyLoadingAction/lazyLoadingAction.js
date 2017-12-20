@@ -1,3 +1,4 @@
 import * as types from '../types';
 
-export const updateVideosLoaded = () => ({ type: types.ALL_VIDEOS_LOADED });
+export const toggleLazyLoading = () => ({ type: types.TOGGLE_LAZY_LOADING });
+export const updateVideosParams = data => ({ type: types.UPDATE_VIDEOS_PARAMS, data });

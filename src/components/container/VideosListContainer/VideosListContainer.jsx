@@ -5,7 +5,9 @@ import {
   fetchDancersAction,
   deleteVideoAction,
   openModalDialog,
-  hideModalDialog
+  hideModalDialog,
+  resetVideosListAction,
+  toggleLazyLoading
 } from '../../../redux/actions/index';
 
 const mapStateToProps = state => ({
@@ -20,7 +22,9 @@ const VideosListContainer = connect(mapStateToProps, {
   fetchDancersAction,
   deleteVideoAction,
   openModalDialog,
-  hideModalDialog
+  hideModalDialog,
+  resetVideosListAction,
+  toggleLazyLoading
 })(VideosList);
 
 export default VideosListContainer;

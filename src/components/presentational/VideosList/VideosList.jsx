@@ -41,6 +41,8 @@ class VideosList extends Component {
           <FilterVideos
             onSubmit={params => this.props.fetchVideosAction(params)}
             fetchDancersAction={this.props.fetchDancersAction}
+            resetVideosListAction={this.props.resetVideosListAction}
+            toggleLazyLoading={this.props.toggleLazyLoading}
             dancersList={dancersList}
           />
         }

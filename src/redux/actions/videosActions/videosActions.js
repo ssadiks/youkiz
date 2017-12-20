@@ -104,3 +104,7 @@ export const deleteVideoAction = id => (dispatch) => {
       }));
     });
 };
+
+export const resetVideoAction = () => ({ type: types.RESET_VIDEO });
+
+export const resetVideosListAction = () => ({ type: types.RESET_VIDEOS_LIST });

@@ -6,8 +6,6 @@ import autoprefixer from 'autoprefixer';
 import { LOCALES } from './src/constants';
 // import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 
-
-console.log('regexp', new RegExp(`flags\\/${LOCALES.join('|')}\\.(svg)$`, 'i'));
 const resolve = dir => path.resolve(__dirname, dir);
 
 const postcss = (loader) => [

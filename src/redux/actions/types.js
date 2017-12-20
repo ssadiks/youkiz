@@ -14,6 +14,7 @@ export const DELETE_VIDEO = createRequestTypes('DELETE_VIDEO');
 export const CREATE_VIDEO = createRequestTypes('CREATE_VIDEO');
 export const UPDATE_VIDEO = createRequestTypes('UPDATE_VIDEO');
 export const RESET_VIDEO = 'RESET_VIDEO';
+export const RESET_VIDEOS_LIST = 'RESET_VIDEOS_LIST';
 
 export const FETCH_DANCERS = createRequestTypes('FETCH_DANCERS');
 export const FETCH_DANCER = createRequestTypes('FETCH_DANCER');
@@ -31,4 +32,5 @@ export const SET_LOCALE = createRequestTypes('SET_LOCALE');
 
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 
-export const ALL_VIDEOS_LOADED = 'ALL_VIDEOS_LOADED';
+export const TOGGLE_LAZY_LOADING = 'TOGGLE_LAZY_LOADING';
+export const UPDATE_VIDEOS_PARAMS = 'UPDATE_VIDEOS_PARAMS';

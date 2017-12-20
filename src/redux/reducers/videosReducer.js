@@ -113,6 +113,11 @@ const videosReducer = (state = initialState(), action) => {
         ...state,
         videoDetails: {}
       };
+    case types.RESET_VIDEOS_LIST:
+      return {
+        ...state,
+        videosList: []
+      };
     default:
       return state;
   }

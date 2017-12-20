@@ -20,10 +20,14 @@ class FilterVideos extends Component {
   /* Get all Dancers for hydrate Select */
   componentWillMount() {
     this.props.fetchDancersAction();
+    console.log('this.props', this.props);
   }
 
   onSubmitSearch = (e) => {
     e.preventDefault();
+
+    this.props.toggleLazyLoading();
+    this.props.resetVideosListAction();
 
     const params = {
       filters: {
@@ -31,7 +35,8 @@ class FilterVideos extends Component {
         online: this.state.online,
         type: ''
       },
-      limit: 10
+      limit: 9,
+      page: 1
     };
 
     const { typeDance, dancersTab } = this.state;
