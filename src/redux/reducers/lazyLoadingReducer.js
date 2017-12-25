@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import { VIDEOS_LIMIT } from '../../constants';
 
 const initialState = () => ({
   lazyLoadingDisabled: false,
@@ -8,7 +9,7 @@ const initialState = () => ({
       online: true,
       type: ''
     },
-    limit: 5,
+    limit: VIDEOS_LIMIT,
     page: 1
   }
 });
@@ -29,6 +30,9 @@ const lazyLoadingReducer = (state = initialState(), action) => {
         ...state,
         params: action.data
       };
+    case types.RESET_VIDEOS_PARAMS:
+      console.log('reducer avant le return')
+      return initialState();
 
     default:
       return state;

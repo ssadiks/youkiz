@@ -7,7 +7,9 @@ import {
   openModalDialog,
   hideModalDialog,
   resetVideosListAction,
-  toggleLazyLoading
+  toggleLazyLoading,
+  updateVideosParams,
+  resetVideosParamsAction
 } from '../../../redux/actions/index';
 
 const mapStateToProps = state => ({
@@ -15,6 +17,7 @@ const mapStateToProps = state => ({
   dancersList: state.dancersReducer.dancersList,
   isPending: state.videosReducer.isPending,
   error: state.videosReducer.error,
+  params: state.lazyLoadingReducer.params
 });
 
 const VideosListContainer = connect(mapStateToProps, {
@@ -24,7 +27,9 @@ const VideosListContainer = connect(mapStateToProps, {
   openModalDialog,
   hideModalDialog,
   resetVideosListAction,
-  toggleLazyLoading
+  toggleLazyLoading,
+  updateVideosParams,
+  resetVideosParamsAction
 })(VideosList);
 
 export default VideosListContainer;

@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import {
   fetchVideosAction,
   updateVideosLoaded,
-  updateVideosParams
+  updateVideosParams,
+  resetVideosListAction
 } from '../../../redux/actions/index';
 
 function LazyLoadingHOC(WrappedComponent) {
@@ -11,6 +12,8 @@ function LazyLoadingHOC(WrappedComponent) {
     componentDidMount() {
       window.addEventListener('scroll', this.onScroll, false);
       if (!this.props.lazyLoadingDisabled) {
+        this.props.resetVideosParamsAction();
+        this.props.resetVideosListAction();
         this.props.fetchVideosAction(this.props.params);
       }
     }
@@ -54,7 +57,12 @@ function LazyLoadingHOC(WrappedComponent) {
   });
 
   return connect(mapStateToProps,
-    { fetchVideosAction, updateVideosLoaded, updateVideosParams })(LazyLoadingComponent);
+    {
+      fetchVideosAction,
+      updateVideosLoaded,
+      updateVideosParams,
+      resetVideosListAction
+    })(LazyLoadingComponent);
 }
 
 export default LazyLoadingHOC;

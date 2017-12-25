@@ -43,6 +43,9 @@ class VideosList extends Component {
             fetchDancersAction={this.props.fetchDancersAction}
             resetVideosListAction={this.props.resetVideosListAction}
             toggleLazyLoading={this.props.toggleLazyLoading}
+            updateVideosParams={this.props.updateVideosParams}
+            resetVideosParamsAction={this.props.resetVideosParamsAction}
+            params={this.props.params}
             dancersList={dancersList}
           />
         }
