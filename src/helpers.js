@@ -4,6 +4,7 @@ import frTranslation from '../src/i18n/fr.json';
 import esTranslation from '../src/i18n/es.json';
 import itTranslation from '../src/i18n/it.json';
 import ptTranslation from '../src/i18n/pt.json';
+import nlTranslation from '../src/i18n/nl.json';
 import { BROWSER_LOCALE } from './constants';
 
 /**
@@ -54,7 +55,8 @@ const localesTranslation = {
   fr: frTranslation,
   es: esTranslation,
   it: itTranslation,
-  pt: ptTranslation
+  pt: ptTranslation,
+  nl: nlTranslation
 };
 
 /* Init of polyglot */

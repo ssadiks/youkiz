@@ -27,7 +27,7 @@ export const SNACKBAR_MSG = {
   }
 };
 
-export const LOCALES = ['us', 'fr', 'es', 'pt', 'it'];
+export const LOCALES = ['us', 'fr', 'es', 'pt', 'it', 'nl'];
 export const BROWSER_LOCALE = (typeof navigator !== 'undefined') && LOCALES.includes(navigator.language) ? navigator.language : 'us';
 
 export const VIDEOS_LIMIT = 9;

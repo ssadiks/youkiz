@@ -6,8 +6,6 @@ ssr
 
 login
 
-infinite scroll
-
 translations
 
 QUESTIONS
