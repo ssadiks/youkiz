@@ -32,4 +32,11 @@ const VideosListContainer = connect(mapStateToProps, {
   resetVideosParamsAction
 })(VideosList);
 
-export default VideosListContainer;
+const loadData = (store) => {
+  return store.dispatch(fetchVideosAction());
+}
+
+export default {
+  loadData,
+  component: VideosListContainer
+};

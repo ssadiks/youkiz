@@ -4,36 +4,28 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import {
-  BrowserRouter as Router,
-  Route,
-  Switch
+  BrowserRouter,
 } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import App from './components/container/App/App';
-import HeaderContainer from './components/container/HeaderContainer/HeaderContainer';
-import VideosListContainer from './components/container/VideosListContainer/VideosListContainer';
-import DancersListContainer from './components/container/BackOfficeContainer/BackOfficeContainer';
-import NotFound from './components/presentational/NotFound/NotFound';
 import reducers from './redux/reducers';
+import HeaderContainer from './components/container/HeaderContainer/HeaderContainer';
+
+import Routes from './Routes';
 
 const Root = () => (
-  <Router>
+  <BrowserRouter>
     <div>
-      <HeaderContainer />
-      <Switch>
-        <Route exact path="/" component={App} />
-        <Route path="/videos" component={VideosListContainer} />
-        <Route path="/bo" component={DancersListContainer} />
-        <Route component={NotFound} />
-      </Switch>
+      {renderRoutes(Routes)}
     </div>
-  </Router>
+  </BrowserRouter>
 );
 const middleware = [thunk];
 
 const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore);
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider
     store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ &&
       window.__REDUX_DEVTOOLS_EXTENSION__())}

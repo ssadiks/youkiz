@@ -12,15 +12,6 @@ import VideosNewForm from '../VideosNewForm/VideosNewForm';
 import VideosEditForm from '../VideosEditForm/VideosEditForm';
 import TranslationHOC from '../../container/TranslationHOC/TranslationHOC';
 
-const styles = {
-  headline: {
-    fontSize: 24,
-    paddingTop: 16,
-    marginBottom: 12,
-    fontWeight: 400,
-  },
-};
-
 class BackOffice extends Component {
   constructor(props) {
     super(props);
@@ -151,7 +142,7 @@ class BackOffice extends Component {
               />
               {
                 videosList && (blockDisplayed === 'VIDEO_LIST') &&
-                <VideosListContainer
+                <VideosListContainer.component
                   editVideo={this.editVideo}
                   userConnected
                 />

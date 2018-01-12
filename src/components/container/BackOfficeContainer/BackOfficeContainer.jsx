@@ -35,4 +35,11 @@ const BackOfficeContainer = connect(mapStateToProps, {
   hideModalDialog
 })(BackOffice);
 
-export default BackOfficeContainer;
+const loadData = (store) => {
+  return store.dispatch(fetchDancersAction());
+}
+
+export default {
+  loadData,
+  component: BackOfficeContainer
+};

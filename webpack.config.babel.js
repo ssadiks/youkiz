@@ -15,15 +15,15 @@ const postcss = (loader) => [
 // const BUILD_DIR = resolve('./public');
 const APP_DIR = resolve('./src');
 const ROOT_DIR = resolve('./');
-const PORT = '8080';
+// const PORT = '8080';
 
-const devServer = process.env.NODE_ENV === 'development' ? {
+/* const devServer = process.env.NODE_ENV === 'development' ? {
   publicPath: `http://localhost:${PORT}/`,
   contentBase: 'public',
   historyApiFallback: true,
   compress: true,
   port: PORT,
-} : null;
+} : null; */
 
 const config = {
   entry: {
@@ -33,7 +33,7 @@ const config = {
   output: {
     filename: 'js/[name].js',
     path: resolve('./public'),
-    publicPath: `http://localhost:${PORT}/`
+    // publicPath: `http://localhost:${PORT}/`
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -149,12 +149,12 @@ const config = {
       minChunks: Infinity
     }),
     // new UglifyJSPlugin()
-    new HtmlWebpackPlugin({
+    /* new HtmlWebpackPlugin({
       template: `${APP_DIR}/index.tpl.ejs`,
       chunks: ['bundle', 'vendors']
-    })
+    }) */
   ],
-  devServer
+  // devServer
 };
 
 module.exports = config;

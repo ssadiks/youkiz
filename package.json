@@ -6,7 +6,7 @@
   "repository": "https://github.com/ssadiks/youkiz",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
-    "build-dev": "NODE_ENV=development webpack",
+    "build-dev": "NODE_ENV=development webpack --watch",
     "test": "jest",
     "test:coverage": "npm run test -- --coverage",
     "test:watch": "npm run test -- --watch",
@@ -74,6 +74,7 @@
     "react-flags-select": "^1.1.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
+    "react-router-config": "^1.0.0-beta.4",
     "react-router-dom": "^4.2.2",
     "redux": "^3.0.4",
     "redux-form": "^7.0.4",
@@ -81,6 +82,7 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.1.0",
     "sass-loader": "^6.0.6",
+    "serialize-javascript": "^1.4.0",
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "url-loader": "^0.6.2"
